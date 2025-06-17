@@ -1,11 +1,11 @@
 const projectData = [
   {
-    company: 'AI Chat Platform',
+    company: 'UW GO',
     role: 'Personal Project',
     year: '2025',
-    location: 'Open Source',
+    location: 'Waterloo, Ontario',
     description: 'Real-time chat application with AI-powered responses. Features include voice messages, file sharing, and smart replies.',
-    tech: ['React', 'Socket.io', 'OpenAI API', 'Firebase', 'Material-UI'],
+    tech: ['React', 'Firebase', 'TailwindCSS', 'Typescript', 'Next.js'],
     icon: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=40&h=40&fit=crop'
   },
   {
