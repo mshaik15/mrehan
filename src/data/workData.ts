@@ -1,6 +1,6 @@
 const workData = [
   {
-    company: 'Cartesia',
+    company: 'Skrimp.ai',
     role: 'Engineering, API & Agents',
     year: '2025',
     location: 'San Francisco, CA',
