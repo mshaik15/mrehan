@@ -1,62 +1,35 @@
-import { Github, Linkedin, Mail } from 'lucide-react'
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
 
-export function App() {
+function App() {
+  const [count, setCount] = useState(0)
+
   return (
-    <div className="flex w-full min-h-screen justify-center items-center bg-gray-900 text-gray-100 p-4 sm:p-6">
-      <div className="max-w-3xl w-full text-center">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-gray-100 tracking-tight">
-          Mohammed Rehan
-        </h1>
-        <h2 className="text-lg sm:text-xl md:text-2xl font-serif text-gray-400 mt-2">
-          Mechatronics @ the University of Waterloo
-        </h2>
-        <p className="text-gray-300 mt-4 sm:mt-6 font-light text-base sm:text-lg max-w-2xl mx-auto">
-          Prev. Growth Eng @{' '}
-          <span className="font-medium">Ramp</span>. Building AI for engineers.
-        </p>
-        <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row justify-center items-center border-t border-gray-800 pt-6 space-y-6 sm:space-y-0">
-          <nav className="flex space-x-6 sm:space-x-8">
-            <a
-              href="#work"
-              className="text-gray-400 hover:text-gray-100 transition-colors"
-            >
-              work
-            </a>
-            <a
-              href="#projects"
-              className="text-gray-400 hover:text-gray-100 transition-colors"
-            >
-              projects
-            </a>
-            <a
-              href="#resume"
-              className="text-gray-400 hover:text-gray-100 transition-colors"
-            >
-              resume
-            </a>
-          </nav>
-          <div className="flex space-x-5 sm:ml-16">
-            <a
-              href="#github"
-              className="text-gray-400 hover:text-gray-100 transition-colors"
-            >
-              <Github size={20} />
-            </a>
-            <a
-              href="#linkedin"
-              className="text-gray-400 hover:text-gray-100 transition-colors"
-            >
-              <Linkedin size={20} />
-            </a>
-            <a
-              href="#email"
-              className="text-gray-400 hover:text-gray-100 transition-colors"
-            >
-              <Mail size={20} />
-            </a>
-          </div>
-        </div>
+    <>
+      <div>
+        <a href="https://vite.dev" target="_blank">
+          <img src={viteLogo} className="logo" alt="Vite logo" />
+        </a>
+        <a href="https://react.dev" target="_blank">
+          <img src={reactLogo} className="logo react" alt="React logo" />
+        </a>
       </div>
-    </div>
+      <h1>Vite + React</h1>
+      <div className="card">
+        <button onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </button>
+        <p>
+          Edit <code>src/App.tsx</code> and save to test HMR
+        </p>
+      </div>
+      <p className="read-the-docs">
+        Click on the Vite and React logos to learn more
+      </p>
+    </>
   )
 }
+
+export default App
