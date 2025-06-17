@@ -1,14 +1,31 @@
 const projectData = [
   {
-    company: 'Cartesia',
-    role: 'Engineering, API & Agents',
+    company: 'AI Chat Platform',
+    role: 'Personal Project',
     year: '2025',
-    location: 'San Francisco, CA',
-    description: 'Productizing real-time multimodal intelligence. Launched ink-whisper platform.',
-    tech: ['Next.js', 'Python', 'LangGraph', 'MongoDB', 'LLMs'],
-    icon: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=40&h=40&fit=crop'
+    location: 'Open Source',
+    description: 'Real-time chat application with AI-powered responses. Features include voice messages, file sharing, and smart replies.',
+    tech: ['React', 'Socket.io', 'OpenAI API', 'Firebase', 'Material-UI'],
+    icon: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=40&h=40&fit=crop'
   },
-  // ... other entries
+  {
+    company: 'E-commerce Dashboard',
+    role: 'Freelance Project',
+    year: '2024',
+    location: 'Remote',
+    description: 'Analytics dashboard for online retailers with real-time sales tracking, inventory management, and customer insights.',
+    tech: ['Next.js', 'Chart.js', 'Prisma', 'Stripe API', 'Tailwind CSS'],
+    icon: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=40&h=40&fit=crop'
+  },
+  {
+    company: 'Weather App',
+    role: 'Learning Project',
+    year: '2024',
+    location: 'Personal',
+    description: 'Beautiful weather application with location-based forecasts, interactive maps, and weather alerts.',
+    tech: ['React Native', 'Weather API', 'MapBox', 'Redux', 'Expo'],
+    icon: 'https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=40&h=40&fit=crop'
+  }
 ]
 
 export default projectData
