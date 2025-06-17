@@ -3,42 +3,44 @@ import { Github, Linkedin } from "lucide-react"
 
 export default function HeroSection() {
   return (
-    <section className="text-center py-16 mb-16 border-b border-gray-800">
-      <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+    <section className="text-center py-12 sm:py-16 lg:py-20 xl:py-24 mb-12">
+      <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-3 sm:mb-4 lg:mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent leading-tight">
         Mohammed Rehan
       </h1>
-      <h2 className="text-xl md:text-2xl text-gray-400 mb-4 font-light">
+      <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-gray-400 mb-3 sm:mb-4 lg:mb-6 font-light px-4">
         Mechatronics @ the University of Waterloo
       </h2>
-      <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-6">
+      <p className="text-base sm:text-lg lg:text-xl xl:text-2xl text-gray-300 max-w-xl sm:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto mb-6 sm:mb-8 lg:mb-10 px-4 leading-relaxed">
         Prev. Growth Eng @ Ramp. Building AI for engineers.
       </p>
       
       {/* Navigation section */}
-      <div className="flex justify-between items-center max-w-2xl mx-auto">
+      <div className="flex flex-col sm:flex-row justify-between items-center max-w-xl sm:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto gap-4 sm:gap-0 px-4">
         <Link 
           to="/work" 
-          className="text-gray-400 hover:text-white transition-colors underline decoration-dotted underline-offset-4"
+          className="text-sm sm:text-base lg:text-lg text-gray-400 hover:text-white transition-colors underline decoration-dotted underline-offset-4 order-2 sm:order-1"
         >
           Resume
         </Link>
         
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 sm:gap-6 order-1 sm:order-2">
           <a 
             href="https://github.com/yourusername" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="text-gray-400 hover:text-white transition-colors"
+            className="text-gray-400 hover:text-white transition-colors p-2"
+            aria-label="GitHub Profile"
           >
-            <Github className="w-5 h-5" />
+            <Github className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7" />
           </a>
           <a 
             href="https://linkedin.com/in/yourusername" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="text-gray-400 hover:text-white transition-colors"
+            className="text-gray-400 hover:text-white transition-colors p-2"
+            aria-label="LinkedIn Profile"
           >
-            <Linkedin className="w-5 h-5" />
+            <Linkedin className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7" />
           </a>
         </div>
       </div>
