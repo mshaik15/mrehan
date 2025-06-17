@@ -2,7 +2,7 @@ import WorkSection from "../components/Work"
 import { Link } from "react-router-dom"
 import { ArrowLeft } from "lucide-react"
 
-export default function Resume() {
+export default function Work() {
   return (
     <div className="min-h-screen bg-gray-950 text-white">
       <div className="max-w-4xl mx-auto p-8">
@@ -14,19 +14,6 @@ export default function Resume() {
           <ArrowLeft className="w-4 h-4" />
           Back to Home
         </Link>
-        
-        {/* Header with Resume button */}
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-semibold">Work Experience</h2>
-          <a 
-            href="/resume.pdf" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white rounded-lg transition-colors border border-gray-700"
-          >
-            Resume
-          </a>
-        </div>
         
         <WorkSection />
       </div>

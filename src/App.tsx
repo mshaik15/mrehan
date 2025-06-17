@@ -1,16 +1,15 @@
-import HeroSection from "./components/Hero"
-import WorkSection from "./components/Work"
-import ProjectsSection from "./components/Projects"
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Home from './pages/Home'
+import Resume from './pages/Work'
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
-      <div className="max-w-4xl mx-auto p-8">
-        <HeroSection />
-        <ProjectsSection />
-        <WorkSection />
-      </div>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/work" element={<Resume />} />
+      </Routes>
+    </Router>
   )
 }
 
