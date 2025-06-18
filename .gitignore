@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# src/data/projectData.ts
+# src/data/workData.ts
