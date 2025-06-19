@@ -4,14 +4,13 @@ import { ChevronDown, Building2, ExternalLink } from 'lucide-react'
 interface DropdownCardProps {
   title: string
   subtitle: string
-  year: string
   icon: string
   children?: React.ReactNode
   type?: 'project' | 'work' // Add type to distinguish between projects and work
   companyUrl?: string // Optional company URL for work items
 }
 
-export default function DropdownCard({ title, subtitle, year, icon, children, type = 'project', companyUrl }: DropdownCardProps) {
+export default function DropdownCard({ title, subtitle, icon, children, type = 'project', companyUrl }: DropdownCardProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [imageError, setImageError] = useState(false)
 
@@ -61,7 +60,7 @@ export default function DropdownCard({ title, subtitle, year, icon, children, ty
               {title}
             </h3>
             <p className="text-xs sm:text-sm lg:text-base text-gray-400 truncate">
-              {subtitle} | {year}
+              {subtitle}
             </p>
           </div>
         </div>
@@ -73,7 +72,7 @@ export default function DropdownCard({ title, subtitle, year, icon, children, ty
               style={{ width: '120px' }} // Approximate width of the closed state elements
             >
               <span className="text-xs sm:text-sm lg:text-base text-gray-400 hidden xs:block">
-                {/* Empty span to maintain layout - year is now in subtitle */}
+                {/* Empty span to maintain layout */}
               </span>
               <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-400 hover:text-white transition-colors flex-shrink-0" />
             </button>
@@ -85,7 +84,7 @@ export default function DropdownCard({ title, subtitle, year, icon, children, ty
               style={{ width: '120px' }}
             >
               <span className="text-xs sm:text-sm lg:text-base text-gray-400 hidden xs:block">
-                {/* Empty span to maintain layout - year is now in subtitle */}
+                {/* Empty span to maintain layout */}
               </span>
               <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-400 hover:text-white transition-colors flex-shrink-0" />
             </button>
@@ -93,7 +92,7 @@ export default function DropdownCard({ title, subtitle, year, icon, children, ty
             // For projects, show chevron when closed
             <>
               <span className="text-xs sm:text-sm lg:text-base text-gray-400 hidden xs:block">
-                {/* Empty span to maintain layout - year is now in subtitle */}
+                {/* Empty span to maintain layout */}
               </span>
               <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-400 transition-transform" />
             </>

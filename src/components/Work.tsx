@@ -10,7 +10,6 @@ export default function WorkSection() {
             key={index}
             title={work.company}
             subtitle={`${work.role} | ${work.location} | ${work.year}`}
-            year={work.year}
             icon={work.icon}
             type="work" // This will go to company websites
             companyUrl={

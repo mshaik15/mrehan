@@ -1,6 +1,5 @@
 import DropdownCard from './DropdownCard/DropdownCard'
 import TechTag from './DropdownCard/TechTag'
-import { MapPin } from 'lucide-react'
 import projectData from '../data/projectData'
 
 export default function ProjectsSection() {
@@ -12,21 +11,10 @@ export default function ProjectsSection() {
             key={index}
             title={project.company}
             subtitle={`${project.role} | ${project.year}`}
-            year={project.year}
             icon={project.icon}
             type="project" // This will go to technical breakdown pages
           >
             <div className="pt-3 sm:pt-4 lg:pt-5 space-y-3 sm:space-y-4">
-              {/* Mobile Screens*/}
-              <div className="xs:hidden">
-                <span className="text-xs text-gray-500">{project.year}</span>
-              </div>
-              
-              <p className="text-xs sm:text-sm lg:text-base text-gray-400 flex items-start sm:items-center gap-1.5 sm:gap-2">
-                <MapPin className="w-3 h-3 sm:w-4 sm:h-4 mt-0.5 sm:mt-0 flex-shrink-0" />
-                <span className="leading-relaxed">{project.location}</span>
-              </p>
-              
               <p className="text-xs sm:text-sm lg:text-base xl:text-lg text-gray-300 leading-relaxed">
                 {project.description}
               </p>
