@@ -18,31 +18,55 @@ export default function AnimatedPathsBackground({
   const timeRef = useRef<number>(0)
   const [mounted, setMounted] = useState(false)
 
-  // Trigger animation from right on mount
+  const pathDataRef = useRef<Array<{
+    path: SVGPathElement | null
+    yBase: number
+    waveLength: number
+    horizontalStart: number
+    segments: number
+    waveHeight: number
+  }>>([])
+
   useEffect(() => {
-    const svg = svgRef.current
-    if (!svg) return
-
-    const paths = svg.querySelectorAll('path')
-
     const animate = () => {
-      timeRef.current += speed * 0.01
+      timeRef.current += speed * 0.02
+      const t = timeRef.current
 
-      paths.forEach((path, i) => {
-        const pathLength = path.getTotalLength()
-        const flowSpeed = 0.01 + i * 0.002
-        const offset = (timeRef.current * flowSpeed * pathLength) % pathLength
-        path.style.strokeDashoffset = `${offset}`
+      if (pathDataRef.current) {
+        for (let i = 0; i < pathDataRef.current.length; i++) {
+          const {
+            path,
+            yBase,
+            waveLength,
+            horizontalStart,
+            segments,
+            waveHeight,
+          } = pathDataRef.current[i]
+          if (!path) continue
 
-        const baseOpacity = opacity * (0.5 + i * 0.02)
-        const wave = Math.sin(timeRef.current * 1.5 + i * 0.3) * (opacity * 0.3)
-        const animatedOpacity = Math.max(opacity * 0.2, Math.min(opacity * 1.5, baseOpacity + wave))
-        path.style.strokeOpacity = `${animatedOpacity}`
+          let d = `M${horizontalStart} ${yBase}`
+          for (let j = 0; j < segments; j++) {
+            const x1 = j * waveLength
+            const x2 = x1 + waveLength / 2
+            const x3 = x1 + waveLength
 
-        // Keep the horizontal animation flowing
-        const translateX = Math.sin(timeRef.current * flowSpeed + i) * 20
-        path.setAttribute("transform", `translate(${translateX}, 0)`)
-      })
+            const wavePhase = t * 1.5 + i * 0.3 + j * 0.5
+            const yControl = yBase + Math.sin(wavePhase) * waveHeight
+
+            d += ` Q${x2 + horizontalStart} ${yControl} ${x3 + horizontalStart} ${yBase}`
+          }
+
+          path.setAttribute("d", d)
+
+          const baseOpacity = opacity * (0.5 + i * 0.02)
+          const waveOpacity = Math.sin(t * 1.5 + i * 0.3) * (opacity * 0.3)
+          const animatedOpacity = Math.max(
+            opacity * 0.2,
+            Math.min(opacity * 1.5, baseOpacity + waveOpacity)
+          )
+          path.style.strokeOpacity = `${animatedOpacity}`
+        }
+      }
 
       animationRef.current = requestAnimationFrame(animate)
     }
@@ -55,49 +79,59 @@ export default function AnimatedPathsBackground({
     }
   }, [speed, opacity])
 
-    const generatePaths = () => {
-    const paths = []
+  const generatePaths = () => {
+    const paths: JSX.Element[] = []
+    const newPathData: typeof pathDataRef.current = []
+
+    const screenWidth = typeof window !== "undefined" ? window.innerWidth : 2000
+    const buffer = 800
+    const totalWidth = screenWidth + buffer * 2
 
     for (let i = 0; i < pathCount; i++) {
-        // Spread out X and Y more to fill ~60% of screen width/height
-        const xOffset = i * 50 // Increased from 25–35 range
-        const yOffset = i * 18 // Increased from 10–12 range
+      const waveHeight = 20 + i * 1.5
+      const waveLength = 140 + (i % 3) * 10
+      const segments = Math.ceil(totalWidth / waveLength)
+      const verticalSpread = 1000
+      const yBase = 100 + (i / pathCount) * verticalSpread
+      const horizontalStart = -buffer + (i % 5) * 80
 
-        const baseX = 300 + xOffset
-        const baseY = 150 + yOffset
-        const controlX = 600 + xOffset
-        const controlY = 300 + yOffset
-        const endX = 900 + xOffset
-        const endY = 250 + yOffset
-        const finalX = 1300 + xOffset
-        const finalY = 400 + yOffset
+      const strokeWidth = 1.2 + i * 0.04
+      const pathLength = 800 + i * 40
 
-        const d = `M${baseX} ${baseY}Q${controlX} ${controlY} ${endX} ${endY}T${finalX} ${finalY}`
-        const strokeWidth = 0.8 + i * 0.02
-        const pathLength = 1000 + i * 50
+      newPathData.push({
+        path: null,
+        yBase,
+        waveLength,
+        horizontalStart,
+        segments,
+        waveHeight,
+      })
 
-        paths.push(
+      paths.push(
         <path
-            key={`path-${i}`}
-            d={d}
-            stroke="url(#pathGradient)"
-            strokeWidth={strokeWidth}
-            fill="none"
-            strokeDasharray={`${pathLength * 0.3} ${pathLength * 0.7}`}
-            className={`transition-all duration-[1500ms] ease-out ${
+          key={`wave-path-${i}`}
+          d="M0 0 Q1 1 2 2"
+          stroke="url(#pathGradient)"
+          strokeWidth={strokeWidth}
+          fill="none"
+          strokeDasharray={`${pathLength * 0.4} ${pathLength * 0.6}`}
+          className={`transition-all duration-[1500ms] ease-out ${
             mounted ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full"
-            }`}
-            style={{
+          }`}
+          style={{
             strokeLinecap: "round",
             strokeLinejoin: "round",
-            }}
+          }}
+          ref={(el) => {
+            if (el) newPathData[i].path = el
+          }}
         />
-        )
+      )
     }
 
+    pathDataRef.current = newPathData
     return paths
-    }
-
+  }
 
   return (
     <div className={`fixed inset-0 pointer-events-none overflow-hidden z-0 ${className}`}>
