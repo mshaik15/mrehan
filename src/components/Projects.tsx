@@ -6,9 +6,9 @@ import projectData from '../data/projectData'
 export default function ProjectsSection() {
   return (
     <section className="mb-12">
-      <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-semibold mb-4 sm:mb-6 lg:mb-8 px-2 sm:px-0">
+      {/* <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-semibold mb-4 sm:mb-6 lg:mb-8 px-2 sm:px-0">
         Projects
-      </h2>
+      </h2> */}
       <div className="space-y-3 sm:space-y-4 lg:space-y-6">
         {projectData.map((project, index) => (
           <DropdownCard

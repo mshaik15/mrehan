@@ -11,7 +11,7 @@ export default function HeroSection() {
         Mechatronics @ the University of Waterloo
       </h2>
       <p className="text-base sm:text-lg lg:text-xl xl:text-2xl text-gray-300 max-w-xl sm:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto mb-6 sm:mb-8 lg:mb-10 px-4 leading-relaxed">
-        Prev. Growth Eng @ Ramp. Building AI for engineers.
+        Backend & LLM Eng @ Skrimp. Building AI for budgeting.
       </p>
       
       {/* Navigation section */}
