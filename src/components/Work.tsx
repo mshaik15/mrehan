@@ -11,13 +11,8 @@ export default function WorkSection() {
             title={work.company}
             subtitle={`${work.role} | ${work.location} | ${work.year}`}
             icon={work.icon}
-            type="work" // This will go to company websites
-            companyUrl={
-              work.company === 'Skrimp.ai' ? 'https://skrimp.ai' :
-              work.company === 'TechCorp' ? 'https://techcorp.com' :
-              work.company === 'StartupXYZ' ? 'https://startupxyz.com' :
-              undefined // Will use fallback URL construction
-            }
+            type="work"
+            companyUrl={work.companyUrl}
           >
             {/* No content - work experience cards don't open */}
           </DropdownCard>

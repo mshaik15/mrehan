@@ -58,10 +58,38 @@ export default function DropdownCard({
     }
   }
 
+  // For projects: determine primary external link
+  const getPrimaryExternalLink = () => {
+    if (hasBreakdown && slug) {
+      return `/project/${slug}`
+    }
+    if (liveUrl) {
+      return liveUrl
+    }
+    if (githubUrl) {
+      return githubUrl
+    }
+    return null
+  }
+
+  const handlePrimaryExternalClick = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    const primaryLink = getPrimaryExternalLink()
+    if (primaryLink) {
+      if (primaryLink.startsWith('/')) {
+        // Internal link (breakdown page)
+        window.location.href = primaryLink
+      } else {
+        // External link
+        window.open(primaryLink, '_blank')
+      }
+    }
+  }
+
   return (
     <div className="mb-3 sm:mb-4 lg:mb-6 rounded-lg border border-gray-700/50 bg-gray-900/50 hover:border-gray-600/50 transition-all">
       <button
-        onClick={() => hasDropdownContent ? setIsOpen(!isOpen) : handleWorkClick}
+        onClick={(e) => hasDropdownContent ? setIsOpen(!isOpen) : handleWorkClick(e)}
         className="w-full px-3 sm:px-4 lg:px-6 py-3 sm:py-4 lg:py-5 flex items-center justify-between group"
       >
         <div className="flex items-center gap-3 sm:gap-4 lg:gap-5 min-w-0">
@@ -97,12 +125,21 @@ export default function DropdownCard({
               <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-400 hover:text-white transition-colors flex-shrink-0" />
             </div>
           ) : hasDropdownContent ? (
-            // Projects - show chevron for dropdown
+            // Projects - show chevron when closed, external link when open
             <>
               <span className="text-xs sm:text-sm lg:text-base text-gray-400 hidden xs:block">
-                {/* Empty span for layout consistency */}
+                {isOpen ? "View" : ""}
               </span>
-              <ChevronDown className={`w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+              {isOpen && getPrimaryExternalLink() ? (
+                <button
+                  onClick={handlePrimaryExternalClick}
+                  className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-400 hover:text-white transition-colors flex-shrink-0"
+                >
+                  <ExternalLink className="w-full h-full" />
+                </button>
+              ) : (
+                <ChevronDown className={`w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+              )}
             </>
           ) : null}
         </div>
@@ -132,8 +169,8 @@ export default function DropdownCard({
                 </button>
               )}
               
-              {/* Demo button */}
-              {liveUrl && (
+              {/* Demo button - only show if there's no breakdown (so it's not redundant with primary external link) */}
+              {liveUrl && !hasBreakdown && (
                 <button
                   onClick={(e) => handleLinkClick(e, liveUrl)}
                   className="inline-flex items-center gap-2 px-3 py-1.5 text-sm bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700/50 hover:border-gray-600 rounded transition-colors"
