@@ -8,8 +8,8 @@ export default function Home() {
       {/* Animated Paths Background */}
       <AnimatedPathsBackground
         pathCount={20}
-        speed={3}
-        opacity={0.3}
+        speed={2}
+        opacity={0.4}
       />
 
       {/* Content */}

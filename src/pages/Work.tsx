@@ -9,7 +9,7 @@ export default function Work() {
       {/* Animated Paths Background */}
       <AnimatedPathsBackground
         pathCount={16}
-        speed={3}
+        speed={2}
         opacity={0.3}
       />
 

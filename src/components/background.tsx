@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 
 interface AnimatedPathsBackgroundProps {
   pathCount?: number
@@ -16,38 +16,36 @@ interface Path {
   color: string
 }
 
+interface Star {
+  id: number
+  delay: number
+  duration: number
+  top: number
+  left: number
+}
+
 export default function AnimatedPathsBackground({ 
   pathCount = 15, 
   speed = 3, 
   opacity = 0.3 
 }: AnimatedPathsBackgroundProps) {
-  const [stars, setStars] = useState<JSX.Element[]>([])
+  const [stars, setStars] = useState<Star[]>([])
   const [paths, setPaths] = useState<Path[]>([])
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
 
   // Generate elegant shooting stars
   useEffect(() => {
     const count = 4
-    const newStars: JSX.Element[] = []
+    const newStars: Star[] = []
 
     for (let i = 0; i < count; i++) {
-      const delay = Math.random() * 25
-      const duration = 8 + Math.random() * 6
-      const top = Math.random() * 80
-      const left = Math.random() * 100
-
-      newStars.push(
-        <div
-          key={i}
-          className="absolute w-[1px] h-[60px] bg-white opacity-[0.08] blur-[0.5px]"
-          style={{
-            top: `${top}%`,
-            left: `${left}%`,
-            animation: `shoot ${duration}s linear ${delay}s infinite`,
-            transform: "rotate(35deg)",
-          }}
-        />
-      )
+      newStars.push({
+        id: i,
+        delay: Math.random() * 25,
+        duration: 8 + Math.random() * 6,
+        top: Math.random() * 80,
+        left: Math.random() * 100
+      })
     }
 
     setStars(newStars)
@@ -130,89 +128,104 @@ export default function AnimatedPathsBackground({
   if (dimensions.width === 0) return null
 
   return (
-    <div className="fixed inset-0 z-[-10] pointer-events-none overflow-hidden">
-      {/* Gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-950 via-black to-gray-900" />
-      
-      {/* Subtle nebula effect */}
-      <svg className="w-full h-full absolute" preserveAspectRatio="none">
-        <defs>
-          <radialGradient id="glow1" cx="30%" cy="40%" r="80%">
-            <stop offset="0%" stopColor="#7dd3fc" stopOpacity="0.015" />
-            <stop offset="100%" stopColor="transparent" />
-          </radialGradient>
-          <radialGradient id="glow2" cx="70%" cy="60%" r="90%">
-            <stop offset="0%" stopColor="#a5b4fc" stopOpacity="0.012" />
-            <stop offset="100%" stopColor="transparent" />
-          </radialGradient>
-          <radialGradient id="glow3" cx="50%" cy="20%" r="60%">
-            <stop offset="0%" stopColor="#6b7280" stopOpacity="0.008" />
-            <stop offset="100%" stopColor="transparent" />
-          </radialGradient>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#glow1)" />
-        <rect width="100%" height="100%" fill="url(#glow2)" />
-        <rect width="100%" height="100%" fill="url(#glow3)" />
-      </svg>
+    <>
+      {/* CSS for shooting star animation */}
+      <style dangerouslySetInnerHTML={{
+        __html: `
+          @keyframes shoot {
+            0% {
+              transform: translateX(-100px) translateY(-100px) rotate(35deg);
+              opacity: 0;
+            }
+            10% {
+              opacity: 0.08;
+            }
+            90% {
+              opacity: 0.08;
+            }
+            100% {
+              transform: translateX(calc(100vw + 100px)) translateY(calc(100vh + 100px)) rotate(35deg);
+              opacity: 0;
+            }
+          }
+        `
+      }} />
 
-      {/* Animated paths */}
-      <svg 
-        className="w-full h-full absolute" 
-        style={{ opacity }}
-        preserveAspectRatio="none"
-      >
-        <defs>
-          {paths.map(path => (
-            <linearGradient key={`grad-${path.id}`} id={`gradient-${path.id}`}>
-              <stop offset="0%" stopColor="transparent" />
-              <stop offset="30%" stopColor={path.color} />
-              <stop offset="70%" stopColor={path.color} />
-              <stop offset="100%" stopColor="transparent" />
-            </linearGradient>
-          ))}
-        </defs>
+      <div className="fixed inset-0 z-[-10] pointer-events-none overflow-hidden">
+        {/* Gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-950 via-black to-gray-900" />
         
-        {paths.map(path => {
-          const endX = path.x + Math.cos(path.angle) * path.length
-          const endY = path.y + Math.sin(path.angle) * path.length
+        {/* Subtle nebula effect */}
+        <svg className="w-full h-full absolute" preserveAspectRatio="none">
+          <defs>
+            <radialGradient id="glow1" cx="30%" cy="40%" r="80%">
+              <stop offset="0%" stopColor="#7dd3fc" stopOpacity="0.015" />
+              <stop offset="100%" stopColor="transparent" />
+            </radialGradient>
+            <radialGradient id="glow2" cx="70%" cy="60%" r="90%">
+              <stop offset="0%" stopColor="#a5b4fc" stopOpacity="0.012" />
+              <stop offset="100%" stopColor="transparent" />
+            </radialGradient>
+            <radialGradient id="glow3" cx="50%" cy="20%" r="60%">
+              <stop offset="0%" stopColor="#6b7280" stopOpacity="0.008" />
+              <stop offset="100%" stopColor="transparent" />
+            </radialGradient>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#glow1)" />
+          <rect width="100%" height="100%" fill="url(#glow2)" />
+          <rect width="100%" height="100%" fill="url(#glow3)" />
+        </svg>
+
+        {/* Animated paths */}
+        <svg 
+          className="w-full h-full absolute" 
+          style={{ opacity }}
+          preserveAspectRatio="none"
+        >
+          <defs>
+            {paths.map(path => (
+              <linearGradient key={`grad-${path.id}`} id={`gradient-${path.id}`}>
+                <stop offset="0%" stopColor="transparent" />
+                <stop offset="30%" stopColor={path.color} />
+                <stop offset="70%" stopColor={path.color} />
+                <stop offset="100%" stopColor="transparent" />
+              </linearGradient>
+            ))}
+          </defs>
           
-          return (
-            <line
-              key={path.id}
-              x1={path.x}
-              y1={path.y}
-              x2={endX}
-              y2={endY}
-              stroke={`url(#gradient-${path.id})`}
-              strokeWidth="1"
-              strokeLinecap="round"
-            />
-          )
-        })}
-      </svg>
+          {paths.map(path => {
+            const endX = path.x + Math.cos(path.angle) * path.length
+            const endY = path.y + Math.sin(path.angle) * path.length
+            
+            return (
+              <line
+                key={path.id}
+                x1={path.x}
+                y1={path.y}
+                x2={endX}
+                y2={endY}
+                stroke={`url(#gradient-${path.id})`}
+                strokeWidth="1"
+                strokeLinecap="round"
+              />
+            )
+          })}
+        </svg>
 
-
-      {/* Elegant shooting stars */}
-      {stars}
-
-      <style jsx>{`
-        @keyframes shoot {
-          0% {
-            transform: translateX(-100px) translateY(-100px) rotate(35deg);
-            opacity: 0;
-          }
-          10% {
-            opacity: 0.08;
-          }
-          90% {
-            opacity: 0.08;
-          }
-          100% {
-            transform: translateX(calc(100vw + 100px)) translateY(calc(100vh + 100px)) rotate(35deg);
-            opacity: 0;
-          }
-        }
-      `}</style>
-    </div>
+        {/* Elegant shooting stars */}
+        {stars.map(star => (
+          <div
+            key={star.id}
+            className="absolute w-[1px] h-[60px] bg-white opacity-[0.08] blur-[0.5px]"
+            style={{
+              top: `${star.top}%`,
+              left: `${star.left}%`,
+              animation: `shoot ${star.duration}s linear ${star.delay}s infinite`,
+              transform: "rotate(35deg)",
+            }}
+          />
+        ))}
+      </div>
+    </>
   )
 }
