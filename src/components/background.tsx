@@ -11,7 +11,7 @@ export default function AnimatedPathsBackground({
   className,
   pathCount = 24,
   speed = 1,
-  opacity = 0.04,
+  opacity = 0.08, // Increased default opacity
 }: AnimatedPathsBackgroundProps) {
   const svgRef = useRef<SVGSVGElement>(null)
   const animationRef = useRef<number>(0)
@@ -24,18 +24,18 @@ export default function AnimatedPathsBackground({
     const paths = svg.querySelectorAll('path')
 
     const animate = () => {
-      timeRef.current += speed * 0.01 // Reduced speed
+      timeRef.current += speed * 0.01
 
       paths.forEach((path, i) => {
         const pathLength = path.getTotalLength()
-        const flowSpeed = 0.01 + i * 0.002 // Slower flow
+        const flowSpeed = 0.01 + i * 0.002
         const offset = (timeRef.current * flowSpeed * pathLength) % pathLength
         path.style.strokeDashoffset = `${offset}`
 
-        // Adjusted opacity for subtle visibility
-        const baseOpacity = opacity + i * 0.004
-        const wave = Math.sin(timeRef.current * 1.5 + i * 0.3) * 0.03
-        const animatedOpacity = Math.max(0.02, Math.min(0.1, baseOpacity + wave))
+        // Use the opacity prop more effectively
+        const baseOpacity = opacity * (0.5 + i * 0.02) // Scale with the opacity prop
+        const wave = Math.sin(timeRef.current * 1.5 + i * 0.3) * (opacity * 0.3)
+        const animatedOpacity = Math.max(opacity * 0.2, Math.min(opacity * 1.5, baseOpacity + wave))
         path.style.strokeOpacity = `${animatedOpacity}`
 
         const translateX = Math.sin(timeRef.current * flowSpeed + i) * 20
@@ -66,7 +66,7 @@ export default function AnimatedPathsBackground({
       const finalY = 200 + i * 15
 
       const d = `M${baseX} ${baseY}Q${controlX} ${controlY} ${endX} ${endY}T${finalX} ${finalY}`
-      const strokeWidth = 0.8 + i * 0.03 // Slightly thicker
+      const strokeWidth = 0.8 + i * 0.03
       const pathLength = 1000 + i * 50
 
       paths.push(
@@ -95,11 +95,14 @@ export default function AnimatedPathsBackground({
         preserveAspectRatio="xMidYMid slice"
       >
         <defs>
-          <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#4F46E5" stopOpacity="0.06" />  {/* Indigo-600 */}
-            <stop offset="50%" stopColor="#6366F1" stopOpacity="0.08" /> {/* Indigo-500 */}
-            <stop offset="100%" stopColor="#3B82F6" stopOpacity="0.06" /> {/* Blue-500 */}
-          </linearGradient>
+            <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#A5B4FC" stopOpacity="0.38" />  {/* Indigo-300 */}
+                <stop offset="50%" stopColor="#C7D2FE" stopOpacity="0.42" /> {/* Indigo-200 */}
+                <stop offset="100%" stopColor="#93C5FD" stopOpacity="0.38" /> {/* Blue-300 */}
+            </linearGradient>
+
+
+
         </defs>
         {generatePaths()}
       </svg>

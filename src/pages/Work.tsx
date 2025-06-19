@@ -9,8 +9,8 @@ export default function Work() {
       {/* Animated Paths Background */}
       <AnimatedPathsBackground
         pathCount={16}
-        speed={1}
-        opacity={1}
+        speed={3}
+        opacity={0.3}
       />
 
       {/* Content */}

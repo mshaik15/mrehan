@@ -9,7 +9,7 @@ export default function Home() {
       <AnimatedPathsBackground
         pathCount={20}
         speed={3}
-        opacity={1}
+        opacity={0.3}
       />
 
       {/* Content */}
