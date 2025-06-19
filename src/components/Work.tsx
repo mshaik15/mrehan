@@ -16,7 +16,7 @@ export default function WorkSection() {
             icon={work.icon}
           >
             <div className="pt-3 sm:pt-4 lg:pt-5 space-y-3 sm:space-y-4">
-              {/* Mobile: Show year if hidden in header */}
+              {/* Mobile Screens */}
               <div className="xs:hidden">
                 <span className="text-xs text-gray-500">{work.year}</span>
               </div>

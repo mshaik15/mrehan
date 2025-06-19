@@ -48,8 +48,6 @@ export default function DropdownCard({ title, subtitle, year, icon, children }: 
           <ChevronDown className={`w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
         </div>
       </button>
-
-      {/* Slide transition with improved mobile spacing */}
       <div
         className={`overflow-hidden transition-all duration-300 ease-in-out ${
           isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
