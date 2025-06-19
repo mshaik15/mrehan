@@ -11,7 +11,7 @@ export default function AnimatedPathsBackground({
   className,
   pathCount = 24,
   speed = 1,
-  opacity = 1,
+  opacity = 0.04,
 }: AnimatedPathsBackgroundProps) {
   const svgRef = useRef<SVGSVGElement>(null)
   const animationRef = useRef<number>(0)
@@ -24,20 +24,21 @@ export default function AnimatedPathsBackground({
     const paths = svg.querySelectorAll('path')
 
     const animate = () => {
-      timeRef.current += speed
+      timeRef.current += speed * 0.01 // Reduced speed
 
       paths.forEach((path, i) => {
         const pathLength = path.getTotalLength()
-        const flowSpeed = 0.2 + i * 0.01
+        const flowSpeed = 0.01 + i * 0.002 // Slower flow
         const offset = (timeRef.current * flowSpeed * pathLength) % pathLength
         path.style.strokeDashoffset = `${offset}`
 
-        const baseOpacity = opacity + i * 0.015
-        const wave = Math.sin(timeRef.current * 1.5 + i * 0.3) * 0.1
-        const animatedOpacity = Math.max(0.01, Math.min(0.08, baseOpacity + wave))
+        // Adjusted opacity for subtle visibility
+        const baseOpacity = opacity + i * 0.004
+        const wave = Math.sin(timeRef.current * 1.5 + i * 0.3) * 0.03
+        const animatedOpacity = Math.max(0.02, Math.min(0.1, baseOpacity + wave))
         path.style.strokeOpacity = `${animatedOpacity}`
 
-        const translateX = Math.sin(timeRef.current * flowSpeed + i) * 30
+        const translateX = Math.sin(timeRef.current * flowSpeed + i) * 20
         path.setAttribute("transform", `translate(${translateX}, 0)`)
       })
 
@@ -65,7 +66,7 @@ export default function AnimatedPathsBackground({
       const finalY = 200 + i * 15
 
       const d = `M${baseX} ${baseY}Q${controlX} ${controlY} ${endX} ${endY}T${finalX} ${finalY}`
-      const strokeWidth = 0.6 + i * 0.03
+      const strokeWidth = 0.8 + i * 0.03 // Slightly thicker
       const pathLength = 1000 + i * 50
 
       paths.push(
@@ -95,9 +96,9 @@ export default function AnimatedPathsBackground({
       >
         <defs>
           <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#718096" stopOpacity="0.04" />
-            <stop offset="50%" stopColor="#CBD5E0" stopOpacity="0.08" />
-            <stop offset="100%" stopColor="#A0AEC0" stopOpacity="0.04" />
+            <stop offset="0%" stopColor="#4F46E5" stopOpacity="0.06" />  {/* Indigo-600 */}
+            <stop offset="50%" stopColor="#6366F1" stopOpacity="0.08" /> {/* Indigo-500 */}
+            <stop offset="100%" stopColor="#3B82F6" stopOpacity="0.06" /> {/* Blue-500 */}
           </linearGradient>
         </defs>
         {generatePaths()}
