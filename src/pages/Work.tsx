@@ -1,26 +1,21 @@
-// src/pages/Work.tsx
-import WorkSection from "../components/Work"
-import NoiseBackground from "../components/background"
 import { Link } from "react-router-dom"
 import { ArrowLeft } from "lucide-react"
+import WorkSection from "../components/Work"
+import AnimatedPathsBackground from "../components/background"
 
 export default function Work() {
   return (
     <div className="min-h-screen bg-gray-950 text-white relative">
-      {/* Optimized Noise Background - even lighter for work page */}
-      <NoiseBackground
-        particleCount={200} // Reduced from 350
-        noiseIntensity={0.0015}
-        backgroundColor="rgb(3, 7, 18)" // gray-950
-        particleColor="rgb(156, 163, 175)" // gray-400
-        particleOpacity={0.03} // Even lighter
-        speed={0.3} // Slower
-        pattern="fibonacci"
+      {/* Animated Paths Background */}
+      <AnimatedPathsBackground
+        pathCount={16}
+        speed={1}
+        opacity={1}
       />
-      
+
       {/* Content */}
       <div className="relative z-10 max-w-sm sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12">
-        {/* Back to home link */}
+        {/* Back to Home Link */}
         <Link 
           to="/" 
           className="inline-flex items-center gap-2 text-sm sm:text-base text-gray-400 hover:text-white transition-colors mb-6 sm:mb-8 lg:mb-10 group"
@@ -28,8 +23,8 @@ export default function Work() {
           <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 group-hover:-translate-x-1 transition-transform" />
           Back to Home
         </Link>
-        
-        {/* Header with Resume button */}
+
+        {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 sm:mb-8 lg:mb-10 gap-4 sm:gap-0">
           <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-semibold">
             Work Experience
@@ -43,7 +38,7 @@ export default function Work() {
             Resume
           </a>
         </div>
-        
+
         <WorkSection />
       </div>
     </div>
