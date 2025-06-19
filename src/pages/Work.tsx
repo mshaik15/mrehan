@@ -7,14 +7,14 @@ import { ArrowLeft } from "lucide-react"
 export default function Work() {
   return (
     <div className="min-h-screen bg-gray-950 text-white relative">
-      {/* Noise Background - slightly different pattern for variety */}
+      {/* Optimized Noise Background - even lighter for work page */}
       <NoiseBackground
-        particleCount={350}
-        noiseIntensity={0.0025}
+        particleCount={200} // Reduced from 350
+        noiseIntensity={0.0015}
         backgroundColor="rgb(3, 7, 18)" // gray-950
         particleColor="rgb(156, 163, 175)" // gray-400
-        particleOpacity={0.1}
-        speed={0.4}
+        particleOpacity={0.03} // Even lighter
+        speed={0.3} // Slower
         pattern="fibonacci"
       />
       

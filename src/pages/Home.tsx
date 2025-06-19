@@ -6,14 +6,14 @@ import NoiseBackground from "../components/background"
 export default function Home() {
   return (
     <div className="min-h-screen bg-gray-950 text-white relative">
-      {/* Noise Background */}
+      {/* Optimized Noise Background */}
       <NoiseBackground
-        particleCount={500}
-        noiseIntensity={0.003}
+        particleCount={300} // Reduced from 500
+        noiseIntensity={0.002}
         backgroundColor="rgb(3, 7, 18)" // gray-950
         particleColor="rgb(156, 163, 175)" // gray-400
-        particleOpacity={0.5}
-        speed={1.2}
+        particleOpacity={0.04} // Reduced opacity
+        speed={0.6} // Slower speed
         pattern="default"
       />
       
