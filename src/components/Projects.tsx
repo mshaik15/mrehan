@@ -1,3 +1,4 @@
+// src/components/Projects.tsx
 import DropdownCard from './DropdownCard/DropdownCard'
 import TechTag from './DropdownCard/TechTag'
 import projectData from '../data/projectData'
@@ -12,8 +13,13 @@ export default function ProjectsSection() {
             title={project.company}
             subtitle={`${project.role} | ${project.year}`}
             icon={project.icon}
-            type="project" // This will go to technical breakdown pages
+            type="project"
+            hasBreakdown={project.hasBreakdown}
+            slug={project.slug}
+            githubUrl={project.githubUrl}
+            liveUrl={project.liveUrl}
           >
+            {/* ALL projects show this dropdown content */}
             <div className="pt-3 sm:pt-4 lg:pt-5 space-y-3 sm:space-y-4">
               <p className="text-xs sm:text-sm lg:text-base xl:text-lg text-gray-300 leading-relaxed">
                 {project.description}

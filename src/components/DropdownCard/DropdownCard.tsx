@@ -1,45 +1,67 @@
+// src/components/DropdownCard/DropdownCard.tsx
 import { useState } from 'react'
-import { ChevronDown, Building2, ExternalLink } from 'lucide-react'
+import { ChevronDown, Building2, ExternalLink, Github, Eye } from 'lucide-react'
 
 interface DropdownCardProps {
   title: string
   subtitle: string
   icon: string
   children?: React.ReactNode
-  type?: 'project' | 'work' // Add type to distinguish between projects and work
-  companyUrl?: string // Optional company URL for work items
+  type?: 'project' | 'work'
+  companyUrl?: string
+  
+  // Project-specific props
+  hasBreakdown?: boolean
+  slug?: string
+  githubUrl?: string
+  liveUrl?: string
 }
 
-export default function DropdownCard({ title, subtitle, icon, children, type = 'project', companyUrl }: DropdownCardProps) {
+export default function DropdownCard({ 
+  title, 
+  subtitle, 
+  icon, 
+  children, 
+  type = 'project', 
+  companyUrl,
+  hasBreakdown = false,
+  slug,
+  githubUrl,
+  liveUrl
+}: DropdownCardProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [imageError, setImageError] = useState(false)
 
-  // Work items don't have dropdown content, so they don't open
+  // ALL projects have dropdown content (to show skills/tech)
+  // Only work items don't have dropdowns
   const hasDropdownContent = type === 'project' && children
 
-  const handleShare = (e: React.MouseEvent) => {
-    e.stopPropagation() // Prevent dropdown from toggling
-    
-    if (type === 'work') {
-      // For work experience, redirect to company website
-      if (companyUrl) {
-        window.open(companyUrl, '_blank') // Open in new tab
-      } else {
-        // Fallback: try to construct a basic company URL
-        const companyName = title.toLowerCase().replace(/[^a-z0-9]+/g, '')
-        window.open(`https://${companyName}.com`, '_blank')
-      }
-    } else {
-      // For projects, go to technical breakdown page
-      const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
+  const handleBreakdownClick = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    if (hasBreakdown && slug) {
       window.location.href = `/project/${slug}`
+    }
+  }
+
+  const handleLinkClick = (e: React.MouseEvent, url: string) => {
+    e.stopPropagation()
+    window.open(url, '_blank')
+  }
+
+  const handleWorkClick = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    if (companyUrl) {
+      window.open(companyUrl, '_blank')
+    } else {
+      const companyName = title.toLowerCase().replace(/[^a-z0-9]+/g, '')
+      window.open(`https://${companyName}.com`, '_blank')
     }
   }
 
   return (
     <div className="mb-3 sm:mb-4 lg:mb-6 rounded-lg border border-gray-700/50 bg-gray-900/50 hover:border-gray-600/50 transition-all">
       <button
-        onClick={() => hasDropdownContent ? setIsOpen(!isOpen) : null}
+        onClick={() => hasDropdownContent ? setIsOpen(!isOpen) : handleWorkClick}
         className="w-full px-3 sm:px-4 lg:px-6 py-3 sm:py-4 lg:py-5 flex items-center justify-between group"
       >
         <div className="flex items-center gap-3 sm:gap-4 lg:gap-5 min-w-0">
@@ -64,41 +86,29 @@ export default function DropdownCard({ title, subtitle, icon, children, type = '
             </p>
           </div>
         </div>
+        
         <div className="flex items-center gap-2 sm:gap-3 lg:gap-4 flex-shrink-0">
-          {isOpen && hasDropdownContent ? (
-            <button
-              onClick={handleShare}
-              className="flex items-center justify-end gap-2 sm:gap-3 lg:gap-4 min-w-0"
-              style={{ width: '120px' }} // Approximate width of the closed state elements
-            >
+          {type === 'work' ? (
+            // Work items - show external link
+            <div className="flex items-center justify-end gap-2 sm:gap-3 lg:gap-4 min-w-0" style={{ width: '120px' }}>
               <span className="text-xs sm:text-sm lg:text-base text-gray-400 hidden xs:block">
-                {/* Empty span to maintain layout */}
+                Visit
               </span>
               <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-400 hover:text-white transition-colors flex-shrink-0" />
-            </button>
-          ) : type === 'work' ? (
-            // For work items, show external link icon always (no dropdown)
-            <button
-              onClick={handleShare}
-              className="flex items-center justify-end gap-2 sm:gap-3 lg:gap-4 min-w-0"
-              style={{ width: '120px' }}
-            >
-              <span className="text-xs sm:text-sm lg:text-base text-gray-400 hidden xs:block">
-                {/* Empty span to maintain layout */}
-              </span>
-              <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-400 hover:text-white transition-colors flex-shrink-0" />
-            </button>
+            </div>
           ) : hasDropdownContent ? (
-            // For projects, show chevron when closed
+            // Projects - show chevron for dropdown
             <>
               <span className="text-xs sm:text-sm lg:text-base text-gray-400 hidden xs:block">
-                {/* Empty span to maintain layout */}
+                {/* Empty span for layout consistency */}
               </span>
-              <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-400 transition-transform" />
+              <ChevronDown className={`w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
             </>
           ) : null}
         </div>
       </button>
+      
+      {/* Dropdown content - ALL projects have this */}
       {hasDropdownContent && (
         <div
           className={`overflow-hidden transition-all duration-300 ease-in-out ${
@@ -106,7 +116,44 @@ export default function DropdownCard({ title, subtitle, icon, children, type = '
           }`}
         >
           <div className="px-3 sm:px-4 lg:px-6 pb-3 sm:pb-4 lg:pb-5 border-t border-gray-700/50">
+            {/* Project description and tech tags */}
             {children}
+            
+            {/* Action buttons - appear in dropdown for ALL projects */}
+            <div className="flex flex-wrap gap-3 mt-4 pt-3 border-t border-gray-700/30">
+              {/* Breakdown button - only for projects with full breakdowns */}
+              {hasBreakdown && slug && (
+                <button
+                  onClick={handleBreakdownClick}
+                  className="inline-flex items-center gap-2 px-3 py-1.5 text-sm bg-blue-900/30 hover:bg-blue-900/50 border border-blue-700/50 hover:border-blue-600 rounded transition-colors text-blue-300"
+                >
+                  <ExternalLink size={14} />
+                  Technical Breakdown
+                </button>
+              )}
+              
+              {/* Demo button */}
+              {liveUrl && (
+                <button
+                  onClick={(e) => handleLinkClick(e, liveUrl)}
+                  className="inline-flex items-center gap-2 px-3 py-1.5 text-sm bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700/50 hover:border-gray-600 rounded transition-colors"
+                >
+                  <Eye size={14} />
+                  Live Demo
+                </button>
+              )}
+              
+              {/* GitHub button */}
+              {githubUrl && (
+                <button
+                  onClick={(e) => handleLinkClick(e, githubUrl)}
+                  className="inline-flex items-center gap-2 px-3 py-1.5 text-sm bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700/50 hover:border-gray-600 rounded transition-colors"
+                >
+                  <Github size={14} />
+                  View Code
+                </button>
+              )}
+            </div>
           </div>
         </div>
       )}
