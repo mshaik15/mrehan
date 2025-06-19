@@ -11,9 +11,10 @@ export default function ProjectsSection() {
           <DropdownCard
             key={index}
             title={project.company}
-            subtitle={project.role}
+            subtitle={`${project.role} | ${project.year}`}
             year={project.year}
             icon={project.icon}
+            type="project" // This will go to technical breakdown pages
           >
             <div className="pt-3 sm:pt-4 lg:pt-5 space-y-3 sm:space-y-4">
               {/* Mobile Screens*/}

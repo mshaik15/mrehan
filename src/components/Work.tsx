@@ -1,6 +1,4 @@
 import DropdownCard from './DropdownCard/DropdownCard'
-import TechTag from './DropdownCard/TechTag'
-import { MapPin } from 'lucide-react'
 import workData from '../data/workData'
 
 export default function WorkSection() {
@@ -11,31 +9,18 @@ export default function WorkSection() {
           <DropdownCard
             key={index}
             title={work.company}
-            subtitle={work.role}
+            subtitle={`${work.role} | ${work.location} | ${work.year}`}
             year={work.year}
             icon={work.icon}
+            type="work" // This will go to company websites
+            companyUrl={
+              work.company === 'Skrimp.ai' ? 'https://skrimp.ai' :
+              work.company === 'TechCorp' ? 'https://techcorp.com' :
+              work.company === 'StartupXYZ' ? 'https://startupxyz.com' :
+              undefined // Will use fallback URL construction
+            }
           >
-            <div className="pt-3 sm:pt-4 lg:pt-5 space-y-3 sm:space-y-4">
-              {/* Mobile Screens */}
-              <div className="xs:hidden">
-                <span className="text-xs text-gray-500">{work.year}</span>
-              </div>
-              
-              <p className="text-xs sm:text-sm lg:text-base text-gray-400 flex items-start sm:items-center gap-1.5 sm:gap-2">
-                <MapPin className="w-3 h-3 sm:w-4 sm:h-4 mt-0.5 sm:mt-0 flex-shrink-0" />
-                <span className="leading-relaxed">{work.location}</span>
-              </p>
-              
-              <p className="text-xs sm:text-sm lg:text-base xl:text-lg text-gray-300 leading-relaxed">
-                {work.description}
-              </p>
-              
-              <div className="flex flex-wrap gap-1.5 sm:gap-2 lg:gap-3">
-                {work.tech.map((tech, i) => (
-                  <TechTag key={i} tech={tech} />
-                ))}
-              </div>
-            </div>
+            {/* No content - work experience cards don't open */}
           </DropdownCard>
         ))}
       </div>
