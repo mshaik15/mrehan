@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ChevronDown, Building2 } from 'lucide-react'
+import { ChevronDown, Building2, ExternalLink } from 'lucide-react'
 
 interface DropdownCardProps {
   title: string
@@ -7,11 +7,32 @@ interface DropdownCardProps {
   year: string
   icon: string
   children?: React.ReactNode
+  type?: 'project' | 'work' // Add type to distinguish between projects and work
+  companyUrl?: string // Optional company URL for work items
 }
 
-export default function DropdownCard({ title, subtitle, year, icon, children }: DropdownCardProps) {
+export default function DropdownCard({ title, subtitle, year, icon, children, type = 'project', companyUrl }: DropdownCardProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [imageError, setImageError] = useState(false)
+
+  const handleShare = (e: React.MouseEvent) => {
+    e.stopPropagation() // Prevent dropdown from toggling
+    
+    if (type === 'work') {
+      // For work experience, redirect to company website
+      if (companyUrl) {
+        window.open(companyUrl, '_blank') // Open in new tab
+      } else {
+        // Fallback: try to construct a basic company URL
+        const companyName = title.toLowerCase().replace(/[^a-z0-9]+/g, '')
+        window.open(`https://${companyName}.com`, '_blank')
+      }
+    } else {
+      // For projects, go to technical breakdown page
+      const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
+      window.location.href = `/project/${slug}`
+    }
+  }
 
   return (
     <div className="mb-3 sm:mb-4 lg:mb-6 rounded-lg border border-gray-700/50 bg-gray-900/50 hover:border-gray-600/50 transition-all">
@@ -42,10 +63,25 @@ export default function DropdownCard({ title, subtitle, year, icon, children }: 
           </div>
         </div>
         <div className="flex items-center gap-2 sm:gap-3 lg:gap-4 flex-shrink-0">
-          <span className="text-xs sm:text-sm lg:text-base text-gray-400 hidden xs:block">
-            {year}
-          </span>
-          <ChevronDown className={`w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+          {isOpen ? (
+            <button
+              onClick={handleShare}
+              className="flex items-center justify-end gap-2 sm:gap-3 lg:gap-4 min-w-0"
+              style={{ width: '120px' }} // Approximate width of the closed state elements
+            >
+              <span className="text-xs sm:text-sm lg:text-base text-gray-400 hidden xs:block">
+                {year}
+              </span>
+              <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-400 hover:text-white transition-colors flex-shrink-0" />
+            </button>
+          ) : (
+            <>
+              <span className="text-xs sm:text-sm lg:text-base text-gray-400 hidden xs:block">
+                {year}
+              </span>
+              <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-400 transition-transform" />
+            </>
+          )}
         </div>
       </button>
       <div
