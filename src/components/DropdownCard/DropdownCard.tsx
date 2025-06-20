@@ -106,12 +106,14 @@ export default function DropdownCard({
             />
           )}
           <div className="text-left min-w-0 flex-1">
-            <h3 className="text-sm sm:text-base lg:text-lg xl:text-xl font-medium text-gray-100 truncate group-hover:text-white transition-colors">
-              {title}
-            </h3>
-            <p className="text-xs sm:text-sm lg:text-base text-gray-400 truncate">
-              {subtitle}
-            </p>
+            <div className="flex items-center gap-2">
+              <h3 className="text-sm sm:text-base lg:text-lg xl:text-xl font-medium text-gray-100 group-hover:text-white transition-colors">
+                {title}
+              </h3>
+              <span className="text-xs sm:text-sm lg:text-base text-gray-400">
+                – {subtitle}
+              </span>
+            </div>
           </div>
         </div>
         

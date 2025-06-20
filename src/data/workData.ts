@@ -13,18 +13,18 @@ interface WorkData {
 const workData: WorkData[] = [
   {
     company: 'Skrimp.ai',
-    role: 'Engineering, API & Agents',
-    year: '2025',
-    location: 'San Francisco, CA',
+    role: 'Engineering, API & AI Agents',
+    year: 'Present',
+    location: 'Waterloo, ON',
     description: 'Productizing real-time multimodal intelligence. Launched ink-whisper platform for seamless voice and text integration.',
     tech: ['Next.js', 'Python', 'LangGraph', 'MongoDB', 'LLMs'],
     icon: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=40&h=40&fit=crop',
     companyUrl: 'https://skrimp.ai'
   },
   {
-    company: 'TechCorp',
-    role: 'Senior Frontend Developer',
-    year: '2024',
+    company: 'ACE Robotics',
+    role: 'Team Lead',
+    year: '2022 - 2024',
     location: 'New York, NY',
     description: 'Led development of enterprise-scale web applications using modern React ecosystem. Improved performance by 40%.',
     tech: ['React', 'TypeScript', 'GraphQL', 'AWS', 'Docker'],
@@ -32,10 +32,10 @@ const workData: WorkData[] = [
     companyUrl: 'https://techcorp.com'
   },
   {
-    company: 'StartupXYZ',
-    role: 'Full Stack Developer',
+    company: 'Dilast Tool & Die',
+    role: 'CNC Machinist',
     year: '2023',
-    location: 'Austin, TX',
+    location: 'Cambridge, Ontario',
     description: 'Built MVP from scratch, handling both frontend and backend development. Scaled to 10k+ active users.',
     tech: ['Vue.js', 'Node.js', 'PostgreSQL', 'Redis', 'Kubernetes'],
     icon: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=40&h=40&fit=crop',
