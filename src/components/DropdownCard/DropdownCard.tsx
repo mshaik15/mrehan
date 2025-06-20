@@ -86,6 +86,23 @@ export default function DropdownCard({
     }
   }
 
+  // Parse subtitle for work items to extract role, location, and date
+  const parseWorkSubtitle = (subtitle: string) => {
+    // Expected format: "Role | Location | Date"
+    const parts = subtitle.split(' | ')
+    if (parts.length >= 3) {
+      return {
+        role: parts[0],
+        location: parts[1], 
+        date: parts[2]
+      }
+    }
+    // Fallback if format doesn't match
+    return { role: subtitle, location: '', date: '' }
+  }
+
+  const workInfo = type === 'work' ? parseWorkSubtitle(subtitle) : null
+
   return (
     <div className="mb-3 sm:mb-4 lg:mb-6 rounded-lg border border-gray-700/50 bg-gray-900/50 hover:border-gray-600/50 transition-all">
       <button
@@ -106,14 +123,32 @@ export default function DropdownCard({
             />
           )}
           <div className="text-left min-w-0 flex-1">
-            <div className="flex items-center gap-2">
-              <h3 className="text-sm sm:text-base lg:text-lg xl:text-xl font-medium text-gray-100 group-hover:text-white transition-colors">
-                {title}
-              </h3>
-              <span className="text-xs sm:text-sm lg:text-base text-gray-400">
-                – {subtitle}
-              </span>
-            </div>
+            {type === 'work' && workInfo ? (
+              // Work layout: Title -- Date on first line, Role | Location on second line
+              <div className="space-y-1">
+                <div className="flex items-center gap-2">
+                  <h3 className="text-sm sm:text-base lg:text-lg xl:text-xl font-medium text-gray-100 group-hover:text-white transition-colors">
+                    {title}
+                  </h3>
+                  <span className="text-xs sm:text-sm lg:text-base text-gray-400">
+                    – {workInfo.date}
+                  </span>
+                </div>
+                <div className="text-xs sm:text-sm lg:text-base text-gray-400">
+                  {workInfo.role} | {workInfo.location}
+                </div>
+              </div>
+            ) : (
+              // Project layout: Title – Subtitle (unchanged)
+              <div className="flex items-center gap-2">
+                <h3 className="text-sm sm:text-base lg:text-lg xl:text-xl font-medium text-gray-100 group-hover:text-white transition-colors">
+                  {title}
+                </h3>
+                <span className="text-xs sm:text-sm lg:text-base text-gray-400">
+                  – {subtitle}
+                </span>
+              </div>
+            )}
           </div>
         </div>
         
