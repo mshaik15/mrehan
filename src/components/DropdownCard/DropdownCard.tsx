@@ -58,13 +58,14 @@ export default function DropdownCard({
     }
   }
 
-  // For projects: determine primary external link
+  // For projects: determine primary external link priority
   const getPrimaryExternalLink = () => {
-    if (hasBreakdown && slug) {
-      return `/project/${slug}`
-    }
+    // Priority: 1. Live URL (if hosted), 2. Breakdown (if available), 3. GitHub
     if (liveUrl) {
       return liveUrl
+    }
+    if (hasBreakdown && slug) {
+      return `/project/${slug}`
     }
     if (githubUrl) {
       return githubUrl
@@ -195,8 +196,8 @@ export default function DropdownCard({
             
             {/* Action buttons - appear in dropdown for ALL projects */}
             <div className="flex flex-wrap gap-3 mt-4 pt-3 border-t border-gray-700/30">
-              {/* Breakdown button - only for projects with full breakdowns */}
-              {hasBreakdown && slug && (
+              {/* Breakdown button - shows automatically when hasBreakdown is true */}
+              {hasBreakdown && (
                 <button
                   onClick={handleBreakdownClick}
                   className="inline-flex items-center gap-2 px-3 py-1.5 text-sm bg-blue-900/30 hover:bg-blue-900/50 border border-blue-700/50 hover:border-blue-600 rounded transition-colors text-blue-300"
@@ -206,8 +207,8 @@ export default function DropdownCard({
                 </button>
               )}
               
-              {/* Demo button - only show if there's no breakdown (so it's not redundant with primary external link) */}
-              {liveUrl && !hasBreakdown && (
+              {/* Demo button - show for all projects with live URLs */}
+              {liveUrl && (
                 <button
                   onClick={(e) => handleLinkClick(e, liveUrl)}
                   className="inline-flex items-center gap-2 px-3 py-1.5 text-sm bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700/50 hover:border-gray-600 rounded transition-colors"
