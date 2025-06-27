@@ -24,6 +24,6 @@ dist-ssr
 *.sw?
 
 /src/data/projectData.ta
-/src/data/workdata.ts
+/src/data/workData.ts
 
 
