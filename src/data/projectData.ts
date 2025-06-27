@@ -1,4 +1,3 @@
-// src/data/projectData.ts
 export interface ProjectData {
   // Basic info (required for all projects)
   company: string
@@ -9,52 +8,13 @@ export interface ProjectData {
   tech: string[]
   icon: string
   
-  // Optional: For projects WITH detailed breakdowns
-  slug?: string // If missing, no breakdown page
+  // For projects WITH detailed breakdowns
+  slug?: string // Must match filename in /breakdowns/ folder
   hasBreakdown?: boolean // Explicit flag
   
   // Optional: Links that work for simple projects too
   githubUrl?: string
   liveUrl?: string
-  
-  // Optional: Detailed breakdown data (only for complex projects)
-  subtitle?: string
-  status?: string
-  timeline?: string
-  team?: string
-  myRole?: string
-  caseStudyUrl?: string
-  
-  // Detailed content sections (optional)
-  overview?: string
-  problem?: string[]
-  technicalDetails?: {
-    description: string
-    codeExample?: {
-      language: string
-      code: string
-    }
-  }
-  architecture?: {
-    description: string
-    diagrams?: string[]
-  }
-  challenges?: Array<{
-    title: string
-    description: string
-  }>
-  learnings?: string[]
-  conclusion?: {
-    description: string
-    impact?: string
-  }
-  
-  // Visual content
-  images?: Array<{
-    url: string
-    alt: string
-    caption?: string
-  }>
 }
 
 const projectData: ProjectData[] = [
@@ -68,21 +28,11 @@ const projectData: ProjectData[] = [
     tech: ['React', 'Firebase', 'TailwindCSS', 'Typescript', 'Next.js'],
     icon: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=40&h=40&fit=crop',
     
-    // This project HAS a breakdown
+    // This project HAS a breakdown - slug must match /breakdowns/uw-go.tsx
     hasBreakdown: true,
     slug: 'uw-go',
-    subtitle: 'Real-time chat application with AI-powered responses and seamless voice integration',
-    status: 'In Development',
-    timeline: '3 months · Jan-Mar 2025',
-    team: 'Solo Project',
-    myRole: 'Full-Stack Developer & Designer',
     githubUrl: 'https://github.com/yourusername/uw-go',
-    liveUrl: 'https://uw-go-demo.vercel.app',
-    
-    // Full breakdown content...
-    overview: `UW GO is a real-time chat application designed specifically for University of Waterloo students...`,
-    problem: [`University students needed a more efficient way to communicate...`],
-    // ... rest of detailed content
+    liveUrl: 'https://uw-go-demo.vercel.app'
   },
   
   // SIMPLE PROJECT - NO BREAKDOWN
@@ -99,7 +49,6 @@ const projectData: ProjectData[] = [
     hasBreakdown: false,
     githubUrl: 'https://github.com/yourusername/todo-app',
     liveUrl: 'https://my-todo-app.vercel.app'
-    // No slug, no detailed breakdown content
   },
   
   // MEDIUM PROJECT - BREAKDOWN LATER
