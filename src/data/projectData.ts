@@ -29,7 +29,7 @@ const projectData: ProjectData[] = [
     icon: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=40&h=40&fit=crop',
     
     // This project HAS a breakdown - slug must match /breakdowns/uw-go.tsx
-    hasBreakdown: true,
+    hasBreakdown: false,
     slug: 'uw-go',
     githubUrl: 'https://github.com/yourusername/uw-go',
     liveUrl: 'https://uw-go-demo.vercel.app'
@@ -37,11 +37,11 @@ const projectData: ProjectData[] = [
   
   // SIMPLE PROJECT - NO BREAKDOWN
   {
-    company: 'Todo List App',
-    role: 'Learning Project',
-    year: '2024',
+    company: 'Neural Networks for Inverse Kinematics',
+    role: 'Research Project',
+    year: '2025',
     location: 'Personal',
-    description: 'A clean, responsive todo list built with React. Features drag-and-drop, local storage, and dark mode.',
+    description: 'Analytical Research of Using Neural Networks for Inverse Kinematics',
     tech: ['React', 'CSS3', 'LocalStorage'],
     icon: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=40&h=40&fit=crop',
     
