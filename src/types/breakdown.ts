@@ -6,6 +6,11 @@ export interface BreakdownSection {
   content: ReactNode;
 }
 
+export interface TeamMember {
+  name: string;
+  linkedinUrl?: string;
+}
+
 export interface BreakdownMetadata {
   title: string;
   subtitle: string;
@@ -13,9 +18,11 @@ export interface BreakdownMetadata {
   year: string;
   timeline: string;
   tools: string[];
-  team: string;
-  role: string;
-  status: string;
+  
+  // Optional fields
+  team?: string | TeamMember[]; // Can be a string or array of team members with LinkedIn
+  role?: string;
+  status?: string;
   githubUrl?: string;
   liveUrl?: string;
   caseStudyUrl?: string;

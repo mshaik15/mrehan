@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import { Clock, Users, Brain, Target, Github, ExternalLink } from 'lucide-react';
-import type { ProjectBreakdown } from '../types/breakdown';
+import type { ProjectBreakdown, TeamMember } from '../types/breakdown';
 import { getBreakdown } from '../breakdowns';
 
 const BreakdownRenderer = () => {
@@ -84,6 +84,37 @@ const BreakdownRenderer = () => {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  // Helper function to render team members with LinkedIn links
+  const renderTeam = (team: string | TeamMember[] | undefined) => {
+    if (!team) return null;
+
+    if (typeof team === 'string') {
+      return <p className="mt-1">{team}</p>;
+    }
+
+    // Array of team members
+    return (
+      <div className="mt-1 space-y-1">
+        {team.map((member, index) => (
+          <div key={index}>
+            {member.linkedinUrl ? (
+              <a
+                href={member.linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-400 hover:text-blue-300 hover:underline transition-colors"
+              >
+                {member.name}
+              </a>
+            ) : (
+              <span className="text-blue-400">{member.name}</span>
+            )}
+          </div>
+        ))}
+      </div>
+    );
   };
 
   if (loading) {
@@ -178,37 +209,44 @@ const BreakdownRenderer = () => {
             </div>
           </div>
 
-          <div className="flex gap-4">
-            <div className="mt-1">
-              <Users size={20} className="text-blue-400" />
-            </div>
-            <div>
-              <h3 className="text-sm uppercase tracking-wider text-gray-400 font-medium">Team</h3>
+          {/* Team - only show if provided */}
+          {metadata.team && (
+            <div className="flex gap-4">
               <div className="mt-1">
-                <span className="text-blue-400">{metadata.team}</span>
+                <Users size={20} className="text-blue-400" />
+              </div>
+              <div>
+                <h3 className="text-sm uppercase tracking-wider text-gray-400 font-medium">Team</h3>
+                {renderTeam(metadata.team)}
               </div>
             </div>
-          </div>
+          )}
 
-          <div className="flex gap-4">
-            <div className="mt-1">
-              <Brain size={20} className="text-blue-400" />
+          {/* Role - only show if provided */}
+          {metadata.role && (
+            <div className="flex gap-4">
+              <div className="mt-1">
+                <Brain size={20} className="text-blue-400" />
+              </div>
+              <div>
+                <h3 className="text-sm uppercase tracking-wider text-gray-400 font-medium">My Role</h3>
+                <p className="mt-1">{metadata.role}</p>
+              </div>
             </div>
-            <div>
-              <h3 className="text-sm uppercase tracking-wider text-gray-400 font-medium">My Role</h3>
-              <p className="mt-1">{metadata.role}</p>
-            </div>
-          </div>
+          )}
 
-          <div className="flex gap-4">
-            <div className="mt-1">
-              <Target size={20} className="text-blue-400" />
+          {/* Status - only show if provided */}
+          {metadata.status && (
+            <div className="flex gap-4">
+              <div className="mt-1">
+                <Target size={20} className="text-blue-400" />
+              </div>
+              <div>
+                <h3 className="text-sm uppercase tracking-wider text-gray-400 font-medium">Status</h3>
+                <p className="mt-1">{metadata.status}</p>
+              </div>
             </div>
-            <div>
-              <h3 className="text-sm uppercase tracking-wider text-gray-400 font-medium">Status</h3>
-              <p className="mt-1">{metadata.status}</p>
-            </div>
-          </div>
+          )}
         </section>
       </div>
 
@@ -256,42 +294,44 @@ const BreakdownRenderer = () => {
               </section>
             ))}
 
-            {/* Action Links */}
-            <div className="flex flex-wrap gap-4 mt-12 pt-8 border-t border-gray-700/50">
-              {metadata.githubUrl && (
-                <a 
-                  href={metadata.githubUrl} 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700/50 hover:border-gray-600 rounded-md transition-colors"
-                >
-                  <Github size={18} />
-                  GitHub Repository
-                </a>
-              )}
-              {metadata.liveUrl && (
-                <a 
-                  href={metadata.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700/50 hover:border-gray-600 rounded-md transition-colors"
-                >
-                  <ExternalLink size={18} />
-                  Live Demo
-                </a>
-              )}
-              {metadata.caseStudyUrl && (
-                <a 
-                  href={metadata.caseStudyUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700/50 hover:border-gray-600 rounded-md transition-colors"
-                >
-                  <div className="w-[18px] h-[18px]" />
-                  Case Study
-                </a>
-              )}
-            </div>
+            {/* Action Links - only show if URLs are provided */}
+            {(metadata.githubUrl || metadata.liveUrl || metadata.caseStudyUrl) && (
+              <div className="flex flex-wrap gap-4 mt-12 pt-8 border-t border-gray-700/50">
+                {metadata.githubUrl && (
+                  <a 
+                    href={metadata.githubUrl} 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700/50 hover:border-gray-600 rounded-md transition-colors"
+                  >
+                    <Github size={18} />
+                    GitHub Repository
+                  </a>
+                )}
+                {metadata.liveUrl && (
+                  <a 
+                    href={metadata.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700/50 hover:border-gray-600 rounded-md transition-colors"
+                  >
+                    <ExternalLink size={18} />
+                    Live Demo
+                  </a>
+                )}
+                {metadata.caseStudyUrl && (
+                  <a 
+                    href={metadata.caseStudyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700/50 hover:border-gray-600 rounded-md transition-colors"
+                  >
+                    <div className="w-[18px] h-[18px]" />
+                    Case Study
+                  </a>
+                )}
+              </div>
+            )}
           </article>
         </div>
       </div>
