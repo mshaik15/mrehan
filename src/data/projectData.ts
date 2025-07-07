@@ -37,18 +37,17 @@ const projectData: ProjectData[] = [
   
   // SIMPLE PROJECT - NO BREAKDOWN
   {
-    company: 'Neural Networks for Inverse Kinematics',
+    company: 'Eta',
     role: 'Research Project',
     year: '2025',
     location: 'Personal',
     description: 'Analytical Research of Using Neural Networks for Inverse Kinematics',
     tech: ['PyTorch', 'CUDA', 'LocalStorage'],
     icon: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=40&h=40&fit=crop',
-    
-    // This project does NOT have a breakdown
-    hasBreakdown: false,
+    hasBreakdown: true,
+    slug: 'Eta',
     githubUrl: 'https://github.com/yourusername/todo-app',
-    liveUrl: 'https://my-todo-app.vercel.app'
+    // liveUrl: 'https://my-todo-app.vercel.app'
   },
   
   // MEDIUM PROJECT - BREAKDOWN LATER

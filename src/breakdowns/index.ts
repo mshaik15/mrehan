@@ -3,6 +3,7 @@ import type { BreakdownComponent } from '../types/breakdown';
 // Dynamic imports for code splitting
 export const breakdowns: Record<string, () => Promise<BreakdownComponent>> = {
   'uw-go': () => import('./uw-go'),
+  'Eta': () => import('./Eta'),
   // Add more breakdowns here as you create them
   // 'ai-tutor': () => import('./ai-tutor'),
   // 'blockchain-explorer': () => import('./blockchain-explorer'),
