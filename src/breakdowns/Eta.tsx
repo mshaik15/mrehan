@@ -7,7 +7,7 @@ const etaBreakdown = (): ProjectBreakdown => ({
     subtitle: 'A neural network approach to solving Inverse Kinematics',
     projectType: 'Research',
     year: '2025',
-    timeline: '2 months · June-Aug 2025',
+    timeline: '2 months · June - Aug 2025',
     tools: ['PyTorch', 'CUDA', 'Pandas', 'Matplotlib', 'Hydra'],
     
     // Optional fields - you can include or omit any of these
