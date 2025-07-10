@@ -42,7 +42,7 @@ const projectData: ProjectData[] = [
     location: 'Personal',
     description: 'Analytical Research of Using Neural Networks for Inverse Kinematics',
     tech: ['PyTorch', 'CUDA', 'Matplotlib', 'NumPy', 'Pandas', 'KNN', 'INN'],
-    icon: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=40&h=40&fit=crop',
+    icon: './Logo.svg',
     hasBreakdown: true,
     slug: 'Eta',
     githubUrl: 'https://github.com/yourusername/todo-app'
