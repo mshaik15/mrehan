@@ -30,8 +30,7 @@ const projectData: ProjectData[] = [
     
     // This project HAS a breakdown - slug must match /breakdowns/uw-go.tsx
     hasBreakdown: false,
-    slug: 'uw-go',
-    githubUrl: 'https://github.com/yourusername/uw-go',
+    githubUrl: 'https://github.com/SafwanS143/UW-GO-Frontend',
     liveUrl: 'https://uw-go-demo.vercel.app'
   },
   
