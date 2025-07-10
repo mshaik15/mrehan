@@ -20,13 +20,19 @@ export default function Header() {
           <nav className="flex items-center gap-6 sm:gap-8">
             {isWorkPage ? (
               <>
+                {/* Animated Resume Button */}
                 <a 
                   href="/resume.pdf" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-sm sm:text-base text-gray-400 hover:text-white hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.6)] transition-all duration-300 font-medium"
+                  className="relative group"
                 >
-                  Resume
+                  <div className="absolute -inset-2 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-lg blur opacity-25 group-hover:opacity-40 animate-pulse transition duration-1000"></div>
+                  <div className="relative px-4 py-2 bg-gray-900 border border-gray-700/50 rounded-lg leading-none flex items-center">
+                    <span className="text-sm sm:text-base text-gray-100 group-hover:text-white transition-colors duration-300 font-medium">
+                      📄 Resume
+                    </span>
+                  </div>
                 </a>
                 <a 
                   href="mailto:your.email@example.com"

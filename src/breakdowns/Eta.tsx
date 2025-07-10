@@ -8,24 +8,17 @@ const etaBreakdown = (): ProjectBreakdown => ({
     projectType: 'Research',
     year: '2025',
     timeline: '2 months · June - Aug 2025',
-    tools: ['PyTorch', 'CUDA', 'Pandas', 'Matplotlib', 'Hydra'],
+    tools: ['PyTorch', 'CUDA', 'Pandas', 'NumPy', 'Matplotlib', 'Hydra'],
     
     // Optional fields - you can include or omit any of these
     team: [
       { 
         name: 'Mohammed Rehan', 
         linkedinUrl: 'https://www.linkedin.com/in/mrs15/' 
-      },
-      { 
-        name: 'Dr. Jane Smith', 
-        linkedinUrl: 'https://www.linkedin.com/in/janesmith/' 
-      },
-      { 
-        name: 'John Doe' // No LinkedIn provided
       }
     ],
-    role: 'Lead Researcher & Developer',
-    status: 'In Development',
+    role: 'Researcher & Developer',
+    status: 'Submitted - In Review',
     githubUrl: 'https://github.com/yourusername/eta',
     previewImage: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=400&fit=crop'
     // Note: liveUrl omitted since this is a research project
