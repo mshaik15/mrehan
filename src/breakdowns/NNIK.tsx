@@ -1,16 +1,15 @@
 import type { ProjectBreakdown } from '../types/breakdown';
 import { BlockMath_ } from '../components/Math';
 
-const etaBreakdown = (): ProjectBreakdown => ({
+const NNIKBreakdown = (): ProjectBreakdown => ({
   metadata: {
-    title: 'Eta',
-    subtitle: 'A neural network approach to solving Inverse Kinematics',
+    title: 'Neural Networks for Inverse Kinematics',
+    subtitle: 'A Systematic Comparison of Inverse Kinematics Solvers Using Simulation-Based Benchmarks',
     projectType: 'Research',
     year: '2025',
     timeline: '2 months · June - Aug 2025',
     tools: ['PyTorch', 'CUDA', 'Pandas', 'NumPy', 'Matplotlib', 'Hydra'],
-    
-    // Optional fields - you can include or omit any of these
+
     team: [
       { 
         name: 'Mohammed Rehan', 
@@ -18,7 +17,7 @@ const etaBreakdown = (): ProjectBreakdown => ({
       }
     ],
     role: 'Researcher & Developer',
-    status: 'Submitted - In Review',
+    status: 'Completed',
     githubUrl: 'https://github.com/yourusername/eta',
     previewImage: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=400&fit=crop'
     // Note: liveUrl omitted since this is a research project
@@ -186,4 +185,4 @@ class InverseKinematicsNet(nn.Module):
   ]
 });
 
-export default etaBreakdown;
+export default NNIKBreakdown;

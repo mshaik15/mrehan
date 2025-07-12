@@ -18,13 +18,40 @@ export interface ProjectData {
 }
 
 const projectData: ProjectData[] = [
-  // COMPLEX PROJECT WITH FULL BREAKDOWN
+  {
+    company: 'Neural Networks for Inverse Kinematics',
+    role: 'Research Project',
+    year: '2025',
+    location: 'Personal',
+    description: 'Analytical research of using neural networks for Inverse Kinematics',
+    tech: ['PyTorch', 'CUDA', 'Matplotlib', 'NumPy', 'Pandas', 'KNN', 'INN'],
+    icon: './Logo.svg',
+    hasBreakdown: true,
+    slug: 'NNIK',
+    githubUrl: 'https://github.com/yourusername/todo-app'
+  },
+
+  {
+    company: 'Delstra',
+    role: 'Developer',
+    year: '2025',
+    location: 'Remote',
+    description: 'Python library for transforming time-series data into geometric embeddings using derivatives and curvature for vector analysis.',
+    tech: ['NumPy', 'Pinecone', 'Prisma', 'Stripe API', 'Tailwind CSS'],
+    icon: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=40&h=40&fit=crop',
+    
+    // You can add breakdown later by adding hasBreakdown: true and slug
+    hasBreakdown: false,
+    githubUrl: 'https://github.com/yourusername/ecommerce-dashboard',
+    liveUrl: 'https://dashboard-demo.vercel.app'
+  },
+
   {
     company: 'UW GO',
     role: 'Personal Project',
     year: '2025',
     location: 'Waterloo, Ontario',
-    description: 'Real-time chat application with AI-powered responses. Features include voice messages, file sharing, and smart replies.',
+    description: 'Full stack application for University of Waterloo students to find and share rides.',
     tech: ['React', 'Firebase', 'TailwindCSS', 'Typescript', 'Next.js'],
     icon: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=40&h=40&fit=crop',
     
@@ -32,20 +59,6 @@ const projectData: ProjectData[] = [
     hasBreakdown: false,
     githubUrl: 'https://github.com/SafwanS143/UW-GO-Frontend',
     liveUrl: 'https://uw-go-demo.vercel.app'
-  },
-  
-  // SIMPLE PROJECT - NO BREAKDOWN
-  {
-    company: 'Eta',
-    role: 'Research Project',
-    year: '2025',
-    location: 'Personal',
-    description: 'Analytical Research of Using Neural Networks for Inverse Kinematics',
-    tech: ['PyTorch', 'CUDA', 'Matplotlib', 'NumPy', 'Pandas', 'KNN', 'INN'],
-    icon: './Logo.svg',
-    hasBreakdown: true,
-    slug: 'Eta',
-    githubUrl: 'https://github.com/yourusername/todo-app'
   },
   
   // MEDIUM PROJECT - BREAKDOWN LATER
