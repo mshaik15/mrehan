@@ -42,11 +42,12 @@ export default function Header() {
                 </a>
               </>
             ) : (
+              // Changed from "Work" to "Work | Contact" as requested
               <Link 
                 to="/work" 
                 className="text-sm sm:text-base text-gray-400 hover:text-white hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.6)] transition-all duration-300 font-medium"
               >
-                Work
+                Work | Contact
               </Link>
             )}
           </nav>

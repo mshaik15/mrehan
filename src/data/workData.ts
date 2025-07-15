@@ -17,7 +17,7 @@ const workData: WorkData[] = [
     year: 'Present',
     location: 'Waterloo, ON',
     description: 'Productizing real-time multimodal intelligence. Launched ink-whisper platform for seamless voice and text integration.',
-    tech: ['Next.js', 'Python', 'LangGraph', 'MongoDB', 'LLMs'],
+    tech: ['Next.js', 'Python', 'LangGraph', 'Firebase', 'LLMs'],
     icon: './SmartCart_White.png',
     companyUrl: 'https://skrimp.ai'
   },
@@ -27,9 +27,9 @@ const workData: WorkData[] = [
     year: '2022 - 2024',
     location: 'New York, NY',
     description: 'Led development of enterprise-scale web applications using modern React ecosystem. Improved performance by 40%.',
-    tech: ['React', 'TypeScript', 'GraphQL', 'AWS', 'Docker'],
-    icon: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=40&h=40&fit=crop',
-    companyUrl: 'https://techcorp.com'
+    tech: [],
+    icon: './Ace Robotics Logo.svg',
+    companyUrl: 'https://stbenedict.wcdsb.ca/student-life/clubs/ace-robotics-team/'
   },
   {
     company: 'Dilast Tool & Die',
@@ -37,9 +37,9 @@ const workData: WorkData[] = [
     year: '2023',
     location: 'Cambridge, Ontario',
     description: 'Built MVP from scratch, handling both frontend and backend development. Scaled to 10k+ active users.',
-    tech: ['Vue.js', 'Node.js', 'PostgreSQL', 'Redis', 'Kubernetes'],
-    icon: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=40&h=40&fit=crop',
-    companyUrl: 'https://startupxyz.com'
+    tech: [],
+    icon: './Dilast logo.png',
+    companyUrl: 'https://www.dilast.com/'
   }
 ]
 

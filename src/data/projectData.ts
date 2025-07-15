@@ -39,8 +39,6 @@ const projectData: ProjectData[] = [
     description: 'Python library for transforming time-series data into geometric embeddings using derivatives and curvature for vector analysis.',
     tech: ['NumPy', 'Pinecone', 'Prisma', 'Stripe API', 'Tailwind CSS'],
     icon: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=40&h=40&fit=crop',
-    
-    // You can add breakdown later by adding hasBreakdown: true and slug
     hasBreakdown: false,
     githubUrl: 'https://github.com/yourusername/ecommerce-dashboard',
     liveUrl: 'https://dashboard-demo.vercel.app'
@@ -86,10 +84,8 @@ const projectData: ProjectData[] = [
     description: 'Simple weather widget for displaying current conditions. Built to practice API integration.',
     tech: ['HTML', 'JavaScript', 'Weather API', 'CSS'],
     icon: 'https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=40&h=40&fit=crop',
-    
     hasBreakdown: false,
-    githubUrl: 'https://github.com/yourusername/weather-widget'
-    // No live URL for this one
+    liveUrl: 'https://uw-go-demo.vercel.app'
   }
 ]
 
