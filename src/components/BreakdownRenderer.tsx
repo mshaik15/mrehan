@@ -193,6 +193,29 @@ const BreakdownRenderer = () => {
             </div>
           </div>
 
+          {/* GitHub repo button moved here as requested */}
+          <div className="flex gap-4">
+            <div className="mt-1">
+              <Github size={20} className="text-blue-400" />
+            </div>
+            <div>
+              <h3 className="text-sm uppercase tracking-wider text-gray-400 font-medium">Repository</h3>
+              {metadata.githubUrl ? (
+                <a 
+                  href={metadata.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-1 inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 hover:underline transition-colors"
+                >
+                  View on GitHub
+                  <ExternalLink size={14} />
+                </a>
+              ) : (
+                <p className="mt-1 text-gray-500">Private Repository</p>
+              )}
+            </div>
+          </div>
+
           <div className="flex gap-4">
             <div className="mt-1">
               <div className="w-5 h-5 bg-blue-400 rounded" />
@@ -209,8 +232,8 @@ const BreakdownRenderer = () => {
             </div>
           </div>
 
-          {/* Team - only show if provided */}
-          {metadata.team && (
+          {/* Team - only show if provided and not empty */}
+          {metadata.team && (Array.isArray(metadata.team) ? metadata.team.length > 0 : true) && (
             <div className="flex gap-4">
               <div className="mt-1">
                 <Users size={20} className="text-blue-400" />
@@ -294,20 +317,9 @@ const BreakdownRenderer = () => {
               </section>
             ))}
 
-            {/* Action Links - only show if URLs are provided */}
-            {(metadata.githubUrl || metadata.liveUrl || metadata.caseStudyUrl) && (
+            {/* Action Links - only show live URL and case study if provided */}
+            {(metadata.liveUrl || metadata.caseStudyUrl) && (
               <div className="flex flex-wrap gap-4 mt-12 pt-8 border-t border-gray-700/50">
-                {metadata.githubUrl && (
-                  <a 
-                    href={metadata.githubUrl} 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700/50 hover:border-gray-600 rounded-md transition-colors"
-                  >
-                    <Github size={18} />
-                    GitHub Repository
-                  </a>
-                )}
                 {metadata.liveUrl && (
                   <a 
                     href={metadata.liveUrl}
