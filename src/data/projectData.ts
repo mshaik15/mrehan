@@ -28,7 +28,6 @@ const projectData: ProjectData[] = [
     icon: './Logo.svg',
     hasBreakdown: true,
     slug: 'NNIK',
-    githubUrl: 'https://github.com/yourusername/neural-networks-ik'
   },
 
   {
