@@ -16,7 +16,7 @@ export default function HeroSection() {
         Backend & LLM Eng @ Skrimp. Building AI for budgeting.
       </p>
       
-      {/* Navigation section */}
+      {/* Nav */}
       <div className="flex flex-col sm:flex-row justify-between items-center max-w-xl sm:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto gap-4 sm:gap-0 px-4">
         <Link 
           to="/work" 

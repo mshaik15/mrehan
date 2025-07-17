@@ -17,7 +17,6 @@ export const Math = ({ children, block = false }: MathProps) => {
   return <InlineMath math={children} />;
 };
 
-// Convenience components
 export const BlockMath_ = ({ children }: { children: string }) => (
   <Math block>{children}</Math>
 );
