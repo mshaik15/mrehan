@@ -58,31 +58,36 @@ export default function DropdownCard({
     }
   }
 
-  // For projects: determine primary external link priority
-  const getPrimaryExternalLink = () => {
-    // Priority: 1. Live URL (if hosted), 2. Breakdown (if available), 3. GitHub
-    if (liveUrl) {
-      return liveUrl
-    }
-    if (hasBreakdown && slug) {
-      return `/project/${slug}`
-    }
-    if (githubUrl) {
-      return githubUrl
+  // Count available actions for projects
+  const getAvailableActions = () => {
+    const actions = []
+    if (hasBreakdown && slug) actions.push({ type: 'breakdown', url: `/project/${slug}`, label: 'Technical Breakdown' })
+    if (liveUrl) actions.push({ type: 'demo', url: liveUrl, label: 'Live Demo' })
+    if (githubUrl) actions.push({ type: 'github', url: githubUrl, label: 'View Code' })
+    return actions
+  }
+
+  const availableActions = type === 'project' ? getAvailableActions() : []
+  const hasAnyActions = availableActions.length > 0
+
+  // For projects: determine primary external link priority when there's exactly 1 action
+  const getSingleActionUrl = () => {
+    if (availableActions.length === 1) {
+      return availableActions[0].url
     }
     return null
   }
 
-  const handlePrimaryExternalClick = (e: React.MouseEvent) => {
+  const handleSingleActionClick = (e: React.MouseEvent) => {
     e.stopPropagation()
-    const primaryLink = getPrimaryExternalLink()
-    if (primaryLink) {
-      if (primaryLink.startsWith('/')) {
+    const singleActionUrl = getSingleActionUrl()
+    if (singleActionUrl) {
+      if (singleActionUrl.startsWith('/')) {
         // Internal link (breakdown page)
-        window.location.href = primaryLink
+        window.location.href = singleActionUrl
       } else {
         // External link
-        window.open(primaryLink, '_blank')
+        window.open(singleActionUrl, '_blank')
       }
     }
   }
@@ -163,20 +168,41 @@ export default function DropdownCard({
               <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-400 hover:text-white transition-colors flex-shrink-0" />
             </div>
           ) : hasDropdownContent ? (
-            // Projects - show chevron when closed, external link when open
+            // Projects with dropdown content
             <>
-              <span className="text-xs sm:text-sm lg:text-base text-gray-400 hidden xs:block">
-                {isOpen ? "View" : ""}
-              </span>
-              {isOpen && getPrimaryExternalLink() ? (
-                <button
-                  onClick={handlePrimaryExternalClick}
-                  className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-400 hover:text-white transition-colors flex-shrink-0"
-                >
-                  <ExternalLink className="w-full h-full" />
-                </button>
+              {availableActions.length === 1 ? (
+                // Single action - show as external link icon
+                <>
+                  <span className="text-xs sm:text-sm lg:text-base text-gray-400 hidden xs:block">
+                    {isOpen ? availableActions[0].label.split(' ')[0] : ""} {/* Show first word when open */}
+                  </span>
+                  {isOpen ? (
+                    <button
+                      onClick={handleSingleActionClick}
+                      className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-400 hover:text-white transition-colors flex-shrink-0"
+                    >
+                      <ExternalLink className="w-full h-full" />
+                    </button>
+                  ) : (
+                    <ChevronDown className={`w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+                  )}
+                </>
+              ) : availableActions.length > 1 ? (
+                // Multiple actions - show chevron when closed, "View" when open
+                <>
+                  <span className="text-xs sm:text-sm lg:text-base text-gray-400 hidden xs:block">
+                    {isOpen ? "View" : ""}
+                  </span>
+                  <ChevronDown className={`w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+                </>
               ) : (
-                <ChevronDown className={`w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+                // No actions - just show chevron for tech stack
+                <>
+                  <span className="text-xs sm:text-sm lg:text-base text-gray-400 hidden xs:block">
+                    {isOpen ? "" : ""}
+                  </span>
+                  <ChevronDown className={`w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+                </>
               )}
             </>
           ) : null}
@@ -194,41 +220,43 @@ export default function DropdownCard({
             {/* Project description and tech tags */}
             {children}
             
-            {/* Action buttons - appear in dropdown for ALL projects */}
-            <div className="flex flex-wrap gap-3 mt-4 pt-3 border-t border-gray-700/30">
-              {/* Breakdown button - shows automatically when hasBreakdown is true */}
-              {hasBreakdown && (
-                <button
-                  onClick={handleBreakdownClick}
-                  className="inline-flex items-center gap-2 px-3 py-1.5 text-sm bg-blue-900/30 hover:bg-blue-900/50 border border-blue-700/50 hover:border-blue-600 rounded transition-colors text-blue-300"
-                >
-                  <ExternalLink size={14} />
-                  Technical Breakdown
-                </button>
-              )}
-              
-              {/* Demo button - show for all projects with live URLs */}
-              {liveUrl && (
-                <button
-                  onClick={(e) => handleLinkClick(e, liveUrl)}
-                  className="inline-flex items-center gap-2 px-3 py-1.5 text-sm bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700/50 hover:border-gray-600 rounded transition-colors"
-                >
-                  <Eye size={14} />
-                  Live Demo
-                </button>
-              )}
-              
-              {/* GitHub button */}
-              {githubUrl && (
-                <button
-                  onClick={(e) => handleLinkClick(e, githubUrl)}
-                  className="inline-flex items-center gap-2 px-3 py-1.5 text-sm bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700/50 hover:border-gray-600 rounded transition-colors"
-                >
-                  <Github size={14} />
-                  View Code
-                </button>
-              )}
-            </div>
+            {/* Action buttons - only appear if there are multiple actions */}
+            {hasAnyActions && availableActions.length > 1 && (
+              <div className="flex flex-wrap gap-3 mt-4 pt-3 border-t border-gray-700/30">
+                {/* Breakdown button */}
+                {hasBreakdown && (
+                  <button
+                    onClick={handleBreakdownClick}
+                    className="inline-flex items-center gap-2 px-3 py-1.5 text-sm bg-blue-900/30 hover:bg-blue-900/50 border border-blue-700/50 hover:border-blue-600 rounded transition-colors text-blue-300"
+                  >
+                    <ExternalLink size={14} />
+                    Technical Breakdown
+                  </button>
+                )}
+                
+                {/* Demo button */}
+                {liveUrl && (
+                  <button
+                    onClick={(e) => handleLinkClick(e, liveUrl)}
+                    className="inline-flex items-center gap-2 px-3 py-1.5 text-sm bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700/50 hover:border-gray-600 rounded transition-colors"
+                  >
+                    <Eye size={14} />
+                    Live Demo
+                  </button>
+                )}
+                
+                {/* GitHub button */}
+                {githubUrl && (
+                  <button
+                    onClick={(e) => handleLinkClick(e, githubUrl)}
+                    className="inline-flex items-center gap-2 px-3 py-1.5 text-sm bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700/50 hover:border-gray-600 rounded transition-colors"
+                  >
+                    <Github size={14} />
+                    View Code
+                  </button>
+                )}
+              </div>
+            )}
           </div>
         </div>
       )}
