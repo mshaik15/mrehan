@@ -20,7 +20,6 @@ const NNIKBreakdown = (): ProjectBreakdown => ({
     status: 'Completed',
     githubUrl: 'https://github.com/yourusername/eta',
     previewImage: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=400&fit=crop'
-    // Note: liveUrl omitted since this is a research project
   },
   
   sections: [
