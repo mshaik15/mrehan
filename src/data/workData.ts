@@ -1,4 +1,3 @@
-// Add this interface at the top of your workData.ts file
 interface WorkData {
   company: string
   role: string
@@ -7,7 +6,7 @@ interface WorkData {
   description: string
   tech: string[]
   icon: string
-  companyUrl?: string // Optional company URL
+  companyUrl?: string
 }
 
 const workData: WorkData[] = [
