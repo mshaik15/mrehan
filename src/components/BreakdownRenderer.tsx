@@ -139,7 +139,6 @@ const BreakdownRenderer = () => {
   return (
     <div className="max-w-sm sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12">
       
-      {/* Hero Section */}
       <section className="pt-16 pb-8">
         <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start">
           <div className="space-y-2">
@@ -180,7 +179,6 @@ const BreakdownRenderer = () => {
         </div>
       </section>
 
-      {/* Metadata Section */}
       <div className="mt-12 lg:mt-16">
         <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 border-t border-gray-700/50 pt-8">
           <div className="flex gap-4">
@@ -193,7 +191,6 @@ const BreakdownRenderer = () => {
             </div>
           </div>
 
-          {/* GitHub repo button moved here as requested */}
           <div className="flex gap-4">
             <div className="mt-1">
               <Github size={20} className="text-blue-400" />
@@ -232,7 +229,6 @@ const BreakdownRenderer = () => {
             </div>
           </div>
 
-          {/* Team - only show if provided and not empty */}
           {metadata.team && (Array.isArray(metadata.team) ? metadata.team.length > 0 : true) && (
             <div className="flex gap-4">
               <div className="mt-1">
@@ -245,7 +241,6 @@ const BreakdownRenderer = () => {
             </div>
           )}
 
-          {/* Role - only show if provided */}
           {metadata.role && (
             <div className="flex gap-4">
               <div className="mt-1">
@@ -258,7 +253,6 @@ const BreakdownRenderer = () => {
             </div>
           )}
 
-          {/* Status - only show if provided */}
           {metadata.status && (
             <div className="flex gap-4">
               <div className="mt-1">
@@ -273,7 +267,6 @@ const BreakdownRenderer = () => {
         </section>
       </div>
 
-      {/* Main Content with TOC */}
       <div className="mt-16 lg:mt-24 lg:grid lg:grid-cols-4 lg:gap-8">
         
         {/* Table of Contents */}
