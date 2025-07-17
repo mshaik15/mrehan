@@ -90,15 +90,6 @@ export default function VideoPage() {
         aria-label="Close video"
         style={{ zIndex: -1 }}
       />
-
-      {/* Instructions text - shows if muted */}
-      {isMuted && (
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10">
-          <p className="text-white/70 text-sm bg-black/50 px-4 py-2 rounded-full">
-            Click video or sound icon to unmute
-          </p>
-        </div>
-      )}
     </div>
   )
 }
