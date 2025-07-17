@@ -13,9 +13,7 @@ export default function WorkSection() {
             icon={work.icon}
             type="work"
             companyUrl={work.companyUrl}
-          >
-            {/* No content - work experience cards don't open */}
-          </DropdownCard>
+          ></DropdownCard>
         ))}
       </div>
     </section>

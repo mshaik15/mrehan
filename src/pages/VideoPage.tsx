@@ -8,12 +8,9 @@ export default function VideoPage() {
   const [isMuted, setIsMuted] = useState(true)
 
   useEffect(() => {
-    // Try to auto-play with sound first
     if (videoRef.current) {
-      // First try unmuted autoplay
       videoRef.current.muted = false
       videoRef.current.play().catch(() => {
-        // If unmuted autoplay fails, fallback to muted autoplay
         if (videoRef.current) {
           videoRef.current.muted = true
           setIsMuted(true)

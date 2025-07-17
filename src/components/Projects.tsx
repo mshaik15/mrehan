@@ -1,4 +1,3 @@
-// src/components/Projects.tsx
 import DropdownCard from './DropdownCard/DropdownCard'
 import TechTag from './DropdownCard/TechTag'
 import projectData from '../data/projectData'
