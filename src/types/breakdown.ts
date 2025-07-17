@@ -20,7 +20,7 @@ export interface BreakdownMetadata {
   tools: string[];
   
   // Optional fields
-  team?: string | TeamMember[]; // Can be a string or array of team members with LinkedIn
+  team?: string | TeamMember[];
   role?: string;
   status?: string;
   githubUrl?: string;

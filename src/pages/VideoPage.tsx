@@ -34,7 +34,6 @@ export default function VideoPage() {
   const handleVideoClick = (e: React.MouseEvent) => {
     e.preventDefault()
     e.stopPropagation()
-    // If video is muted, unmute it when clicked
     if (videoRef.current && videoRef.current.muted) {
       videoRef.current.muted = false
       setIsMuted(false)
@@ -43,7 +42,6 @@ export default function VideoPage() {
 
   return (
     <div className="fixed inset-0 bg-black z-50 flex items-center justify-center overflow-hidden">
-      {/* Close button */}
       <Link 
         to="/" 
         className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/50 hover:bg-black/70 transition-colors"
@@ -51,7 +49,6 @@ export default function VideoPage() {
         <X className="w-6 h-6 text-white" />
       </Link>
 
-      {/* Sound toggle button */}
       <button
         onClick={toggleMute}
         className="absolute top-4 left-4 z-10 p-2 rounded-full bg-black/50 hover:bg-black/70 transition-colors"
@@ -80,7 +77,6 @@ export default function VideoPage() {
         </video>
       </div>
 
-      {/* Click anywhere else to close */}
       <Link 
         to="/" 
         className="absolute inset-0 z-0"
