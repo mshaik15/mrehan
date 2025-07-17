@@ -9,7 +9,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/work" element={<Work />} />
-        <Route path="/project/:slug" element={<ProjectPage />} /> {/* Add this route */}
+        <Route path="/project/:slug" element={<ProjectPage />} />
+        <Route path="/video" element={<VideoPage/>} />
       </Routes>
     </Router>
   )
