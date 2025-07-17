@@ -1,4 +1,3 @@
-// src/components/DropdownCard/DropdownCard.tsx
 import { useState } from 'react'
 import { ChevronDown, Building2, ExternalLink, Github, Eye } from 'lucide-react'
 
@@ -10,7 +9,7 @@ interface DropdownCardProps {
   type?: 'project' | 'work'
   companyUrl?: string
   
-  // Project-specific props
+  // Only choose 1
   hasBreakdown?: boolean
   slug?: string
   githubUrl?: string
@@ -32,8 +31,7 @@ export default function DropdownCard({
   const [isOpen, setIsOpen] = useState(false)
   const [imageError, setImageError] = useState(false)
 
-  // ALL projects have dropdown content (to show skills/tech)
-  // Only work items don't have dropdowns
+  // ALL projects have dropdown content
   const hasDropdownContent = type === 'project' && children
 
   const handleBreakdownClick = (e: React.MouseEvent) => {
@@ -93,9 +91,8 @@ export default function DropdownCard({
     }
   }
 
-  // Parse subtitle for work items to extract role, location, and date
   const parseWorkSubtitle = (subtitle: string) => {
-    // Expected format: "Role | Location | Date"
+    // Role | Location | Date
     const parts = subtitle.split(' | ')
     if (parts.length >= 3) {
       return {
@@ -146,7 +143,7 @@ export default function DropdownCard({
                 </div>
               </div>
             ) : (
-              // Project layout: Title – Subtitle (unchanged)
+              // Project layout: Title – Subtitle
               <div className="flex items-center gap-2">
                 <h3 className="text-sm sm:text-base lg:text-lg xl:text-xl font-medium text-gray-100 group-hover:text-white transition-colors">
                   {title}
@@ -175,7 +172,7 @@ export default function DropdownCard({
                 // Single action - show as external link icon
                 <>
                   <span className="text-xs sm:text-sm lg:text-base text-gray-400 hidden xs:block">
-                    {isOpen ? availableActions[0].label.split(' ')[0] : ""} {/* Show first word when open */}
+                    {isOpen ? availableActions[0].label.split(' ')[0] : ""}
                   </span>
                   {isOpen ? (
                     <button
@@ -189,7 +186,6 @@ export default function DropdownCard({
                   )}
                 </>
               ) : availableActions.length > 1 ? (
-                // Multiple actions - show chevron when closed, "View" when open
                 <>
                   <span className="text-xs sm:text-sm lg:text-base text-gray-400 hidden xs:block">
                     {isOpen ? "View" : ""}
@@ -197,7 +193,6 @@ export default function DropdownCard({
                   <ChevronDown className={`w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
                 </>
               ) : (
-                // No actions - just show chevron for tech stack
                 <>
                   <span className="text-xs sm:text-sm lg:text-base text-gray-400 hidden xs:block">
                     {isOpen ? "" : ""}
@@ -210,7 +205,7 @@ export default function DropdownCard({
         </div>
       </button>
       
-      {/* Dropdown content - ALL projects have this */}
+      {/* Dropdown content */}
       {hasDropdownContent && (
         <div
           className={`overflow-hidden transition-all duration-300 ease-in-out ${
@@ -218,10 +213,10 @@ export default function DropdownCard({
           }`}
         >
           <div className="px-3 sm:px-4 lg:px-6 pb-3 sm:pb-4 lg:pb-5 border-t border-gray-700/50">
-            {/* Project description and tech tags */}
+            {/* Project description and tech stack */}
             {children}
             
-            {/* Action buttons - only appear if there are multiple actions */}
+            {/* Action buttons */}
             {hasAnyActions && availableActions.length > 1 && (
               <div className="flex flex-wrap gap-3 mt-4 pt-3 border-t border-gray-700/30">
                 {/* Breakdown button */}
