@@ -79,6 +79,7 @@ export default function DropdownCard({
   }
 
   const handleSingleActionClick = (e: React.MouseEvent) => {
+    e.preventDefault()
     e.stopPropagation()
     const singleActionUrl = getSingleActionUrl()
     if (singleActionUrl) {
@@ -181,7 +182,7 @@ export default function DropdownCard({
                       onClick={handleSingleActionClick}
                       className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-400 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.6)] transition-all duration-300 flex-shrink-0"
                     >
-                      <ExternalLink className="w-full h-full" />
+                      <ExternalLink className="w-full h-full drop-shadow-[0_0_4px_rgba(255,255,255,0.3)]" />
                     </button>
                   ) : (
                     <ChevronDown className={`w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
