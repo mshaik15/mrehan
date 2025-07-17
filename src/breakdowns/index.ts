@@ -1,6 +1,5 @@
 import type { BreakdownComponent } from '../types/breakdown';
 
-// Dynamic imports for code splitting
 export const breakdowns: Record<string, () => Promise<BreakdownComponent>> = {
   'NNIK': () => import('./NNIK'),
   // Add more breakdowns here as you create them
