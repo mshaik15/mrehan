@@ -31,15 +31,15 @@ const projectData: ProjectData[] = [
   },
 
   {
-    company: 'Delstra',
+    company: 'TsDev',
     role: 'Developer',
     year: '2025',
     location: 'Remote',
     description: 'Python library for transforming time-series data into geometric embeddings using derivatives and curvature for vector analysis.',
     tech: ['Python', 'NumPy', 'SciPy', 'Matplotlib', 'Mathematical Modeling'],
     icon: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=40&h=40&fit=crop',
-    hasBreakdown: false,
-    githubUrl: 'https://github.com/yourusername/delstra'
+    hasBreakdown: true,
+    slug: 'tsdev',
     // Removed unrelated tech like Pinecone, Prisma, Stripe API, Tailwind CSS
     // Added more relevant tech for a mathematical/geometric Python library
   },
