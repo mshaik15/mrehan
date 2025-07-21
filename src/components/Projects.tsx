@@ -10,7 +10,7 @@ export default function ProjectsSection() {
           <DropdownCard
             key={index}
             title={project.company}
-            subtitle={`${project.role} | ${project.year}`}
+            subtitle={`${project.type} | ${project.year}`}
             icon={project.icon}
             type="project"
             hasBreakdown={project.hasBreakdown}

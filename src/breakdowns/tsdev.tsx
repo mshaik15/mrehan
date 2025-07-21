@@ -1,7 +1,7 @@
 import type { ProjectBreakdown } from '../types/breakdown';
 import { BlockMath_ } from '../components/Math';
 
-const NNIKBreakdown = (): ProjectBreakdown => ({
+const tsdevBreakdown = (): ProjectBreakdown => ({
   metadata: {
     title: 'Neural Networks for Inverse Kinematics',
     subtitle: 'A Systematic Comparison of Inverse Kinematics Solvers Using Simulation-Based Benchmarks',
@@ -9,7 +9,26 @@ const NNIKBreakdown = (): ProjectBreakdown => ({
     year: '2025',
     timeline: '2 months · June - Aug 2025',
     tools: ['PyTorch', 'CUDA', 'Pandas', 'NumPy', 'Matplotlib', 'Hydra'],
-    status: 'Submitted',
+
+    team: [
+      { 
+        name: 'Mohammed Rehan', 
+        linkedinUrl: 'https://www.linkedin.com/in/mrs15/' 
+      },
+      {
+        name: 'Zayn',
+        linkedinUrl: 'https://www.linkedin.com/in/zayn-bhatti-393327318/'
+      },
+      {
+        name: 'Jeremiah',
+      },
+      {
+        name: 'Dev',
+        linkedinUrl: 'https://www.linkedin.com/in/devanand-vinod-06a075330/'
+      }
+    ],
+    role: 'Researcher & Developer',
+    status: 'Completed',
     githubUrl: 'https://github.com/yourusername/eta',
     previewImage: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=400&fit=crop'
   },
@@ -176,4 +195,4 @@ class InverseKinematicsNet(nn.Module):
   ]
 });
 
-export default NNIKBreakdown;
+export default tsdevBreakdown;

@@ -2,6 +2,7 @@ import type { BreakdownComponent } from '../types/breakdown';
 
 export const breakdowns: Record<string, () => Promise<BreakdownComponent>> = {
   'NNIK': () => import('./NNIK'),
+  'tsdev': () => import('./tsdev'),
   // Add more breakdowns here as you create them
   // 'ai-tutor': () => import('./ai-tutor'),
   // 'blockchain-explorer': () => import('./blockchain-explorer'),
