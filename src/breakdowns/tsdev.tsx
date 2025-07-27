@@ -74,8 +74,8 @@ const tsdevBreakdown = (): ProjectBreakdown => ({
     },
     
     {
-      id: 'technical',
-      title: 'Technical Details',
+      id: 'fwa',
+      title: 'FWA',
       content: (
         <div className="space-y-6">
           <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
@@ -125,8 +125,8 @@ class InverseKinematicsNet(nn.Module):
     },
     
     {
-      id: 'results',
-      title: 'Results & Analysis',
+      id: 'tensor processing',
+      title: 'Tensor Processing',
       content: (
         <div className="space-y-6">
           <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
@@ -151,8 +151,8 @@ class InverseKinematicsNet(nn.Module):
     },
     
     {
-      id: 'learned',
-      title: 'What I Learned',
+      id: 'ml models',
+      title: 'KNN & Improvements',
       content: (
         <div className="space-y-4">
           <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
@@ -173,8 +173,8 @@ class InverseKinematicsNet(nn.Module):
     },
     
     {
-      id: 'conclusion',
-      title: 'Conclusion / Impact',
+      id: 'results',
+      title: 'Results',
       content: (
         <div className="space-y-4">
           <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
