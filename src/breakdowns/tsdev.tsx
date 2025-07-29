@@ -3,7 +3,7 @@ import { BlockMath_ } from '../components/Math';
 
 const tsdevBreakdown = (): ProjectBreakdown => ({
   metadata: {
-    title: 'Neural Networks for Inverse Kinematics',
+    title: 'TSDev',
     subtitle: 'A Systematic Comparison of Inverse Kinematics Solvers Using Simulation-Based Benchmarks',
     projectType: 'Research',
     year: '2025',
@@ -27,9 +27,9 @@ const tsdevBreakdown = (): ProjectBreakdown => ({
         linkedinUrl: 'https://www.linkedin.com/in/devanand-vinod-06a075330/'
       }
     ],
-    role: 'Researcher & Developer',
+    role: 'Developer',
     status: 'Completed',
-    githubUrl: 'https://github.com/yourusername/eta',
+    githubUrl: 'https://github.com/mshaik15/TsDev',
     previewImage: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=400&fit=crop'
   },
   
@@ -84,35 +84,13 @@ const tsdevBreakdown = (): ProjectBreakdown => ({
             kinematics calculations across the entire workspace.
           </p>
           
-          <div className="bg-gray-800 p-4 rounded-lg overflow-x-auto">
+          {/* <div className="bg-gray-800 p-4 rounded-lg overflow-x-auto">
             <div className="absolute top-0 right-0 px-2 py-1 text-xs text-gray-400 bg-gray-800 rounded-bl">
               Python
             </div>
             <pre className="text-sm text-gray-100">
-              <code>{`import torch
-import torch.nn as nn
-
-class InverseKinematicsNet(nn.Module):
-    def __init__(self, input_dim=3, output_dim=6, hidden_dims=[128, 256, 128]):
-        super().__init__()
-        layers = []
-        prev_dim = input_dim
-        
-        for hidden_dim in hidden_dims:
-            layers.extend([
-                nn.Linear(prev_dim, hidden_dim),
-                nn.ReLU(),
-                nn.Dropout(0.1)
-            ])
-            prev_dim = hidden_dim
-            
-        layers.append(nn.Linear(prev_dim, output_dim))
-        self.network = nn.Sequential(*layers)
-    
-    def forward(self, x):
-        return self.network(x)`}</code>
             </pre>
-          </div>
+          </div> */}
           
           <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
             The loss function combines position error and joint angle constraints:
