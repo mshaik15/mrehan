@@ -40,13 +40,11 @@ const tsdevBreakdown = (): ProjectBreakdown => ({
       content: (
         <div className="space-y-4">
           <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
-            Eta is a novel approach to solving the inverse kinematics problem using neural networks. 
-            The project explores how deep learning can provide more efficient and accurate solutions 
-            compared to traditional analytical methods.
-          </p>
+            TSdev is a method for applying machine learning to time series using analytical techniques, specifically vectorization. 
+            Our goal was to prove our friend was good at sports betting by summarizing long, noisy, and nonlinear time series data into vector embeddings suitable for a variety of machine learning algorithms. 
+            By transforming irregular sequences into tensors, we can efficiently train models on summaries of data and support tasks such as clustering and classification, which are difficult to apply directly to a time series.          </p>
           <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
-            This research aims to reduce computational complexity while maintaining high accuracy 
-            in robotic arm positioning and movement planning.
+            This project is applicable for any vectorization tasks, but we mainly test gambling and irresponsible means of making money!
           </p>
         </div>
       )
