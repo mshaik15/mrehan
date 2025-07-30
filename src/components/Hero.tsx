@@ -5,7 +5,7 @@ export default function HeroSection() {
   return (
     <section className="text-center py-12 sm:py-16 lg:py-20 xl:py-24 -mb-12">
       <Link to="/video" className="inline-block group w-full">
-        <h1 className="romanesco-regular text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold mb-3 sm:mb-4 lg:mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent leading-tight group-hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.5)] transition-all duration-300 cursor-pointer tracking-wider px-4 sm:px-8 overflow-visible whitespace-nowrap">
+        <h1 className="romanesco-regular text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold mb-3 sm:mb-4 lg:mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent leading-tight group-hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.5)] transition-all duration-300 cursor-pointer tracking-wider px-4 sm:px-8 overflow-visible whitespace-nowrap">
           Mohammed Rehan
         </h1>
       </Link>
@@ -20,7 +20,7 @@ export default function HeroSection() {
       <div className="flex flex-col sm:flex-row justify-between items-center max-w-xl sm:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto gap-4 sm:gap-0 px-4">
         <Link 
           to="/work" 
-          className="text-xs sm:text-sm lg:text-base text-gray-400 hover:text-white transition-colors order-2 sm:order-1"
+          className="text-sm sm:text-base lg:text-lg text-gray-400 hover:text-white transition-colors order-2 sm:order-1"
         >
           Resume
         </Link>
@@ -33,7 +33,7 @@ export default function HeroSection() {
             className="text-gray-400 hover:text-white transition-colors p-2"
             aria-label="GitHub Profile"
           >
-            <Github className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />
+            <Github className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7" />
           </a>
           <a 
             href="https://www.linkedin.com/in/mrs15/" 
@@ -42,7 +42,7 @@ export default function HeroSection() {
             className="text-gray-400 hover:text-white transition-colors p-2"
             aria-label="LinkedIn Profile"
           >
-            <Linkedin className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />
+            <Linkedin className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7" />
           </a>
         </div>
       </div>
