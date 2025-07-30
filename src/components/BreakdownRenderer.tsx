@@ -142,7 +142,7 @@ const BreakdownRenderer = () => {
       <section className="pt-16 pb-8">
         <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start">
           <div className="space-y-2">
-            <span className="text-blue-400 font-medium">Project Showcase</span>
+            {/* <span className="text-blue-400 font-medium">Project Showcase</span> */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent leading-tight">
               {metadata.title}
             </h1>

@@ -17,15 +17,47 @@ export default function HeroSection() {
       </p>
       
       {/* Nav */}
-      <div className="flex flex-col sm:flex-row justify-between items-center max-w-xl sm:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto gap-4 sm:gap-0 px-4">
-        <Link 
-          to="/work" 
-          className="text-base sm:text-lg lg:text-xl text-gray-400 hover:text-white transition-colors order-2 sm:order-1"
-        >
-          Resume
-        </Link>
-        
-        <div className="flex items-center gap-4 sm:gap-6 order-1 sm:order-2">
+      <div className="max-w-xl sm:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto px-4">
+        {/* Large screens: Resume on left, icons on right */}
+        <div className="hidden sm:flex justify-between items-center">
+          <Link 
+            to="/work" 
+            className="text-base sm:text-lg lg:text-xl text-gray-400 hover:text-white transition-colors"
+          >
+            Resume
+          </Link>
+          
+          <div className="flex items-center gap-4 sm:gap-6">
+            <a 
+              href="https://github.com/mshaik15" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition-colors p-2"
+              aria-label="GitHub Profile"
+            >
+              <Github className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8" />
+            </a>
+            <a 
+              href="https://www.linkedin.com/in/mrs15/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition-colors p-2"
+              aria-label="LinkedIn Profile"
+            >
+              <Linkedin className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8" />
+            </a>
+          </div>
+        </div>
+
+        {/* Small screens: All buttons side by side */}
+        <div className="flex sm:hidden items-center justify-center gap-4">
+          <Link 
+            to="/work" 
+            className="text-gray-400 hover:text-white transition-colors p-2 text-base"
+            aria-label="Resume"
+          >
+            Resume
+          </Link>
           <a 
             href="https://github.com/mshaik15" 
             target="_blank" 
@@ -33,7 +65,7 @@ export default function HeroSection() {
             className="text-gray-400 hover:text-white transition-colors p-2"
             aria-label="GitHub Profile"
           >
-            <Github className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8" />
+            <Github className="w-6 h-6" />
           </a>
           <a 
             href="https://www.linkedin.com/in/mrs15/" 
@@ -42,7 +74,7 @@ export default function HeroSection() {
             className="text-gray-400 hover:text-white transition-colors p-2"
             aria-label="LinkedIn Profile"
           >
-            <Linkedin className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8" />
+            <Linkedin className="w-6 h-6" />
           </a>
         </div>
       </div>
