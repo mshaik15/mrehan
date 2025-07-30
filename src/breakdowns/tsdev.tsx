@@ -40,9 +40,10 @@ const tsdevBreakdown = (): ProjectBreakdown => ({
       content: (
         <div className="space-y-4">
           <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
-            TSDev is a method for applying machine learning to time series using analytical techniques, specifically vectorization. 
-            Our goal was to prove our friend was good at sports betting by summarizing long, noisy, and nonlinear time series data into vector embeddings suitable for a variety of machine learning algorithms. 
-            By transforming irregular sequences into tensors, we can efficiently train models on summaries of data and support tasks such as clustering and classification, which are difficult to apply directly to a time series.          </p>
+            TSDev is a framework for applying machine learning and computational methods to time series by vectorization, enabling the discovery of discrete connections between series and sequences.
+            Our goal was to prove our friend was good at sports betting by summarizing long, noisy, and nonlinear time series data into vector embeddings suitable for a variety of machine learning algorithms.
+            This pipeline supports techniques such as clustering, classification, and similarity analysis, which are challenging to perform directly on raw time series.        
+          </p>
           <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
             This project is applicable for any vectorization tasks, but we mainly test gambling and irresponsible means of making money!
           </p>
@@ -52,7 +53,7 @@ const tsdevBreakdown = (): ProjectBreakdown => ({
     
     {
       id: 'problem',
-      title: 'Problem & Motivation',
+      title: 'Problem & Definition',
       content: (
         <div className="space-y-4">
           <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
