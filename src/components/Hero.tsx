@@ -16,42 +16,33 @@ export default function HeroSection() {
         Backend & LLM Eng @ Skrimp. Building AI for budgeting.
       </p>
       
-      {/* Navigation and Social Links */}
-      <div className="flex flex-col sm:flex-row justify-center items-center gap-6 sm:gap-8 lg:gap-12 px-4">
-        {/* Resume Link */}
+      {/* Nav */}
+      <div className="flex flex-col sm:flex-row justify-between items-center max-w-xl sm:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto gap-4 sm:gap-0 px-4">
         <Link 
           to="/work" 
-          className="group relative"
+          className="text-base sm:text-lg lg:text-xl text-gray-400 hover:text-white transition-colors order-2 sm:order-1"
         >
-          <div className="absolute -inset-3 bg-white/10 rounded-xl blur-md opacity-20 group-hover:opacity-40 transition duration-500"></div>
-          <div className="relative px-6 py-3 bg-gray-900/80 border border-gray-600/50 rounded-xl leading-none flex items-center drop-shadow-[0_0_6px_rgba(255,255,255,0.3)] group-hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.6)] transition-all duration-300 backdrop-blur-sm">
-            <span className="text-base sm:text-lg lg:text-xl text-gray-100 group-hover:text-white transition-colors duration-300 font-medium">
-              Resume & Experience
-            </span>
-          </div>
+          Resume
         </Link>
         
-        {/* Social Media Links */}
-        <div className="flex items-center gap-4 sm:gap-6">
+        <div className="flex items-center gap-4 sm:gap-6 order-1 sm:order-2">
           <a 
             href="https://github.com/mshaik15" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="group relative text-gray-400 hover:text-white transition-all duration-300 p-3"
+            className="text-gray-400 hover:text-white transition-colors p-2"
             aria-label="GitHub Profile"
           >
-            <div className="absolute -inset-2 bg-white/5 rounded-lg opacity-0 group-hover:opacity-100 transition duration-300"></div>
-            <Github className="relative w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 drop-shadow-[0_0_4px_rgba(255,255,255,0.2)] group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all duration-300" />
+            <Github className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8" />
           </a>
           <a 
             href="https://www.linkedin.com/in/mrs15/" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="group relative text-gray-400 hover:text-white transition-all duration-300 p-3"
+            className="text-gray-400 hover:text-white transition-colors p-2"
             aria-label="LinkedIn Profile"
           >
-            <div className="absolute -inset-2 bg-white/5 rounded-lg opacity-0 group-hover:opacity-100 transition duration-300"></div>
-            <Linkedin className="relative w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 drop-shadow-[0_0_4px_rgba(255,255,255,0.2)] group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all duration-300" />
+            <Linkedin className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8" />
           </a>
         </div>
       </div>
