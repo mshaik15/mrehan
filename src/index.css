@@ -1,1 +1,30 @@
 @import "tailwindcss";
+
+/* Import your custom fonts from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&family=Romanesco&display=swap');
+
+@import "tailwindcss";
+
+/* Your custom font classes */
+.comic-relief-regular {
+  font-family: "Comic Relief", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.comic-relief-bold {
+  font-family: "Comic Relief", system-ui;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.romanesco-regular {
+  font-family: "Romanesco", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Apply Comic Relief as default font */
+body {
+  font-family: "Comic Relief", system-ui, sans-serif;
+}

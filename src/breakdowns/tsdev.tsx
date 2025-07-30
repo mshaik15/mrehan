@@ -8,7 +8,7 @@ const tsdevBreakdown = (): ProjectBreakdown => ({
     projectType: 'Research',
     year: '2025',
     timeline: '2 months · June - Aug 2025',
-    tools: ['PyTorch', 'CUDA', 'Pandas', 'NumPy', 'Matplotlib', 'Hydra'],
+    tools: ['PyTorch', 'CUDA', 'Pandas', 'NumPy', 'Matplotlib', 'Pinecone Vector DB'],
 
     team: [
       { 
