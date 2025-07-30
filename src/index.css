@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Andika:ital,wght@0,400;0,700;1,400;1,700&family=Romanesco&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Andika:ital,wght@0,400;0,700;1,400;1,700&family=Lugrasimo:wght@400&family=Romanesco&display=swap');
 
 @import "tailwindcss";
 
@@ -27,7 +27,12 @@
   font-style: italic;
 }
 
-/* Romanesco font class */
+.lugrasimo-regular {
+  font-family: "Lugrasimo", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
 .romanesco-regular {
   font-family: "Romanesco", cursive;
   font-weight: 400;

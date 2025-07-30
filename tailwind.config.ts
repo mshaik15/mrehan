@@ -10,7 +10,7 @@ const config: Config = {
       fontFamily: {
         // Your custom fonts
         'andika': ['Andika', 'sans-serif'],
-        'romanesco': ['Romanesco', 'cursive'],
+        'lugrasimo': ['Lugrasimo', 'cursive'],
         
         // Make Andika the default sans font
         'sans': ['Andika', 'system-ui', 'sans-serif'],
