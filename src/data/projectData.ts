@@ -23,7 +23,7 @@ const projectData: ProjectData[] = [
     year: '2025',
     location: 'Remote',
     description: 'Discovering Discrete Relationships through Time Series and Vectorized Data Analysis',
-    tech: ['Python', 'NumPy', 'SciPy', 'Matplotlib', 'Mathematical Modeling'],
+    tech: ['PyTorch', 'FAISS', 'NumPy', 'Matplotlib', 'Mathematical Modeling'],
     icon: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=40&h=40&fit=crop',
     hasBreakdown: true,
     slug: 'tsdev',

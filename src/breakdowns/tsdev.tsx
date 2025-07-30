@@ -8,7 +8,7 @@ const tsdevBreakdown = (): ProjectBreakdown => ({
     projectType: 'Research',
     year: '2025',
     timeline: '2 months · June - Aug 2025',
-    tools: ['PyTorch', 'CUDA', 'Pandas', 'NumPy', 'Matplotlib', 'Pinecone Vector DB'],
+    tools: ['PyTorch', 'CUDA', 'Pandas', 'NumPy', 'Matplotlib', 'FAISS'],
 
     team: [
       { 
@@ -57,13 +57,14 @@ const tsdevBreakdown = (): ProjectBreakdown => ({
       content: (
         <div className="space-y-4">
           <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
-            Traditional inverse kinematics solutions often struggle with computational efficiency 
-            and can face singularities in certain configurations. These limitations become 
-            particularly problematic in real-time robotic applications.
+            We built TSDev to analyze my friend’s gambling habits, where the underlying data consisted of long, irregular, and noisy time series.
+            Limitations in traditional time series analysis don't allow for direct comparison of irregular sequences, which is computationally expensive and often unstable. 
+            Many machine learning models are not suited for sequential data. By vectorizing time series into embeddings, TSDev addresses these challenges and enables the use of clustering, classification, and anomaly detection.
           </p>
           <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
-            Neural networks offer the potential to learn complex mappings while avoiding 
-            traditional mathematical constraints, potentially providing more robust solutions.
+            <span className="font-semibold">Discrete Connections</span> refer to the relationships between time series after being transformed into vector embeddings. 
+            Instead of comparing raw sequences, we evaluate a compact representation using distance metrics, similarity graphs, and machine learning algorithms.
+            This provides a consistent framework for analyzing nonlinear, noisy data across domains.
           </p>
           <BlockMath_>
             {`\\theta = f^{-1}(x, y, z) \\text{ where } f \\text{ is the forward kinematics function}`}
