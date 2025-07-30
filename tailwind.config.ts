@@ -9,15 +9,15 @@ const config: Config = {
     extend: {
       fontFamily: {
         // Your custom fonts
-        'comic': ['Comic Relief', 'system-ui', 'sans-serif'],
+        'andika': ['Andika', 'sans-serif'],
         'romanesco': ['Romanesco', 'cursive'],
         
-        // Keep existing sans as fallback
-        'sans': ['Comic Relief', 'system-ui', 'sans-serif'], // Makes Comic Relief the default
+        // Make Andika the default sans font
+        'sans': ['Andika', 'system-ui', 'sans-serif'],
       },
       fontWeight: {
-        'comic-regular': '400',
-        'comic-bold': '700',
+        'andika-regular': '400',
+        'andika-bold': '700',
         'romanesco-regular': '400',
       }
     },
