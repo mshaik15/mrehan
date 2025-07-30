@@ -10,14 +10,14 @@ export const Math = ({ children, block = false }: MathProps) => {
   if (block) {
     return (
       <div className="my-6 flex justify-center overflow-x-auto">
-        <div className="min-w-0 max-w-full">
+        <div className="min-w-0 max-w-full scale-75 sm:scale-90 md:scale-100 origin-center">
           <BlockMath math={children} />
         </div>
       </div>
     );
   }
   return (
-    <span className="inline-block max-w-full overflow-x-auto">
+    <span className="inline-block max-w-full overflow-x-auto scale-75 sm:scale-90 md:scale-100 origin-left">
       <InlineMath math={children} />
     </span>
   );
