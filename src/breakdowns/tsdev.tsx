@@ -30,7 +30,7 @@ const tsdevBreakdown = (): ProjectBreakdown => ({
     role: 'Developer',
     status: 'Completed',
     githubUrl: 'https://github.com/mshaik15/TsDev',
-    previewImage: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=400&fit=crop'
+    previewImage: '../TSDev.jpg'
   },
   
   sections: [
