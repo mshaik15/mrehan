@@ -41,7 +41,7 @@ const projectData: ProjectData[] = [
     slug: 'NNIK',
   },
   {
-    company: 'Ace',
+    company: 'Gary',
     type: 'Robotics Project',
     year: '2025',
     location: 'Personal',
@@ -50,7 +50,7 @@ const projectData: ProjectData[] = [
     icon: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=40&h=40&fit=crop',
     
     hasBreakdown: true,
-    slug: 'ace',
+    slug: 'gary',
   },
 
   {
