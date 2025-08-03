@@ -1,8 +1,7 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link} from 'react-router-dom'
 
 export default function Header() {
-  const location = useLocation()
-  const isWorkPage = location.pathname === '/work'
+
 
   return (
     <header className="w-full bg-gray-950/80 backdrop-blur-sm sticky top-0 z-50">
@@ -10,20 +9,11 @@ export default function Header() {
         <div className="flex items-center justify-between py-4 sm:py-5 lg:py-6">
           <Link 
             to="/" 
-            className="text-lg sm:text-xl lg:text-2xl font-semibold text-white hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all duration-300 flex items-center gap-2"
+            className="text-lg sm:text-xl lg:text-2xl font-semibold text-white hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all duration-300 flex items-center gap-3"
           >
-            <span className="text-gray-400">←</span>
+            <span className="text-gray-300 text-xl sm:text-2xl lg:text-3xl font-light">←</span>
             Mohammed Rehan
           </Link>
-
-          <nav className="flex items-center gap-6 sm:gap-8">
-            <Link 
-              to="/work" 
-              className="text-sm sm:text-base text-gray-400 hover:text-white hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.6)] transition-all duration-300 font-medium"
-            >
-              Work | Contact
-            </Link>
-          </nav>
         </div>
       </div>
     </header>
