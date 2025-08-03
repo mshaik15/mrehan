@@ -11,7 +11,6 @@ export default function Header() {
             to="/" 
             className="text-lg sm:text-xl lg:text-2xl font-semibold text-white hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all duration-300 flex items-center gap-3"
           >
-            <span className="text-gray-300 text-xl sm:text-2xl lg:text-3xl font-light">←</span>
             Mohammed Rehan
           </Link>
         </div>
