@@ -24,7 +24,7 @@ export default function HeroSection() {
             to="/work" 
             className="text-base sm:text-lg lg:text-xl text-gray-400 hover:text-white transition-colors"
           >
-            Resume
+            Work
           </Link>
           
           <div className="flex items-center gap-4 sm:gap-6">
