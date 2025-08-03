@@ -1,8 +1,8 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export default function Header() {
-  const location = useLocation()
-  const isWorkPage = location.pathname === '/work'
+
+  
 
   return (
     <header className="w-full bg-gray-950/80 backdrop-blur-sm sticky top-0 z-50">
@@ -16,36 +16,12 @@ export default function Header() {
           </Link>
 
           <nav className="flex items-center gap-6 sm:gap-8">
-            {isWorkPage ? (
-              <>
-                <a 
-                  href="/resume.pdf" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="relative group"
-                >
-                <div className="absolute -inset-2 bg-white/10 rounded-lg blur-md opacity-20 group-hover:opacity-30 transition duration-1000 animate-pulse"></div>
-                  <div className="relative px-4 py-2 bg-gray-900 border border-gray-700/50 rounded-lg leading-none flex items-center drop-shadow-[0_0_4px_rgba(255,255,255,0.3)] group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.6)] transition-all duration-300">
-                    <span className="text-sm sm:text-base text-gray-100 group-hover:text-white transition-colors duration-300 font-medium">
-                      Resume
-                    </span>
-                  </div>
-                </a>
-                <a 
-                  href="mailto:your.email@example.com"
-                  className="text-sm sm:text-base text-gray-400 hover:text-white hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.6)] transition-all duration-300 font-medium"
-                >
-                  Contact
-                </a>
-              </>
-            ) : (
-              <Link 
-                to="/work" 
-                className="text-sm sm:text-base text-gray-400 hover:text-white hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.6)] transition-all duration-300 font-medium"
-              >
-                Work | Contact
-              </Link>
-            )}
+            <Link 
+              to="/work" 
+              className="text-sm sm:text-base text-gray-400 hover:text-white hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.6)] transition-all duration-300 font-medium"
+            >
+              Work | Contact
+            </Link>
           </nav>
         </div>
       </div>
