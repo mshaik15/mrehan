@@ -5,7 +5,7 @@ export default function HeroSection() {
   return (
     <section className="text-center py-8 sm:py-12 lg:py-16 xl:py-20 -mb-8">
       <Link to="/video" className="inline-block group w-full">
-        <h1 className="lugrasimo-regular text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 sm:mb-6 lg:mb-8 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent leading-tight group-hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.5)] transition-all duration-300 cursor-pointer tracking-wide px-4">
+        <h1 className="fugaz-one-regular text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 sm:mb-6 lg:mb-8 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent leading-tight group-hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.5)] transition-all duration-300 cursor-pointer tracking-wide px-4">
           Mohammed Rehan
         </h1>
       </Link>
