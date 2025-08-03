@@ -1,45 +1,43 @@
-@import url('https://fonts.googleapis.com/css2?family=Andika:ital,wght@0,400;0,700;1,400;1,700&family=Lugrasimo:wght@400&family=Romanesco&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Fugaz+One:wght@400&display=swap');
 
 @import "tailwindcss";
 
-/* Andika font classes */
-.andika-regular {
-  font-family: "Andika", sans-serif;
+/* Roboto Slab font classes */
+.roboto-slab-regular {
+  font-family: "Roboto Slab", serif;
+  font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
 }
 
-.andika-bold {
-  font-family: "Andika", sans-serif;
+.roboto-slab-medium {
+  font-family: "Roboto Slab", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.roboto-slab-semibold {
+  font-family: "Roboto Slab", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.roboto-slab-bold {
+  font-family: "Roboto Slab", serif;
+  font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
 }
 
-.andika-regular-italic {
-  font-family: "Andika", sans-serif;
-  font-weight: 400;
-  font-style: italic;
-}
-
-.andika-bold-italic {
-  font-family: "Andika", sans-serif;
-  font-weight: 700;
-  font-style: italic;
-}
-
-.lugrasimo-regular {
-  font-family: "Lugrasimo", cursive;
+.fugaz-one-regular {
+  font-family: "Fugaz One", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
 
-.romanesco-regular {
-  font-family: "Romanesco", cursive;
-  font-weight: 400;
-  font-style: normal;
-}
-
-/* Apply Andika as default font */
+/* Apply Roboto Slab as default font */
 body {
-  font-family: "Andika", sans-serif;
+  font-family: "Roboto Slab", serif;
 }

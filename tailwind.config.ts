@@ -9,16 +9,16 @@ const config: Config = {
     extend: {
       fontFamily: {
         // Your custom fonts
-        'andika': ['Andika', 'sans-serif'],
-        'lugrasimo': ['Lugrasimo', 'cursive'],
+        'roboto-slab': ['Roboto Slab', 'serif'],
+        'fugaz-one': ['Fugaz One', 'sans-serif'],
         
-        // Make Andika the default sans font
-        'sans': ['Andika', 'system-ui', 'sans-serif'],
+        // Make Roboto Slab the default sans font
+        'sans': ['Roboto Slab', 'system-ui', 'sans-serif'],
       },
       fontWeight: {
-        'andika-regular': '400',
-        'andika-bold': '700',
-        'romanesco-regular': '400',
+        'roboto-slab-regular': '400',
+        'roboto-slab-bold': '700',
+        'fugaz-one-regular': '400',
       }
     },
   },
