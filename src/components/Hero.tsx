@@ -5,11 +5,11 @@ export default function HeroSection() {
   return (
     <section className="text-center py-8 sm:py-12 lg:py-16 xl:py-20 -mb-8">
       <Link to="/video" className="inline-block group w-full">
-        <h1 className="fugaz-one-regular text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 sm:mb-6 lg:mb-8 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent leading-tight group-hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.5)] transition-all duration-300 cursor-pointer tracking-wide px-4">
+        <h1 className="fugaz-one-regular text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold mb-4 sm:mb-6 lg:mb-8 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent leading-tight group-hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.5)] transition-all duration-300 cursor-pointer tracking-wide px-4">
           Mohammed Rehan
         </h1>
       </Link>
-      <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-gray-300 mb-4 sm:mb-6 lg:mb-8 font-medium px-4 leading-relaxed">
+      <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-300 mb-4 sm:mb-6 lg:mb-8 font-medium px-4 leading-relaxed">
         Mechatronics Engineering @ the University of Waterloo
       </h2>
       <p className="text-base sm:text-lg lg:text-xl xl:text-2xl text-gray-400 max-w-lg sm:max-w-xl lg:max-w-2xl xl:max-w-3xl mx-auto mb-8 sm:mb-10 lg:mb-12 px-4 leading-relaxed font-light">
