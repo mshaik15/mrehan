@@ -108,7 +108,9 @@ export default function DropdownCard({
   const workInfo = type === 'work' ? parseWorkSubtitle(subtitle) : null
 
   return (
-    <div className="mb-3 sm:mb-4 lg:mb-6 rounded-lg border border-theme-border-primary/50 bg-theme-bg-secondary/50 hover:border-theme-border-secondary/50 transition-all">
+    <div className={`mb-3 sm:mb-4 lg:mb-6 rounded-lg bg-theme-bg-secondary/50 hover:shadow-[0_0_20px_rgba(107,207,246,0.1)] transition-all duration-300 ${
+      isOpen ? 'shadow-[0_0_15px_rgba(107,207,246,0.08)]' : 'shadow-[0_0_8px_rgba(0,0,0,0.3)]'
+    }`}>
       <button
         onClick={(e) => hasDropdownContent ? setIsOpen(!isOpen) : handleWorkClick(e)}
         className="w-full px-3 sm:px-4 lg:px-6 py-3 sm:py-4 lg:py-5 flex items-center justify-between group"
@@ -212,13 +214,13 @@ export default function DropdownCard({
             isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
           }`}
         >
-          <div className="px-3 sm:px-4 lg:px-6 pb-3 sm:pb-4 lg:pb-5 border-t border-theme-border-primary/50">
+          <div className="px-3 sm:px-4 lg:px-6 pb-3 sm:pb-4 lg:pb-5">
             {/* Project description and tech stack */}
             {children}
             
             {/* Action buttons */}
             {hasAnyActions && availableActions.length > 1 && (
-              <div className="flex flex-wrap gap-3 mt-4 pt-3 border-t border-theme-border-primary/30">
+              <div className="flex flex-wrap gap-3 mt-4 pt-3 relative before:absolute before:top-0 before:left-0 before:right-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-theme-accent-primary/20 before:to-transparent">
                 {/* Breakdown button */}
                 {hasBreakdown && (
                   <button

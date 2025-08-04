@@ -1,5 +1,3 @@
-// Replace Hero.tsx with no letter spacing:
-
 import { Link } from "react-router-dom"
 import { Github, Linkedin } from "lucide-react"
 
@@ -7,7 +5,7 @@ export default function HeroSection() {
   return (
     <section className="text-center py-4 sm:py-6 lg:py-8 xl:py-10 mb-6 sm:mb-8 lg:mb-10">
       <Link to="/video" className="inline-block group w-full">
-        <h1 className="fugaz-one-regular text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-3 sm:mb-4 lg:mb-5 bg-gradient-to-r from-theme-text-primary to-theme-text-secondary bg-clip-text text-transparent leading-tight group-hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.5)] transition-all duration-300 cursor-pointer tracking-wide px-4">
+        <h1 className="fugaz-one-regular text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-3 sm:mb-4 lg:mb-5 text-theme-text-primary group-hover:text-theme-accent-primary leading-tight group-hover:drop-shadow-[0_0_12px_rgba(107,207,246,0.5)] transition-all duration-300 cursor-pointer tracking-wide px-4">
           Mohammed Rehan Ali
         </h1>
       </Link>
