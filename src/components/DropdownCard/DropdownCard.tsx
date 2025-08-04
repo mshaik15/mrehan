@@ -108,7 +108,7 @@ export default function DropdownCard({
   const workInfo = type === 'work' ? parseWorkSubtitle(subtitle) : null
 
   return (
-    <div className="mb-3 sm:mb-4 lg:mb-6 rounded-lg border border-gray-700/50 bg-theme-bg-secondary/50 hover:border-gray-600/50 transition-all">
+    <div className="mb-3 sm:mb-4 lg:mb-6 rounded-lg border border-theme-border-primary/50 bg-theme-bg-secondary/50 hover:border-theme-border-secondary/50 transition-all">
       <button
         onClick={(e) => hasDropdownContent ? setIsOpen(!isOpen) : handleWorkClick(e)}
         className="w-full px-3 sm:px-4 lg:px-6 py-3 sm:py-4 lg:py-5 flex items-center justify-between group"
@@ -116,7 +116,7 @@ export default function DropdownCard({
         <div className="flex items-center gap-3 sm:gap-4 lg:gap-5 min-w-0">
           {imageError ? (
             <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-lg bg-theme-bg-hover flex items-center justify-center flex-shrink-0">
-              <Building2 className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-400" />
+              <Building2 className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-theme-text-muted" />
             </div>
           ) : (
             <img 
@@ -134,11 +134,11 @@ export default function DropdownCard({
                   <h3 className="text-xs sm:text-sm lg:text-base xl:text-lg font-medium text-theme-text-primary group-hover:text-theme-text-primary transition-colors">
                     {title}
                   </h3>
-                  <span className="text-xs sm:text-xs lg:text-sm text-gray-400">
+                  <span className="text-xs sm:text-xs lg:text-sm text-theme-text-muted">
                     – {workInfo.date}
                   </span>
                 </div>
-                <div className="text-xs sm:text-xs lg:text-sm text-gray-400">
+                <div className="text-xs sm:text-xs lg:text-sm text-theme-text-muted">
                   {workInfo.role} | {workInfo.location}
                 </div>
               </div>
@@ -148,7 +148,7 @@ export default function DropdownCard({
                 <h3 className="text-xs sm:text-sm lg:text-base xl:text-lg font-medium text-theme-text-primary group-hover:text-theme-text-primary transition-colors">
                   {title}
                 </h3>
-                <span className="text-xs sm:text-xs lg:text-sm text-gray-400">
+                <span className="text-xs sm:text-xs lg:text-sm text-theme-text-muted">
                   – {subtitle}
                 </span>
               </div>
@@ -160,10 +160,10 @@ export default function DropdownCard({
           {type === 'work' ? (
             // Work items - show external link
             <div className="flex items-center justify-end gap-2 sm:gap-3 lg:gap-4 min-w-0" style={{ width: '120px' }}>
-              <span className="text-xs sm:text-xs lg:text-sm text-gray-400 hidden xs:block">
+              <span className="text-xs sm:text-xs lg:text-sm text-theme-text-muted hidden xs:block">
                 Visit
               </span>
-              <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-400 hover:text-theme-text-primary transition-colors flex-shrink-0" />
+              <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-theme-text-muted hover:text-theme-text-primary transition-colors flex-shrink-0" />
             </div>
           ) : hasDropdownContent ? (
             // Projects with dropdown content
@@ -171,33 +171,33 @@ export default function DropdownCard({
               {availableActions.length === 1 ? (
                 // Single action - show as external link icon
                 <>
-                  <span className="text-xs sm:text-xs lg:text-sm text-gray-400 hidden xs:block">
+                  <span className="text-xs sm:text-xs lg:text-sm text-theme-text-muted hidden xs:block">
                     {isOpen ? availableActions[0].label.split(' ')[0] : ""}
                   </span>
                   {isOpen ? (
                     <button
                       onClick={handleSingleActionClick}
-                      className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-400 hover:text-theme-text-primary hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.6)] transition-all duration-300 flex-shrink-0"
+                      className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-theme-text-muted hover:text-theme-text-primary hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.6)] transition-all duration-300 flex-shrink-0"
                     >
                       <ExternalLink className="w-full h-full drop-shadow-[0_0_4px_rgba(255,255,255,0.3)]" />
                     </button>
                   ) : (
-                    <ChevronDown className={`w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+                    <ChevronDown className={`w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-theme-text-muted transition-transform ${isOpen ? 'rotate-180' : ''}`} />
                   )}
                 </>
               ) : availableActions.length > 1 ? (
                 <>
-                  <span className="text-xs sm:text-xs lg:text-sm text-gray-400 hidden xs:block">
+                  <span className="text-xs sm:text-xs lg:text-sm text-theme-text-muted hidden xs:block">
                     {isOpen ? "View" : ""}
                   </span>
-                  <ChevronDown className={`w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-theme-text-muted transition-transform ${isOpen ? 'rotate-180' : ''}`} />
                 </>
               ) : (
                 <>
-                  <span className="text-xs sm:text-xs lg:text-sm text-gray-400 hidden xs:block">
+                  <span className="text-xs sm:text-xs lg:text-sm text-theme-text-muted hidden xs:block">
                     {isOpen ? "" : ""}
                   </span>
-                  <ChevronDown className={`w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-theme-text-muted transition-transform ${isOpen ? 'rotate-180' : ''}`} />
                 </>
               )}
             </>
@@ -212,18 +212,18 @@ export default function DropdownCard({
             isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
           }`}
         >
-          <div className="px-3 sm:px-4 lg:px-6 pb-3 sm:pb-4 lg:pb-5 border-t border-gray-700/50">
+          <div className="px-3 sm:px-4 lg:px-6 pb-3 sm:pb-4 lg:pb-5 border-t border-theme-border-primary/50">
             {/* Project description and tech stack */}
             {children}
             
             {/* Action buttons */}
             {hasAnyActions && availableActions.length > 1 && (
-              <div className="flex flex-wrap gap-3 mt-4 pt-3 border-t border-gray-700/30">
+              <div className="flex flex-wrap gap-3 mt-4 pt-3 border-t border-theme-border-primary/30">
                 {/* Breakdown button */}
                 {hasBreakdown && (
                   <button
                     onClick={handleBreakdownClick}
-                    className="inline-flex items-center gap-2 px-3 py-1.5 text-xs bg-blue-900/30 hover:bg-blue-900/50 border border-blue-700/50 hover:border-blue-600 rounded transition-colors text-blue-300"
+                    className="inline-flex items-center gap-2 px-3 py-1.5 text-xs bg-theme-accent-primary/30 hover:bg-theme-accent-primary/50 border border-theme-accent-primary/50 hover:border-theme-accent-hover rounded transition-colors text-theme-accent-primary"
                   >
                     <ExternalLink size={12} />
                     Technical Breakdown
@@ -234,7 +234,7 @@ export default function DropdownCard({
                 {liveUrl && (
                   <button
                     onClick={(e) => handleLinkClick(e, liveUrl)}
-                    className="inline-flex items-center gap-2 px-3 py-1.5 text-xs bg-theme-bg-tertiary/50 hover:bg-theme-bg-hover/50 border border-gray-700/50 hover:border-gray-600 rounded transition-colors"
+                    className="inline-flex items-center gap-2 px-3 py-1.5 text-xs bg-theme-bg-tertiary/50 hover:bg-theme-bg-hover/50 border border-theme-border-primary/50 hover:border-theme-border-secondary rounded transition-colors"
                   >
                     <Eye size={12} />
                     Live Demo
@@ -245,7 +245,7 @@ export default function DropdownCard({
                 {githubUrl && (
                   <button
                     onClick={(e) => handleLinkClick(e, githubUrl)}
-                    className="inline-flex items-center gap-2 px-3 py-1.5 text-xs bg-theme-bg-tertiary/50 hover:bg-theme-bg-hover/50 border border-gray-700/50 hover:border-gray-600 rounded transition-colors"
+                    className="inline-flex items-center gap-2 px-3 py-1.5 text-xs bg-theme-bg-tertiary/50 hover:bg-theme-bg-hover/50 border border-theme-border-primary/50 hover:border-theme-border-secondary rounded transition-colors"
                   >
                     <Github size={12} />
                     View Code

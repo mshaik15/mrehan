@@ -105,9 +105,9 @@ const tsdevBreakdown = (): ProjectBreakdown => ({
             Jacobian-based methods.
           </p>
           
-          <div className="border border-gray-700/50 rounded-lg p-4 bg-theme-bg-tertiary/30">
+          <div className="border border-theme-border-primary/50 rounded-lg p-4 bg-theme-bg-tertiary/30">
             <div className="text-center space-y-2">
-              <p className="text-gray-400 text-xs">Performance Comparison</p>
+              <p className="text-theme-text-muted text-xs">Performance Comparison</p>
               <div className="grid grid-cols-2 gap-4 text-xs text-theme-text-secondary">
                 <div>Neural Network: 2.3ms avg</div>
                 <div>Traditional: 3.8ms avg</div>

@@ -66,7 +66,7 @@ const NNIKBreakdown = (): ProjectBreakdown => ({
           </p>
           
           <div className="bg-theme-bg-tertiary p-3 rounded-lg overflow-x-auto relative">
-            <div className="absolute top-0 right-0 px-2 py-1 text-xs text-gray-400 bg-theme-bg-tertiary rounded-bl">
+            <div className="absolute top-0 right-0 px-2 py-1 text-xs text-theme-text-muted bg-theme-bg-tertiary rounded-bl">
               Python
             </div>
             <pre className="text-xs text-theme-text-primary">
@@ -116,9 +116,9 @@ class InverseKinematicsNet(nn.Module):
             Jacobian-based methods.
           </p>
           
-          <div className="border border-gray-700/50 rounded-lg p-4 bg-theme-bg-tertiary/30">
+          <div className="border border-theme-border-primary/50 rounded-lg p-4 bg-theme-bg-tertiary/30">
             <div className="text-center space-y-2">
-              <p className="text-gray-400 text-xs">Performance Comparison</p>
+              <p className="text-theme-text-muted text-xs">Performance Comparison</p>
               <div className="grid grid-cols-2 gap-4 text-xs text-theme-text-secondary">
                 <div>Neural Network: 2.3ms avg</div>
                 <div>Traditional: 3.8ms avg</div>

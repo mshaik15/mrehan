@@ -104,12 +104,12 @@ const BreakdownRenderer = () => {
                 href={member.linkedinUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-blue-400 hover:text-blue-300 hover:underline transition-colors"
+                className="text-sm text-theme-accent-primary hover:text-theme-accent-primary hover:underline transition-colors"
               >
                 {member.name}
               </a>
             ) : (
-              <span className="text-sm text-blue-400">{member.name}</span>
+              <span className="text-sm text-theme-accent-primary">{member.name}</span>
             )}
           </div>
         ))}
@@ -122,8 +122,8 @@ const BreakdownRenderer = () => {
       <div className="max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12">
         <div className="flex items-center justify-center min-h-[50vh]">
           <div className="text-center space-y-4">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-400 mx-auto"></div>
-            <p className="text-gray-400 text-sm">Loading project breakdown...</p>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-theme-accent-primary mx-auto"></div>
+            <p className="text-theme-text-muted text-sm">Loading project breakdown...</p>
           </div>
         </div>
       </div>
@@ -148,10 +148,10 @@ const BreakdownRenderer = () => {
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-theme-text-primary leading-tight">
                 {metadata.title}
               </h1>
-              <p className="text-base md:text-lg lg:text-xl text-gray-400 leading-relaxed">
+              <p className="text-base md:text-lg lg:text-xl text-theme-text-muted leading-relaxed">
                 {metadata.subtitle}
               </p>
-              <div className="flex items-center gap-2 text-sm text-gray-500">
+              <div className="flex items-center gap-2 text-sm text-theme-text-muted">
                 <span>{metadata.projectType}</span>
                 <span>•</span>
                 <span>{metadata.year}</span>
@@ -163,11 +163,11 @@ const BreakdownRenderer = () => {
               {/* Status */}
               {metadata.status && (
                 <div className="flex items-center gap-3">
-                  <div className="w-5 h-5 rounded-full bg-blue-500 flex items-center justify-center">
+                  <div className="w-5 h-5 rounded-full bg-theme-accent-primary flex items-center justify-center">
                     <Target size={12} className="text-theme-text-primary" />
                   </div>
                   <div>
-                    <div className="text-xs uppercase tracking-wide text-gray-500 font-medium">Status</div>
+                    <div className="text-xs uppercase tracking-wide text-theme-text-muted font-medium">Status</div>
                     <div className="text-sm text-theme-text-secondary">{metadata.status}</div>
                   </div>
                 </div>
@@ -175,11 +175,11 @@ const BreakdownRenderer = () => {
 
               {/* Timeline */}
               <div className="flex items-center gap-3">
-                <div className="w-5 h-5 rounded-full bg-blue-500 flex items-center justify-center">
+                <div className="w-5 h-5 rounded-full bg-theme-accent-primary flex items-center justify-center">
                   <Clock size={12} className="text-theme-text-primary" />
                 </div>
                 <div>
-                  <div className="text-xs uppercase tracking-wide text-gray-500 font-medium">Timeline</div>
+                  <div className="text-xs uppercase tracking-wide text-theme-text-muted font-medium">Timeline</div>
                   <div className="text-sm text-theme-text-secondary">{metadata.timeline}</div>
                 </div>
               </div>
@@ -187,11 +187,11 @@ const BreakdownRenderer = () => {
               {/* Team */}
               {metadata.team && (Array.isArray(metadata.team) ? metadata.team.length > 0 : true) && (
                 <div className="flex items-start gap-3">
-                  <div className="w-5 h-5 rounded-full bg-blue-500 flex items-center justify-center mt-0.5">
+                  <div className="w-5 h-5 rounded-full bg-theme-accent-primary flex items-center justify-center mt-0.5">
                     <Users size={12} className="text-theme-text-primary" />
                   </div>
                   <div>
-                    <div className="text-xs uppercase tracking-wide text-gray-500 font-medium">Team</div>
+                    <div className="text-xs uppercase tracking-wide text-theme-text-muted font-medium">Team</div>
                     {renderTeam(metadata.team)}
                   </div>
                 </div>
@@ -200,11 +200,11 @@ const BreakdownRenderer = () => {
               {/* Role */}
               {metadata.role && (
                 <div className="flex items-center gap-3">
-                  <div className="w-5 h-5 rounded-full bg-blue-500 flex items-center justify-center">
+                  <div className="w-5 h-5 rounded-full bg-theme-accent-primary flex items-center justify-center">
                     <Brain size={12} className="text-theme-text-primary" />
                   </div>
                   <div>
-                    <div className="text-xs uppercase tracking-wide text-gray-500 font-medium">My Role</div>
+                    <div className="text-xs uppercase tracking-wide text-theme-text-muted font-medium">My Role</div>
                     <div className="text-sm text-theme-text-secondary">{metadata.role}</div>
                   </div>
                 </div>
@@ -212,23 +212,23 @@ const BreakdownRenderer = () => {
 
               {/* Repository */}
               <div className="flex items-center gap-3">
-                <div className="w-5 h-5 rounded-full bg-blue-500 flex items-center justify-center">
+                <div className="w-5 h-5 rounded-full bg-theme-accent-primary flex items-center justify-center">
                   <Github size={12} className="text-theme-text-primary" />
                 </div>
                 <div>
-                  <div className="text-xs uppercase tracking-wide text-gray-500 font-medium">Repository</div>
+                  <div className="text-xs uppercase tracking-wide text-theme-text-muted font-medium">Repository</div>
                   {metadata.githubUrl ? (
                     <a 
                       href={metadata.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-sm text-blue-400 hover:text-blue-300 hover:underline transition-colors"
+                      className="inline-flex items-center gap-1.5 text-sm text-theme-accent-primary hover:text-theme-accent-primary hover:underline transition-colors"
                     >
                       View on GitHub
                       <ExternalLink size={10} />
                     </a>
                   ) : (
-                    <div className="text-sm text-gray-500">Private Repository</div>
+                    <div className="text-sm text-theme-text-muted">Private Repository</div>
                   )}
                 </div>
               </div>
@@ -236,10 +236,10 @@ const BreakdownRenderer = () => {
 
             {/* Tools & Technologies */}
             <div>
-              <h3 className="text-xs uppercase tracking-wide text-gray-500 font-medium mb-3">Tools & Technologies</h3>
+              <h3 className="text-xs uppercase tracking-wide text-theme-text-muted font-medium mb-3">Tools & Technologies</h3>
               <div className="flex flex-wrap gap-2">
                 {metadata.tools.map((tool, index) => (
-                  <span key={index} className="px-3 py-1.5 bg-theme-bg-tertiary/50 border border-gray-700/50 rounded-full text-xs text-theme-text-secondary">
+                  <span key={index} className="px-3 py-1.5 bg-theme-bg-tertiary/50 border border-theme-border-primary/50 rounded-full text-xs text-theme-text-secondary">
                     {tool}
                   </span>
                 ))}
@@ -249,7 +249,7 @@ const BreakdownRenderer = () => {
 
           {/* Right side - Preview Image */}
           <div className="lg:sticky lg:top-24">
-            <div className="border border-gray-700/50 rounded-xl overflow-hidden bg-theme-bg-tertiary/50">
+            <div className="border border-theme-border-primary/50 rounded-xl overflow-hidden bg-theme-bg-tertiary/50">
               {metadata.previewImage ? (
                 <img 
                   src={metadata.previewImage} 
@@ -259,8 +259,8 @@ const BreakdownRenderer = () => {
               ) : (
                 <div className="w-full h-[300px] sm:h-[400px] lg:h-[500px] flex items-center justify-center bg-gradient-to-br from-gray-800 to-gray-900">
                   <div className="text-center p-6">
-                    <p className="text-gray-400 mb-3 text-sm">Project Preview</p>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-theme-text-muted mb-3 text-sm">Project Preview</p>
+                    <p className="text-xs text-theme-text-muted">
                       Add previewImage to metadata for visual preview
                     </p>
                   </div>
@@ -278,7 +278,7 @@ const BreakdownRenderer = () => {
           <div className="hidden lg:block lg:col-span-1">
             <div className="sticky top-8">
               <nav className="pr-8">
-                <h2 className="text-xs uppercase tracking-wider text-gray-400 font-medium mb-4">
+                <h2 className="text-xs uppercase tracking-wider text-theme-text-muted font-medium mb-4">
                   Table of Contents
                 </h2>
                 <ul className="space-y-2">
@@ -288,8 +288,8 @@ const BreakdownRenderer = () => {
                         onClick={() => scrollToSection(section.id)}
                         className={`text-left w-full py-1 border-l-2 pl-3 transition-colors text-sm ${
                           activeSection === section.id
-                            ? 'border-blue-400 text-blue-400'
-                            : 'border-gray-700/50 text-gray-400 hover:text-theme-text-secondary hover:border-gray-600'
+                            ? 'border-theme-accent-primary text-theme-accent-primary'
+                            : 'border-theme-border-primary/50 text-theme-text-muted hover:text-theme-text-secondary hover:border-theme-border-secondary'
                         }`}
                       >
                         {section.title}
@@ -316,13 +316,13 @@ const BreakdownRenderer = () => {
 
             {/* Action Links - only show live URL and case study if provided */}
             {(metadata.liveUrl || metadata.caseStudyUrl) && (
-              <div className="flex flex-wrap gap-4 mt-12 pt-8 border-t border-gray-700/50">
+              <div className="flex flex-wrap gap-4 mt-12 pt-8 border-t border-theme-border-primary/50">
                 {metadata.liveUrl && (
                   <a 
                     href={metadata.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-theme-bg-tertiary/50 hover:bg-theme-bg-hover/50 border border-gray-700/50 hover:border-gray-600 rounded-md transition-colors text-sm"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-theme-bg-tertiary/50 hover:bg-theme-bg-hover/50 border border-theme-border-primary/50 hover:border-theme-border-secondary rounded-md transition-colors text-sm"
                   >
                     <ExternalLink size={16} />
                     Live Demo
@@ -333,7 +333,7 @@ const BreakdownRenderer = () => {
                     href={metadata.caseStudyUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-theme-bg-tertiary/50 hover:bg-theme-bg-hover/50 border border-gray-700/50 hover:border-gray-600 rounded-md transition-colors text-sm"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-theme-bg-tertiary/50 hover:bg-theme-bg-hover/50 border border-theme-border-primary/50 hover:border-theme-border-secondary rounded-md transition-colors text-sm"
                   >
                     <div className="w-[16px] h-[16px]" />
                     Case Study
