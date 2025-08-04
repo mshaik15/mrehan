@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
-import { Clock, Users, Brain, Target, Github, ExternalLink } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import type { ProjectBreakdown, TeamMember, TemplateBreakdown } from '../types/breakdown';
 import { getBreakdown } from '../breakdowns';
 import BreakdownContentRenderer from './BreakdownContentRenderer';
@@ -72,12 +72,21 @@ const BreakdownRenderer = () => {
       { rootMargin: '-20% 0px -80% 0px' }
     );
 
+    // Observe header section
+    const headerElement = document.getElementById('project-header');
+    if (headerElement) observer.observe(headerElement);
+
+    // Observe content sections
     breakdown.sections.forEach(({ id }) => {
       const element = document.getElementById(id);
       if (element) observer.observe(element);
     });
 
     return () => {
+      // Clean up header observation
+      if (headerElement) observer.unobserve(headerElement);
+      
+      // Clean up section observations
       breakdown.sections.forEach(({ id }) => {
         const element = document.getElementById(id);
         if (element) observer.unobserve(element);
@@ -145,7 +154,7 @@ const BreakdownRenderer = () => {
   return (
     <div className="max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12">
       
-      <section className="pt-16 pb-12">
+      <section id="project-header" className="pt-16 pb-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           {/* Left side - Project Info */}
           <div className="space-y-6">
@@ -168,75 +177,50 @@ const BreakdownRenderer = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Status */}
               {metadata.status && (
-                <div className="flex items-center gap-3">
-                  <div className="w-5 h-5 rounded-full bg-theme-accent-primary flex items-center justify-center">
-                    <Target size={12} className="text-theme-text-primary" />
-                  </div>
-                  <div>
-                    <div className="text-xs uppercase tracking-wide text-theme-text-muted font-medium">Status</div>
-                    <div className="text-sm text-theme-text-secondary">{metadata.status}</div>
-                  </div>
+                <div className="flex flex-col gap-1">
+                  <div className="text-xs uppercase tracking-wide text-theme-text-primary font-bold">STATUS</div>
+                  <div className="text-sm text-theme-text-secondary font-medium">{metadata.status}</div>
                 </div>
               )}
 
               {/* Timeline */}
-              <div className="flex items-center gap-3">
-                <div className="w-5 h-5 rounded-full bg-theme-accent-primary flex items-center justify-center">
-                  <Clock size={12} className="text-theme-text-primary" />
-                </div>
-                <div>
-                  <div className="text-xs uppercase tracking-wide text-theme-text-muted font-medium">Timeline</div>
-                  <div className="text-sm text-theme-text-secondary">{metadata.timeline}</div>
-                </div>
+              <div className="flex flex-col gap-1">
+                <div className="text-xs uppercase tracking-wide text-theme-text-primary font-bold">TIMELINE</div>
+                <div className="text-sm text-theme-text-secondary font-medium">{metadata.timeline}</div>
               </div>
 
               {/* Team */}
               {metadata.team && (Array.isArray(metadata.team) ? metadata.team.length > 0 : true) && (
-                <div className="flex items-start gap-3">
-                  <div className="w-5 h-5 rounded-full bg-theme-accent-primary flex items-center justify-center mt-0.5">
-                    <Users size={12} className="text-theme-text-primary" />
-                  </div>
-                  <div>
-                    <div className="text-xs uppercase tracking-wide text-theme-text-muted font-medium">Team</div>
-                    {renderTeam(metadata.team)}
-                  </div>
+                <div className="flex flex-col gap-1">
+                  <div className="text-xs uppercase tracking-wide text-theme-text-primary font-bold">TEAM</div>
+                  {renderTeam(metadata.team)}
                 </div>
               )}
 
               {/* Role */}
               {metadata.role && (
-                <div className="flex items-center gap-3">
-                  <div className="w-5 h-5 rounded-full bg-theme-accent-primary flex items-center justify-center">
-                    <Brain size={12} className="text-theme-text-primary" />
-                  </div>
-                  <div>
-                    <div className="text-xs uppercase tracking-wide text-theme-text-muted font-medium">My Role</div>
-                    <div className="text-sm text-theme-text-secondary">{metadata.role}</div>
-                  </div>
+                <div className="flex flex-col gap-1">
+                  <div className="text-xs uppercase tracking-wide text-theme-text-primary font-bold">MY ROLE</div>
+                  <div className="text-sm text-theme-text-secondary font-medium">{metadata.role}</div>
                 </div>
               )}
 
               {/* Repository */}
-              <div className="flex items-center gap-3">
-                <div className="w-5 h-5 rounded-full bg-theme-accent-primary flex items-center justify-center">
-                  <Github size={12} className="text-theme-text-primary" />
-                </div>
-                <div>
-                  <div className="text-xs uppercase tracking-wide text-theme-text-muted font-medium">Repository</div>
-                  {metadata.githubUrl ? (
-                    <a 
-                      href={metadata.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-sm text-theme-accent-primary hover:text-theme-accent-primary hover:underline transition-colors"
-                    >
-                      View on GitHub
-                      <ExternalLink size={10} />
-                    </a>
-                  ) : (
-                    <div className="text-sm text-theme-text-muted">Private Repository</div>
-                  )}
-                </div>
+              <div className="flex flex-col gap-1">
+                <div className="text-xs uppercase tracking-wide text-theme-text-primary font-bold">REPOSITORY</div>
+                {metadata.githubUrl ? (
+                  <a 
+                    href={metadata.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-sm text-theme-accent-primary hover:text-theme-accent-primary hover:underline transition-colors font-medium"
+                  >
+                    View on GitHub
+                    <ExternalLink size={10} />
+                  </a>
+                ) : (
+                  <div className="text-sm text-theme-text-muted font-medium">Private Repository</div>
+                )}
               </div>
             </div>
 
@@ -288,6 +272,18 @@ const BreakdownRenderer = () => {
                   Table of Contents
                 </h2>
                 <ul className="space-y-2">
+                  <li>
+                    <button
+                      onClick={() => scrollToSection('project-header')}
+                      className={`text-left w-full py-1 border-l-2 pl-3 transition-colors text-sm ${
+                        activeSection === 'project-header'
+                          ? 'border-theme-accent-primary text-theme-accent-primary'
+                          : 'border-theme-border-primary/50 text-theme-text-muted hover:text-theme-text-secondary hover:border-theme-border-secondary'
+                      }`}
+                    >
+                      Overview
+                    </button>
+                  </li>
                   {sections.map((section) => (
                     <li key={section.id}>
                       <button

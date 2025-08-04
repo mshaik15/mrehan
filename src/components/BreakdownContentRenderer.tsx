@@ -28,8 +28,8 @@ const BreakdownContentRenderer = ({ blocks }: BreakdownContentRendererProps) => 
 
       case 'code':
         return (
-          <div key={index} className="my-4">
-            <div className="bg-theme-bg-tertiary p-3 rounded-lg overflow-x-auto relative">
+          <div key={index} className="my-4 max-w-[90%] mx-auto">
+            <div className="bg-theme-bg-tertiary p-3 rounded-lg overflow-x-auto relative shadow-[0_0_8px_rgba(107,207,246,0.1)]">
               {(block.language || block.filename) && (
                 <div className="absolute top-0 right-0 px-2 py-1 text-xs text-theme-text-muted bg-theme-bg-tertiary rounded-bl">
                   {block.filename || block.language || 'Code'}
