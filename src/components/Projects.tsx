@@ -20,7 +20,7 @@ export default function ProjectsSection() {
           >
             {/* ALL projects show this dropdown content */}
             <div className="pt-3 sm:pt-4 lg:pt-5 space-y-3 sm:space-y-4">
-              <p className="text-xs sm:text-sm lg:text-base xl:text-lg text-gray-300 leading-relaxed">
+              <p className="text-xs sm:text-sm lg:text-sm xl:text-base text-theme-text-secondary leading-relaxed">
                 {project.description}
               </p>
               

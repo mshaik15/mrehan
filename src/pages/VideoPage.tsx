@@ -46,7 +46,7 @@ export default function VideoPage() {
         to="/" 
         className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/50 hover:bg-black/70 transition-colors"
       >
-        <X className="w-6 h-6 text-white" />
+        <X className="w-6 h-6 text-theme-text-primary" />
       </Link>
 
       <button
@@ -54,9 +54,9 @@ export default function VideoPage() {
         className="absolute top-4 left-4 z-10 p-2 rounded-full bg-black/50 hover:bg-black/70 transition-colors"
       >
         {isMuted ? (
-          <VolumeX className="w-6 h-6 text-white" />
+          <VolumeX className="w-6 h-6 text-theme-text-primary" />
         ) : (
-          <Volume2 className="w-6 h-6 text-white" />
+          <Volume2 className="w-6 h-6 text-theme-text-primary" />
         )}
       </button>
 
