@@ -1,16 +1,22 @@
 import { useEffect, useState } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import { Clock, Users, Brain, Target, Github, ExternalLink } from 'lucide-react';
-import type { ProjectBreakdown, TeamMember } from '../types/breakdown';
+import type { ProjectBreakdown, TeamMember, TemplateBreakdown } from '../types/breakdown';
 import { getBreakdown } from '../breakdowns';
+import BreakdownContentRenderer from './BreakdownContentRenderer';
 
 const BreakdownRenderer = () => {
   const { slug } = useParams<{ slug: string }>();
-  const [breakdown, setBreakdown] = useState<ProjectBreakdown | null>(null);
+  const [breakdown, setBreakdown] = useState<ProjectBreakdown | TemplateBreakdown | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [activeSection, setActiveSection] = useState('');
   const [isMobile, setIsMobile] = useState(false);
+
+  // Helper function to check if breakdown uses template system
+  const isTemplateBreakdown = (breakdown: ProjectBreakdown | TemplateBreakdown): breakdown is TemplateBreakdown => {
+    return breakdown.sections.length > 0 && 'blocks' in breakdown.sections[0];
+  };
 
   useEffect(() => {
     const loadBreakdown = async () => {
@@ -310,7 +316,11 @@ const BreakdownRenderer = () => {
                 <h2 className="text-xl sm:text-2xl font-semibold text-theme-text-primary mb-4">
                   {section.title}
                 </h2>
-                {section.content}
+                {isTemplateBreakdown(breakdown) && 'blocks' in section ? (
+                  <BreakdownContentRenderer blocks={section.blocks} />
+                ) : (
+                  'content' in section ? section.content : null
+                )}
               </section>
             ))}
 

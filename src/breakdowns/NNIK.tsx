@@ -1,7 +1,14 @@
-import type { ProjectBreakdown } from '../types/breakdown';
-import { BlockMath_ } from '../components/Math';
+import type { TemplateBreakdown } from '../types/breakdown';
+import { 
+  createText, 
+  createMath, 
+  createCode, 
+  createList, 
+  createMetrics,
+  createSection 
+} from '../utils/breakdownTemplateCreator';
 
-const NNIKBreakdown = (): ProjectBreakdown => ({
+const NNIKTemplateBreakdown = (): TemplateBreakdown => ({
   metadata: {
     title: 'Neural Networks for Inverse Kinematics',
     subtitle: 'A Systematic Comparison of Inverse Kinematics Solvers Using Simulation-Based Benchmarks',
@@ -15,62 +22,20 @@ const NNIKBreakdown = (): ProjectBreakdown => ({
   },
   
   sections: [
-    {
-      id: 'overview',
-      title: 'Overview',
-      content: (
-        <div className="space-y-3">
-          <p className="text-theme-text-secondary text-sm sm:text-base leading-relaxed">
-            Eta is a novel approach to solving the inverse kinematics problem using neural networks. 
-            The project explores how deep learning can provide more efficient and accurate solutions 
-            compared to traditional analytical methods.
-          </p>
-          <p className="text-theme-text-secondary text-sm sm:text-base leading-relaxed">
-            This research aims to reduce computational complexity while maintaining high accuracy 
-            in robotic arm positioning and movement planning.
-          </p>
-        </div>
-      )
-    },
+    createSection('overview', 'Overview', [
+      createText('Eta is a novel approach to solving the inverse kinematics problem using neural networks. The project explores how deep learning can provide more efficient and accurate solutions compared to traditional analytical methods.'),
+      createText('This research aims to reduce computational complexity while maintaining high accuracy in robotic arm positioning and movement planning.')
+    ]),
     
-    {
-      id: 'problem',
-      title: 'Problem & Motivation',
-      content: (
-        <div className="space-y-3">
-          <p className="text-theme-text-secondary text-sm sm:text-base leading-relaxed">
-            Traditional inverse kinematics solutions often struggle with computational efficiency 
-            and can face singularities in certain configurations. These limitations become 
-            particularly problematic in real-time robotic applications.
-          </p>
-          <p className="text-theme-text-secondary text-sm sm:text-base leading-relaxed">
-            Neural networks offer the potential to learn complex mappings while avoiding 
-            traditional mathematical constraints, potentially providing more robust solutions.
-          </p>
-          <BlockMath_>
-            {`\\theta = f^{-1}(x, y, z) \\text{ where } f \\text{ is the forward kinematics function}`}
-          </BlockMath_>
-        </div>
-      )
-    },
+    createSection('problem', 'Problem & Motivation', [
+      createText('Traditional inverse kinematics solutions often struggle with computational efficiency and can face singularities in certain configurations. These limitations become particularly problematic in real-time robotic applications.'),
+      createText('Neural networks offer the potential to learn complex mappings while avoiding traditional mathematical constraints, potentially providing more robust solutions.'),
+      createMath('\\theta = f^{-1}(x, y, z) \\text{ where } f \\text{ is the forward kinematics function}')
+    ]),
     
-    {
-      id: 'technical',
-      title: 'Technical Details',
-      content: (
-        <div className="space-y-4">
-          <p className="text-theme-text-secondary text-sm sm:text-base leading-relaxed">
-            The neural network architecture consists of multiple fully connected layers with 
-            ReLU activations. The model is trained on synthetic data generated from forward 
-            kinematics calculations across the entire workspace.
-          </p>
-          
-          <div className="bg-theme-bg-tertiary p-3 rounded-lg overflow-x-auto relative">
-            <div className="absolute top-0 right-0 px-2 py-1 text-xs text-theme-text-muted bg-theme-bg-tertiary rounded-bl">
-              Python
-            </div>
-            <pre className="text-xs text-theme-text-primary">
-              <code>{`import torch
+    createSection('technical', 'Technical Details', [
+      createText('The neural network architecture consists of multiple fully connected layers with ReLU activations. The model is trained on synthetic data generated from forward kinematics calculations across the entire workspace.'),
+      createCode(`import torch
 import torch.nn as nn
 
 class InverseKinematicsNet(nn.Module):
@@ -91,89 +56,54 @@ class InverseKinematicsNet(nn.Module):
         self.network = nn.Sequential(*layers)
     
     def forward(self, x):
-        return self.network(x)`}</code>
-            </pre>
-          </div>
-          
-          <p className="text-theme-text-secondary text-sm sm:text-base leading-relaxed">
-            The loss function combines position error and joint angle constraints:
-          </p>
-          <BlockMath_>
-            {`\\mathcal{L} = \\|\\mathbf{p}_{target} - \\mathbf{p}_{predicted}\\|^2 + \\lambda \\sum_{i} \\max(0, |\\theta_i| - \\theta_{max})^2`}
-          </BlockMath_>
-        </div>
-      )
-    },
+        return self.network(x)`, 'python', 'inverse_kinematics_net.py'),
+      createText('The loss function combines position error and joint angle constraints:'),
+      createMath('\\mathcal{L} = \\|\\mathbf{p}_{target} - \\mathbf{p}_{predicted}\\|^2 + \\lambda \\sum_{i} \\max(0, |\\theta_i| - \\theta_{max})^2')
+    ]),
     
-    {
-      id: 'results',
-      title: 'Results & Analysis',
-      content: (
-        <div className="space-y-4">
-          <p className="text-theme-text-secondary text-sm sm:text-base leading-relaxed">
-            The neural network approach achieved a 95% accuracy rate in reaching target positions 
-            within 1mm tolerance, with a 40% reduction in computation time compared to traditional 
-            Jacobian-based methods.
-          </p>
-          
-          <div className="border border-theme-border-primary/50 rounded-lg p-4 bg-theme-bg-tertiary/30">
-            <div className="text-center space-y-2">
-              <p className="text-theme-text-muted text-xs">Performance Comparison</p>
-              <div className="grid grid-cols-2 gap-4 text-xs text-theme-text-secondary">
-                <div>Neural Network: 2.3ms avg</div>
-                <div>Traditional: 3.8ms avg</div>
-                <div>Accuracy: 95%</div>
-                <div>Traditional: 92%</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )
-    },
+    createSection('results', 'Results & Analysis', [
+      createText('The neural network approach achieved a 95% accuracy rate in reaching target positions within 1mm tolerance, with a 40% reduction in computation time compared to traditional Jacobian-based methods.'),
+      createMetrics([
+        {
+          label: 'Neural Network Avg Time',
+          value: '2.3ms',
+          description: 'Average computation time'
+        },
+        {
+          label: 'Traditional Avg Time', 
+          value: '3.8ms',
+          description: 'Jacobian-based method'
+        },
+        {
+          label: 'NN Accuracy',
+          value: '95%',
+          description: 'Within 1mm tolerance'
+        },
+        {
+          label: 'Traditional Accuracy',
+          value: '92%',
+          description: 'Within 1mm tolerance'
+        }
+      ], 'Performance Comparison')
+    ]),
     
-    {
-      id: 'learned',
-      title: 'What I Learned',
-      content: (
-        <div className="space-y-3">
-          <p className="text-theme-text-secondary text-sm sm:text-base leading-relaxed">
-            This research provided deep insights into the intersection of robotics and machine learning. 
-            Key learnings included the importance of data quality in training, network architecture 
-            design for continuous outputs, and the trade-offs between accuracy and speed.
-          </p>
-          
-          <ul className="space-y-1.5 text-theme-text-secondary text-sm sm:text-base">
-            <li>• Advanced PyTorch optimization techniques for robotic applications</li>
-            <li>• CUDA programming for GPU acceleration</li>
-            <li>• Mathematical modeling of kinematic constraints</li>
-            <li>• Research methodology and experimental design</li>
-            <li>• Scientific writing and data visualization</li>
-          </ul>
-        </div>
-      )
-    },
+    createSection('learned', 'What I Learned', [
+      createText('This research provided deep insights into the intersection of robotics and machine learning. Key learnings included the importance of data quality in training, network architecture design for continuous outputs, and the trade-offs between accuracy and speed.'),
+      createList([
+        'Advanced PyTorch optimization techniques for robotic applications',
+        'CUDA programming for GPU acceleration', 
+        'Mathematical modeling of kinematic constraints',
+        'Research methodology and experimental design',
+        'Scientific writing and data visualization'
+      ])
+    ]),
     
-    {
-      id: 'conclusion',
-      title: 'Conclusion / Impact',
-      content: (
-        <div className="space-y-3">
-          <p className="text-theme-text-secondary text-sm sm:text-base leading-relaxed">
-            The Eta project successfully demonstrates that neural networks can provide efficient 
-            and accurate solutions to inverse kinematics problems. The research contributes to 
-            the growing field of learning-based robotics control.
-          </p>
-          <p className="text-theme-text-secondary text-sm sm:text-base leading-relaxed">
-            Future work will explore real-time implementation on robotic hardware and extension 
-            to more complex kinematic chains with dynamic constraints.
-          </p>
-          <BlockMath_>
-            {`\\text{Research Impact} = \\text{Accuracy Improvement} \\times \\text{Speed Gain} \\times \\text{Applicability}`}
-          </BlockMath_>
-        </div>
-      )
-    }
+    createSection('conclusion', 'Conclusion / Impact', [
+      createText('The Eta project successfully demonstrates that neural networks can provide efficient and accurate solutions to inverse kinematics problems. The research contributes to the growing field of learning-based robotics control.'),
+      createText('Future work will explore real-time implementation on robotic hardware and extension to more complex kinematic chains with dynamic constraints.'),
+      createMath('\\text{Research Impact} = \\text{Accuracy Improvement} \\times \\text{Speed Gain} \\times \\text{Applicability}')
+    ])
   ]
 });
 
-export default NNIKBreakdown;
+export default NNIKTemplateBreakdown;
