@@ -97,11 +97,19 @@ const BreakdownRenderer = () => {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      // Account for sticky header height when scrolling
+      const headerHeight = 80; // Approximate header height
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - headerHeight;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   };
 
-  // Helper function to render team members with LinkedIn links
+  // Helper function to render team members with LinkedIn links and underlines
   const renderTeam = (team: string | TeamMember[] | undefined) => {
     if (!team) return null;
 
@@ -119,7 +127,7 @@ const BreakdownRenderer = () => {
                 href={member.linkedinUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-theme-accent-primary hover:text-theme-accent-primary hover:underline transition-colors"
+                className="text-sm text-theme-accent-primary hover:text-theme-accent-primary underline decoration-theme-accent-primary/50 hover:decoration-theme-accent-primary transition-colors"
               >
                 {member.name}
               </a>
@@ -154,7 +162,8 @@ const BreakdownRenderer = () => {
   return (
     <div className="max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12">
       
-      <section id="project-header" className="pt-16 pb-12">
+      {/* Add top padding to account for sticky header */}
+      <section id="project-header" className="pt-24 pb-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           {/* Left side - Project Info */}
           <div className="space-y-6">
@@ -238,7 +247,7 @@ const BreakdownRenderer = () => {
           </div>
 
           {/* Right side - Preview Image */}
-          <div className="lg:sticky lg:top-24">
+          <div className="lg:sticky lg:top-32">
             <div className="border border-theme-border-primary/50 rounded-xl overflow-hidden bg-theme-bg-tertiary/50">
               {metadata.previewImage ? (
                 <img 
@@ -266,32 +275,20 @@ const BreakdownRenderer = () => {
         {/* Table of Contents */}
         {!isMobile && (
           <div className="hidden lg:block lg:col-span-1">
-            <div className="sticky top-8">
+            <div className="sticky top-32">
               <nav className="pr-8">
                 <h2 className="text-xs uppercase tracking-wider text-theme-text-muted font-medium mb-4">
                   Table of Contents
                 </h2>
                 <ul className="space-y-2">
-                  <li>
-                    <button
-                      onClick={() => scrollToSection('project-header')}
-                      className={`text-left w-full py-1 border-l-2 pl-3 transition-colors text-sm ${
-                        activeSection === 'project-header'
-                          ? 'border-theme-accent-primary text-theme-accent-primary'
-                          : 'border-theme-border-primary/50 text-theme-text-muted hover:text-theme-text-secondary hover:border-theme-border-secondary'
-                      }`}
-                    >
-                      Overview
-                    </button>
-                  </li>
                   {sections.map((section) => (
                     <li key={section.id}>
                       <button
                         onClick={() => scrollToSection(section.id)}
-                        className={`text-left w-full py-1 border-l-2 pl-3 transition-colors text-sm ${
+                        className={`text-left w-full py-1 border-l-2 pl-3 transition-all duration-300 text-sm ${
                           activeSection === section.id
-                            ? 'border-theme-accent-primary text-theme-accent-primary'
-                            : 'border-theme-border-primary/50 text-theme-text-muted hover:text-theme-text-secondary hover:border-theme-border-secondary'
+                            ? 'border-theme-accent-primary text-theme-accent-primary drop-shadow-[0_0_8px_rgba(107,207,246,0.6)]'
+                            : 'border-theme-border-primary/50 text-theme-text-muted hover:text-theme-accent-primary hover:border-theme-accent-primary hover:drop-shadow-[0_0_6px_rgba(107,207,246,0.4)]'
                         }`}
                       >
                         {section.title}
@@ -308,7 +305,7 @@ const BreakdownRenderer = () => {
         <div className="lg:col-span-3">
           <article className="prose prose-lg prose-invert max-w-none">
             {sections.map((section) => (
-              <section key={section.id} id={section.id} className="mt-12 first:mt-0">
+              <section key={section.id} id={section.id} className="mt-12 first:mt-0 scroll-mt-32">
                 <h2 className="text-xl sm:text-2xl font-semibold text-theme-text-primary mb-4">
                   {section.title}
                 </h2>
