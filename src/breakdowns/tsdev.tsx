@@ -89,7 +89,7 @@ const TSDevTemplateBreakdown = (): TemplateBreakdown => ({
             'Feature Window Aggregation (FWA) for temporal pattern extraction',
             'Tensor Processing Pipeline for efficient computation',
             'KNN-based similarity matching with FAISS optimization',
-            'Machine Learning models for classification and clustering'
+            'Machine Learning model for classification and clustering'
           ]
         },
         {
