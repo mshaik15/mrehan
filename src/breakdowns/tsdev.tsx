@@ -60,6 +60,11 @@ const TSDevTemplateBreakdown = (): TemplateBreakdown => ({
           content: 'We built TSDev to analyze my friend\'s gambling habits, where the underlying data consisted of long, irregular, and noisy time series. Limitations in traditional time series analysis don\'t allow for direct comparison of irregular sequences, which is computationally expensive and often unstable.'
         },
         {
+          type: 'image',
+          src: '../tsdev_workflow.png',
+          alt: 'TSDev System Architecture Diagram',
+        },
+        {
           type: 'text',
           content: 'Many machine learning models are not suited for sequential data. By vectorizing time series into embeddings, TSDev addresses these challenges and enables the use of clustering, classification, and anomaly detection.'
         },
