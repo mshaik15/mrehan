@@ -48,38 +48,35 @@ const BreakdownContentRenderer = ({ blocks }: BreakdownContentRendererProps) => 
           <div key={index} className="my-8">
             <div className="border border-theme-border-primary/30 rounded-xl bg-theme-bg-tertiary/20 p-6 shadow-[0_0_20px_rgba(0,0,0,0.3)]">
               <div className="w-full flex justify-center">
-                <div className="relative inline-block">
-                  <img 
-                    src={block.src} 
-                    alt={block.alt}
-                    className="rounded-lg shadow-[0_4px_20px_rgba(0,0,0,0.4)] border border-theme-accent-primary/40"
-                    style={{
-                      maxHeight: block.height || '85vh',
-                      width: block.width || 'auto',
-                      maxWidth: '100%',
-                      height: 'auto',
-                      imageRendering: 'crisp-edges',
-                      filter: 'contrast(1.1) brightness(1.05)',
-                      objectFit: 'contain',
-                      boxShadow: '0 0 20px rgba(107, 207, 246, 0.3), 0 4px 20px rgba(0,0,0,0.4)'
-                    }}
-                    onLoad={(e) => {
-                      console.log('Image loaded successfully:', block.src);
-                      console.log('Image dimensions:', e.currentTarget.naturalWidth, 'x', e.currentTarget.naturalHeight);
-                    }}
-                    onError={(e) => {
-                      console.error('Failed to load image:', block.src);
-                      const target = e.currentTarget;
-                      target.style.border = '2px dashed #666';
-                      target.style.minHeight = '200px';
-                      target.style.display = 'flex';
-                      target.style.alignItems = 'center';
-                      target.style.justifyContent = 'center';
-                      target.style.backgroundColor = '#1a1a1a';
-                      target.innerHTML = '<div style="color: #999; text-align: center; padding: 20px;">Image failed to load<br><small>' + block.src + '</small></div>';
-                    }}
-                  />
-                </div>
+                <img 
+                  src={block.src} 
+                  alt={block.alt}
+                  className="rounded-lg"
+                  style={{
+                    maxHeight: block.height || '85vh',
+                    width: block.width || 'auto',
+                    maxWidth: '100%',
+                    height: 'auto',
+                    imageRendering: 'crisp-edges',
+                    filter: 'contrast(1.1) brightness(1.05)',
+                    objectFit: 'contain'
+                  }}
+                  onLoad={(e) => {
+                    console.log('Image loaded successfully:', block.src);
+                    console.log('Image dimensions:', e.currentTarget.naturalWidth, 'x', e.currentTarget.naturalHeight);
+                  }}
+                  onError={(e) => {
+                    console.error('Failed to load image:', block.src);
+                    const target = e.currentTarget;
+                    target.style.border = '2px dashed #666';
+                    target.style.minHeight = '200px';
+                    target.style.display = 'flex';
+                    target.style.alignItems = 'center';
+                    target.style.justifyContent = 'center';
+                    target.style.backgroundColor = '#1a1a1a';
+                    target.innerHTML = '<div style="color: #999; text-align: center; padding: 20px;">Image failed to load<br><small>' + block.src + '</small></div>';
+                  }}
+                />
               </div>
               {block.caption && (
                 <div className="pt-4 text-sm text-theme-text-muted text-center border-t border-theme-border-primary/20 mt-4">
