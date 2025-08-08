@@ -61,7 +61,7 @@ const TSDevTemplateBreakdown = (): TemplateBreakdown => ({
         },
         {
           type: 'image',
-          src: '../tsdev_workflow.png',
+          src: '../image1.jpg',
           alt: 'TSDev System Architecture Diagram',
         },
         {

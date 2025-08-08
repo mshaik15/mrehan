@@ -1,3 +1,4 @@
+// src/components/BreakdownContentRenderer.tsx
 import { BlockMath_, InlineMath_ } from './Math';
 import type { ContentBlock } from './../types/breakdown';
 
@@ -45,14 +46,29 @@ const BreakdownContentRenderer = ({ blocks }: BreakdownContentRendererProps) => 
       case 'image':
         return (
           <div key={index} className="my-6">
-            <div className="border border-theme-border-primary/50 rounded-lg overflow-hidden bg-theme-bg-tertiary/30">
-              <img 
-                src={block.src} 
-                alt={block.alt}
-                className={`w-full object-cover ${block.width ? `w-[${block.width}]` : ''} ${block.height ? `h-[${block.height}]` : 'h-[300px] sm:h-[400px]'}`}
-              />
+            <div className="border border-theme-border-primary/50 rounded-lg bg-theme-bg-tertiary/30 p-4">
+              <div className="w-full flex justify-center">
+                <img 
+                  src={block.src} 
+                  alt={block.alt}
+                  className="max-w-full h-auto object-contain rounded"
+                  style={{
+                    maxHeight: block.height || '70vh',
+                    width: block.width || 'auto'
+                  }}
+                  onLoad={(e) => {
+                    console.log('Image loaded successfully:', block.src);
+                    console.log('Image dimensions:', e.currentTarget.naturalWidth, 'x', e.currentTarget.naturalHeight);
+                  }}
+                  onError={(e) => {
+                    console.error('Failed to load image:', block.src);
+                    e.currentTarget.style.border = '2px dashed #666';
+                    e.currentTarget.style.minHeight = '200px';
+                  }}
+                />
+              </div>
               {block.caption && (
-                <div className="p-3 text-xs text-theme-text-muted text-center">
+                <div className="pt-3 text-xs text-theme-text-muted text-center">
                   {block.caption}
                 </div>
               )}
