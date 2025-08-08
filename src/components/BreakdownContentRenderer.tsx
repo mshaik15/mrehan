@@ -46,17 +46,15 @@ const BreakdownContentRenderer = ({ blocks }: BreakdownContentRendererProps) => 
       case 'image':
         return (
           <div key={index} className="my-8">
-            <div className="border border-theme-border-primary/30 rounded-xl bg-theme-bg-tertiary/20 p-6 shadow-[0_0_20px_rgba(0,0,0,0.3)]">
+            <div className="rounded-xl bg-theme-bg-tertiary/20 p-6 shadow-[0_0_20px_rgba(0,0,0,0.3)]">
               <div className="w-full flex justify-center">
                 <img 
                   src={block.src} 
                   alt={block.alt}
-                  className="rounded-lg"
+                  className="rounded-lg max-w-full h-auto"
                   style={{
                     maxHeight: block.height || '85vh',
                     width: block.width || 'auto',
-                    maxWidth: '100%',
-                    height: 'auto',
                     imageRendering: 'crisp-edges',
                     filter: 'contrast(1.1) brightness(1.05)',
                     objectFit: 'contain'
@@ -68,12 +66,12 @@ const BreakdownContentRenderer = ({ blocks }: BreakdownContentRendererProps) => 
                   onError={(e) => {
                     console.error('Failed to load image:', block.src);
                     const target = e.currentTarget;
-                    target.style.border = '2px dashed #666';
                     target.style.minHeight = '200px';
                     target.style.display = 'flex';
                     target.style.alignItems = 'center';
                     target.style.justifyContent = 'center';
                     target.style.backgroundColor = '#1a1a1a';
+                    target.style.borderRadius = '8px';
                     target.innerHTML = '<div style="color: #999; text-align: center; padding: 20px;">Image failed to load<br><small>' + block.src + '</small></div>';
                   }}
                 />
@@ -122,7 +120,7 @@ const BreakdownContentRenderer = ({ blocks }: BreakdownContentRendererProps) => 
                 {block.title}
               </h4>
             )}
-            <div className="border border-theme-border-primary/40 rounded-xl p-6 bg-gradient-to-br from-theme-bg-tertiary/20 to-theme-bg-tertiary/40 shadow-[0_0_20px_rgba(107,207,246,0.1)]">
+            <div className="rounded-xl p-6 bg-gradient-to-br from-theme-bg-tertiary/20 to-theme-bg-tertiary/40 shadow-[0_0_20px_rgba(107,207,246,0.1)]">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {block.metrics.map((metric, metricIndex) => (
                   <div key={metricIndex} className="text-center group">
@@ -159,7 +157,7 @@ const BreakdownContentRenderer = ({ blocks }: BreakdownContentRendererProps) => 
                 {block.title}
               </h4>
             )}
-            <div className="border border-theme-border-primary/30 rounded-2xl bg-gradient-to-br from-theme-bg-tertiary/10 to-theme-bg-tertiary/30 p-8 shadow-[0_0_30px_rgba(107,207,246,0.15)]">
+            <div className="rounded-2xl bg-gradient-to-br from-theme-bg-tertiary/10 to-theme-bg-tertiary/30 p-8 shadow-[0_0_30px_rgba(107,207,246,0.15)]">
               <div className="w-full flex justify-center">
                 <object
                   data={block.src}
@@ -168,12 +166,11 @@ const BreakdownContentRenderer = ({ blocks }: BreakdownContentRendererProps) => 
                   style={{
                     height: '70vh',
                     minHeight: '500px',
-                    maxHeight: '800px',
-                    border: '1px solid rgba(107, 207, 246, 0.2)'
+                    maxHeight: '800px'
                   }}
                 >
                   {/* Fallback for browsers that don't support PDF embedding */}
-                  <div className="w-full h-96 bg-theme-bg-tertiary/50 rounded-lg flex flex-col items-center justify-center border-2 border-dashed border-theme-border-primary/50">
+                  <div className="w-full h-96 bg-theme-bg-tertiary/50 rounded-lg flex flex-col items-center justify-center">
                     <div className="text-center space-y-4">
                       <div className="text-theme-text-muted text-lg mb-4">📄</div>
                       <p className="text-theme-text-secondary">
@@ -183,7 +180,7 @@ const BreakdownContentRenderer = ({ blocks }: BreakdownContentRendererProps) => 
                         href={block.src} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-theme-accent-primary/20 hover:bg-theme-accent-primary/30 border border-theme-accent-primary/50 rounded-lg text-theme-accent-primary transition-colors"
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-theme-accent-primary/20 hover:bg-theme-accent-primary/30 rounded-lg text-theme-accent-primary transition-colors"
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
