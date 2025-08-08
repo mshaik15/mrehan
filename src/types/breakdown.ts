@@ -64,7 +64,8 @@ export type ContentBlock =
   | ListBlock 
   | QuoteBlock 
   | MetricsBlock 
-  | CustomBlock;
+  | CustomBlock
+  | WorkflowBlock;
 
 // Template-based section structure
 export interface TemplateSection {
@@ -116,4 +117,12 @@ export interface ProjectBreakdown {
 
 export interface BreakdownComponent {
   default: () => ProjectBreakdown | TemplateBreakdown;
+}
+
+export interface WorkflowBlock {
+  type: 'workflow';
+  src: string;
+  alt: string;
+  caption?: string;
+  title?: string;
 }

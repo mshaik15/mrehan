@@ -60,9 +60,11 @@ const TSDevTemplateBreakdown = (): TemplateBreakdown => ({
           content: 'We built TSDev to analyze my friend\'s gambling habits, where the underlying data consisted of long, irregular, and noisy time series. Limitations in traditional time series analysis don\'t allow for direct comparison of irregular sequences, which is computationally expensive and often unstable.'
         },
         {
-          type: 'image',
-          src: '/image1.jpg',
-          alt: 'TSDev System Architecture Diagram',
+          type: 'workflow',
+          src: '/tsdev_architecture.pdf',  // Put the PDF in your public folder
+          alt: 'TSDev System Architecture Workflow',
+          title: 'System Architecture Overview',
+          caption: 'Complete data processing pipeline from raw time series to machine learning predictions'
         },
         {
           type: 'text',

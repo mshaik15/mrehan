@@ -135,6 +135,15 @@ export const createSimpleBreakdown = (
   sections
 });
 
+export const createWorkflow = (src: string, alt: string, caption?: string, title?: string): ContentBlock => ({
+  type: 'workflow',
+  src,
+  alt,
+  caption,
+  title
+});
+
+
 // Quick templates for common breakdown patterns
 export const createResearchBreakdown = (
   metadata: TemplateBreakdown['metadata'],
