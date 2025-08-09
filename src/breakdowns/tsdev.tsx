@@ -57,10 +57,12 @@ const TSDevTemplateBreakdown = (): TemplateBreakdown => ({
       createText('Our vectorizer engine applies the Flowing Window Algorithm to segment the series, extract features, and assemble a tensor embedding for storage in a vector database.'),
       createImage('/vectorizer.png', 'TSDev System Architecture Diagram'),
       createMath('\\text{Given a time series } S = \\{ s_1, s_2, \\dots, s_T \\}, \\text{ select window size } W, \\text{ step size } s'),
-      createMath('N = \\left\\lfloor \\frac{T - W}{s} \\right\\rfloor + 1 \\Rightarrow w^{(i)} = (s_{i}, s_{i+1}, \\ldots, s_{i+W-1}), \\quad i = 1, 2, \\ldots, N'),
-      createMath('V^{(i)} = [\\mu_i, \\tilde{x}_i, \\hat{x}_i, \\ldots, \\text{FFT}^{(i)}], \\text{where FFT}^{(i)}_k = \\sum_{t=0}^{n-1} w_t^{(i)} \\cdot e^{-2\\pi j k t / n}, \\quad k = 0, 1, \\ldots, n-1'),
-      createMath('V = \\begin{bmatrix} V^{(1)} \\\\ V^{(2)} \\\\ V^{(3)} \\\\ \\vdots \\\\ V^{(N)} \\end{bmatrix}'),
-      createMath('\\text{This tensor summarizes time, frequency, and statistical features across the signal}')
+      createMath('N = \\left\\lfloor \\frac{T - W}{s} \\right\\rfloor + 1, \\quad w^{(i)} = (s_{i}, s_{i+1}, \\dots, s_{i+W-1}), \\quad i = 1, \\dots, N'),
+      createMath('V^{(i)} = [\\mu_i, \\tilde{x}_i, \\hat{x}_i, \\sigma_i, \\dots, \\text{FFT}^{(i)}], \\quad \\text{FFT}^{(i)}_k = \\sum_{t=0}^{W-1} w^{(i)}_t e^{-2\\pi j k t / W}, \\quad k = 0, \\dots, W-1'),
+      createMath('V = \\begin{bmatrix} V^{(1)} \\\\ V^{(2)} \\\\ \\vdots \\\\ V^{(N)} \\end{bmatrix}'),
+      createMath('\\text{Tensor summarizes time, frequency, and statistical features across the series}'),
+      createText('The Flowing Window Algorithm takes inspiration from the sliding window technique, converting time series into structured tensors by repeatedly sliding a window of length W over a series S of length T. For each window, we compute a feature vector containing statistical measures along with the discrete Fourier transform to capture frequency-domain characteristics of the data. These window vectors are then combined into a high-dimensional embedding that compresses both time and frequency domain information.'),
+      createText('Once vector embeddings are created, they are stored locally or in cloud-based vector databases such as Pinecone or Weaviate. This structure allows for millisecond-level retrieval, enabling rapid querying, similarity search, and cross-series comparisons even at scale.'),
     ]),
 
     createSection('deep_learning', 'Deep Learning', [
