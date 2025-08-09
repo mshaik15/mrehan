@@ -48,7 +48,10 @@ const TSDevTemplateBreakdown = (): TemplateBreakdown => ({
     ]),
     
     createSection('intro', 'Introduction', [
-      createText('We built TSDev to analyze my friend\'s gambling habits, where the underlying data consisted of long, irregular, and noisy time series. Limitations in traditional time series analysis don\'t allow for direct comparison of irregular sequences, which is computationally expensive and often unstable.'),
+      
+      createText('We built TSDev to analyze my friend\'s gambling habits, where the underlying data consisted of long, irregular, and noisy time series. Limitations in traditional time series analysis don\'t allow for direct comparison of irregular sequences, which is computationally expensive and often unstable. Many machine learning models are not suited for sequential data. By vectorizing time series into embeddings, TSDev addresses these challenges and enables the use of clustering, classification, and anomaly detection.'),
+      createText('Discrete Connections refer to the relationships between time series after being transformed into vector embeddings. Instead of comparing raw sequences, we evaluate a compact representation using distance metrics, similarity graphs, and machine learning algorithms.')
+      createText('TSDev addresses these challenges through a two-step process. First, we apply our "Flowing Window Algorithm" to “vectorize” the raw data into high-dimensional tensor summaries. This transforms unpredictable, non-linear time series into structured embeddings that are far easier to store, query, and analyze. These embeddings can be saved locally or in vector databases such as Pinecone or Weaviate.')
     ]),
     
     createSection('vectorizer', 'Vectorization Engine', [
