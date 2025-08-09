@@ -56,7 +56,7 @@ const TSDevTemplateBreakdown = (): TemplateBreakdown => ({
     createSection('vectorizer', 'Vectorization Engine', [
       createText('Our vectorizer engine applies the Flowing Window Algorithm to segment the series, extract features, and assemble a tensor embedding for storage in a vector database.'),
       createImage('/vectorizer.png', 'TSDev System Architecture Diagram'),
-      createMath('\\text{Given a time series } S \\in T, \\text{Select window size } w \\in N'),
+      createMath('\\text{Given a time series } S = \\{ s_1, s_2, \\dots, s_T \\}, \\text{ select window size } W, \\text{ step size } s'),
       createMath('N = \\left\\lfloor \\frac{T - W}{s} \\right\\rfloor + 1 \\Rightarrow w^{(i)} = (s_{i}, s_{i+1}, \\ldots, s_{i+W-1}), \\quad i = 1, 2, \\ldots, N'),
       createMath('V^{(i)} = [\\mu_i, \\tilde{x}_i, \\hat{x}_i, \\ldots, \\text{FFT}^{(i)}], \\text{where FFT}^{(i)}_k = \\sum_{t=0}^{n-1} w_t^{(i)} \\cdot e^{-2\\pi j k t / n}, \\quad k = 0, 1, \\ldots, n-1'),
       createMath('V = \\begin{bmatrix} V^{(1)} \\\\ V^{(2)} \\\\ V^{(3)} \\\\ \\vdots \\\\ V^{(N)} \\end{bmatrix}'),
