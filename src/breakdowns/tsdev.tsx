@@ -52,8 +52,8 @@ const TSDevTemplateBreakdown = (): TemplateBreakdown => ({
     },
     
     {
-      id: 'problem',
-      title: 'Problem & Definition',
+      id: 'vectorizer',
+      title: 'Vectorization Engine',
       blocks: [
         {
           type: 'text',
@@ -61,7 +61,7 @@ const TSDevTemplateBreakdown = (): TemplateBreakdown => ({
         },
         {
           type: 'image',
-          src: '/image1.png',
+          src: '/vectorizer.png',
           alt: 'TSDev System Architecture Diagram',
         },
         {
@@ -74,15 +74,51 @@ const TSDevTemplateBreakdown = (): TemplateBreakdown => ({
           author: 'Project Definition'
         },
         {
-          type: 'math',
-          content: 'f: \\mathbb{R}^n \\to \\mathbb{R}^d \\text{ where } n >> d'
+          "type": "math",
+          "content": "f: \\mathbb{R}^n \\to \\mathbb{R}^d \\quad \\text{where } n \\gg d"
+        },
+        {
+          "type": "math",
+          "content": "\\text{Given input vector } x = (x_1, x_2, \\ldots, x_n) \\in \\mathbb{R}^n"
+        },
+        {
+          "type": "math",
+          "content": "\\text{Select window size } w \\in \\mathbb{N}, \\quad w < n"
+        },
+        {
+          "type": "math",
+          "content": "\\text{Form overlapping windows } x_i^{(w)} = (x_i, x_{i+1}, \\ldots, x_{i+w-1}) \\in \\mathbb{R}^w, \\quad i = 1, \\ldots, n-w+1"
+        },
+        {
+          "type": "math",
+          "content": "\\text{Compute summary statistics on each window: } \\mu_i = \\frac{1}{w} \\sum_{j=0}^{w-1} x_{i+j}, \\quad \\sigma_i^2 = \\frac{1}{w} \\sum_{j=0}^{w-1} (x_{i+j} - \\mu_i)^2"
+        },
+        {
+          "type": "math",
+          "content": "\\text{Compute the Fast Fourier Transform (FFT) of each window: } \\hat{x}_i = \\mathrm{FFT}(x_i^{(w)}) \\in \\mathbb{C}^w"
+        },
+        {
+          "type": "math",
+          "content": "\\text{Extract relevant frequency components from } \\hat{x}_i, \\text{ e.g. magnitude spectrum } |\\hat{x}_i|"
+        },
+        {
+          "type": "math",
+          "content": "\\text{Construct the final feature tensor } T \\in \\mathbb{R}^{(n-w+1) \\times m}, \\text{ where each row } T_i \\text{ concatenates statistics and FFT features}"
+        },
+        {
+          "type": "math",
+          "content": "T_i = [\\mu_i, \\sigma_i^2, |\\hat{x}_i^{(1)}|, |\\hat{x}_i^{(2)}|, \\ldots, |\\hat{x}_i^{(m-2)}|]"
+        },
+        {
+          "type": "math",
+          "content": "\\text{This tensor summarizes time, frequency, and statistical features across the signal}"
         }
       ]
     },
 
     {
-      id: 'architecture',
-      title: 'System Architecture',
+      id: 'deep_learning',
+      title: 'Deep Learning',
       blocks: [
         {
           type: 'text',
@@ -121,6 +157,13 @@ const TSDevTemplateBreakdown = (): TemplateBreakdown => ({
         return embeddings`
         }
       ]
+      },
+      {
+        id: 'resolution',
+        title: 'Resolution',
+        blocks: [
+
+        ]
       }
     ]
   });
