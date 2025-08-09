@@ -5,8 +5,7 @@ import {
   createCode, 
   createList, 
   createSection,
-  createImage,
-  createQuote
+  createImage
 } from '../utils/breakdownTemplateCreator';
 
 const TSDevTemplateBreakdown = (): TemplateBreakdown => ({
@@ -55,9 +54,8 @@ const TSDevTemplateBreakdown = (): TemplateBreakdown => ({
     ]),
     
     createSection('vectorizer', 'Vectorization Engine', [
+      createText('Our vectorizer engine works in two steps: we start by applying the Flowing Window algorithm, then compile a tensor embedding, and then store the embedding in a vector database.'),
       createImage('/vectorizer.png', 'TSDev System Architecture Diagram'),
-      createText('Many machine learning models are not suited for sequential data. By vectorizing time series into embeddings, TSDev addresses these challenges and enables the use of clustering, classification, and anomaly detection.'),
-      createQuote('Discrete Connections refer to the relationships between time series after being transformed into vector embeddings. Instead of comparing raw sequences, we evaluate a compact representation using distance metrics, similarity graphs, and machine learning algorithms.', 'Project Definition'),
       createMath('f: \\mathbb{R}^n \\to \\mathbb{R}^d \\quad \\text{where } n \\gg d'),
       createMath('\\text{Given input vector } x = (x_1, x_2, \\ldots, x_n) \\in \\mathbb{R}^n'),
       createMath('\\text{Select window size } w \\in \\mathbb{N}, \\quad w < n'),
