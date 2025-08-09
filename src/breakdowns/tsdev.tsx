@@ -54,11 +54,10 @@ const TSDevTemplateBreakdown = (): TemplateBreakdown => ({
     ]),
     
     createSection('vectorizer', 'Vectorization Engine', [
-      createText('Our vectorizer engine works in two steps: we start by applying the Flowing Window algorithm, then compile a tensor embedding, and then store the embedding in a vector database.'),
+      createText('Our vectorizer engine applies the Flowing Window Algorithm to segment the series, extract features, and assemble a tensor embedding for storage in a vector database.'),
       createImage('/vectorizer.png', 'TSDev System Architecture Diagram'),
       createMath('\\text{Given a time series } S \\in T, \\text{Select window size } w \\in N'),
-      createMath('\\text{Where } N'),
-      createMath('\\text{Form overlapping windows } x_i^{(w)} = (x_i, x_{i+1}, \\ldots, x_{i+w-1}) \\in \\mathbb{R}^w, \\quad i = 1, \\ldots, n-w+1'),
+      createMath('N = \\left\\lfloor \\frac{T - W}{s} \\right\\rfloor + 1 \\Rightarrow w^{(i)} = (s_{i}, s_{i+1}, \\ldots, s_{i+W-1}), \\quad i = 1, 2, \\ldots, N'),
       createMath('V^{(i)} = [\\mu_i, \\tilde{x}_i, \\hat{x}_i, \\ldots, \\text{FFT}^{(i)}], \\text{where FFT}^{(i)}_k = \\sum_{t=0}^{n-1} w_t^{(i)} \\cdot e^{-2\\pi j k t / n}, \\quad k = 0, 1, \\ldots, n-1'),
       createMath('V = \\begin{bmatrix} V^{(1)} \\\\ V^{(2)} \\\\ V^{(3)} \\\\ \\vdots \\\\ V^{(N)} \\end{bmatrix}'),
       createMath('\\text{This tensor summarizes time, frequency, and statistical features across the signal}')
