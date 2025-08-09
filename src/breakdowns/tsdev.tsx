@@ -50,7 +50,16 @@ const TSDevTemplateBreakdown = (): TemplateBreakdown => ({
         }
       ]
     },
-    
+    {
+      id: 'intro',
+      title: 'Introduction',
+      blocks: [
+        {
+          type: 'text',
+          content: ''
+        },
+      ]
+    },
     {
       id: 'vectorizer',
       title: 'Vectorization Engine',
