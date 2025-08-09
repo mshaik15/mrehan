@@ -48,7 +48,7 @@ const TSDevTemplateBreakdown = (): TemplateBreakdown => ({
     ]),
     
     createSection('intro', 'Introduction', [
-      createText('')
+      createText('We built TSDev to analyze my friend\'s gambling habits, where the underlying data consisted of long, irregular, and noisy time series. Limitations in traditional time series analysis don\'t allow for direct comparison of irregular sequences, which is computationally expensive and often unstable.'),
     ]),
     
     createSection('vectorizer', 'Vectorization Engine', [
