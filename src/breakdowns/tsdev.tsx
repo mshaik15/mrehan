@@ -56,14 +56,11 @@ const TSDevTemplateBreakdown = (): TemplateBreakdown => ({
     createSection('vectorizer', 'Vectorization Engine', [
       createText('Our vectorizer engine works in two steps: we start by applying the Flowing Window algorithm, then compile a tensor embedding, and then store the embedding in a vector database.'),
       createImage('/vectorizer.png', 'TSDev System Architecture Diagram'),
-      createMath('\\text{Given a time series } S \\in \\mathbb{T}, \\text{Select window size} w \\in \\mathbb{N}'),
-      createMath('w \\in \\mathbb{N}, \\quad w < n'),
+      createMath('\\text{Given a time series } S \\in T, \\text{Select window size } w \\in N'),
+      createMath('\\text{Where } N'),
       createMath('\\text{Form overlapping windows } x_i^{(w)} = (x_i, x_{i+1}, \\ldots, x_{i+w-1}) \\in \\mathbb{R}^w, \\quad i = 1, \\ldots, n-w+1'),
-      createMath('\\text{Compute summary statistics on each window: } \\mu_i = \\frac{1}{w} \\sum_{j=0}^{w-1} x_{i+j}, \\quad \\sigma_i^2 = \\frac{1}{w} \\sum_{j=0}^{w-1} (x_{i+j} - \\mu_i)^2'),
-      createMath('\\text{Compute the Fast Fourier Transform (FFT) of each window: } \\hat{x}_i = \\mathrm{FFT}(x_i^{(w)}) \\in \\mathbb{C}^w'),
-      createMath('\\text{Extract relevant frequency components from } \\hat{x}_i, \\text{ e.g. magnitude spectrum } |\\hat{x}_i|'),
-      createMath('\\text{Construct the final feature tensor } T \\in \\mathbb{R}^{(n-w+1) \\times m}, \\text{ where each row } T_i \\text{ concatenates statistics and FFT features}'),
-      createMath('T_i = [\\mu_i, \\sigma_i^2, |\\hat{x}_i^{(1)}|, |\\hat{x}_i^{(2)}|, \\ldots, |\\hat{x}_i^{(m-2)}|]'),
+      createMath('V^{(i)} = [\\mu_i, \\tilde{x}_i, \\hat{x}_i, \\ldots, \\text{FFT}^{(i)}], \\text{where FFT}^{(i)}_k = \\sum_{t=0}^{n-1} w_t^{(i)} \\cdot e^{-2\\pi j k t / n}, \\quad k = 0, 1, \\ldots, n-1'),
+      createMath(''),
       createMath('\\text{This tensor summarizes time, frequency, and statistical features across the signal}')
     ]),
 
