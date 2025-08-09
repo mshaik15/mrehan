@@ -60,7 +60,7 @@ const TSDevTemplateBreakdown = (): TemplateBreakdown => ({
       createMath('\\text{Where } N'),
       createMath('\\text{Form overlapping windows } x_i^{(w)} = (x_i, x_{i+1}, \\ldots, x_{i+w-1}) \\in \\mathbb{R}^w, \\quad i = 1, \\ldots, n-w+1'),
       createMath('V^{(i)} = [\\mu_i, \\tilde{x}_i, \\hat{x}_i, \\ldots, \\text{FFT}^{(i)}], \\text{where FFT}^{(i)}_k = \\sum_{t=0}^{n-1} w_t^{(i)} \\cdot e^{-2\\pi j k t / n}, \\quad k = 0, 1, \\ldots, n-1'),
-      createMath(''),
+      createMath('V = \\begin{bmatrix} V^{(1)} \\\\ V^{(2)} \\\\ V^{(3)} \\\\ \\vdots \\\\ V^{(N)} \\end{bmatrix}'),
       createMath('\\text{This tensor summarizes time, frequency, and statistical features across the signal}')
     ]),
 
