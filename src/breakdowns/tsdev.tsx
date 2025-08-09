@@ -56,9 +56,8 @@ const TSDevTemplateBreakdown = (): TemplateBreakdown => ({
     createSection('vectorizer', 'Vectorization Engine', [
       createText('Our vectorizer engine works in two steps: we start by applying the Flowing Window algorithm, then compile a tensor embedding, and then store the embedding in a vector database.'),
       createImage('/vectorizer.png', 'TSDev System Architecture Diagram'),
-      createMath('f: \\mathbb{R}^n \\to \\mathbb{R}^d \\quad \\text{where } n \\gg d'),
-      createMath('\\text{Given input vector } x = (x_1, x_2, \\ldots, x_n) \\in \\mathbb{R}^n'),
-      createMath('\\text{Select window size } w \\in \\mathbb{N}, \\quad w < n'),
+      createMath('\\text{Given a time series } S \\in \\mathbb{T}, \\text{Select window size} w \\in \\mathbb{N}'),
+      createMath('w \\in \\mathbb{N}, \\quad w < n'),
       createMath('\\text{Form overlapping windows } x_i^{(w)} = (x_i, x_{i+1}, \\ldots, x_{i+w-1}) \\in \\mathbb{R}^w, \\quad i = 1, \\ldots, n-w+1'),
       createMath('\\text{Compute summary statistics on each window: } \\mu_i = \\frac{1}{w} \\sum_{j=0}^{w-1} x_{i+j}, \\quad \\sigma_i^2 = \\frac{1}{w} \\sum_{j=0}^{w-1} (x_{i+j} - \\mu_i)^2'),
       createMath('\\text{Compute the Fast Fourier Transform (FFT) of each window: } \\hat{x}_i = \\mathrm{FFT}(x_i^{(w)}) \\in \\mathbb{C}^w'),
