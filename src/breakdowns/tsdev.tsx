@@ -67,13 +67,13 @@ const TSDevTemplateBreakdown = (): TemplateBreakdown => ({
 
     createSection('deep_learning', 'Deep Learning', [
       createText('In Step 2, we explore machine learning for insights into series data. Opportunities for deep learning are vast using this process; a few include:'),
-      createText('**KNN Search (FAISS):** enables instant nearest-neighbour lookups, letting us quickly find similar patterns across massive datasets without reprocessing the raw series.'),
-      createText('**ML Models:** once in vector form, the data can be used with a wide range of machine learning algorithms, even those not designed for sequential data. This opens the door for:'),
+      createText('KNN Search (FAISS): enables instant nearest-neighbour lookups, letting us quickly find similar patterns across massive datasets without reprocessing the raw series.'),
+      createText('ML Models: once in vector form, the data can be used with a wide range of machine learning algorithms, even those not designed for sequential data. This opens the door for:'),
       createList([
-        '**Faster training:** reduced sequence length and dimensionality, models converge quickly.',
-        '**Model flexibility:** enables the use of algorithms like SVMs, random forests, and gradient boosting, which work best with fixed-size inputs.',
-        '**Accessibility:** makes it easy to train on commodity hardware without needing specialized setups like RNNs or Transformers.',
-        '**Cross-domain learning** — embeddings from one domain (e.g., finance) can be compared or transferred to another (e.g., IoT) without retraining from scratch.'
+        'Faster training: reduced sequence length and dimensionality, models converge quickly.',
+        'Model flexibility: enables the use of algorithms like SVMs, random forests, and gradient boosting, which work best with fixed-size inputs.',
+        'Accessibility: makes it easy to train on commodity hardware without needing specialized setups like RNNs or Transformers.',
+        'Cross-domain learning: embeddings from one domain (e.g., finance) can be compared or transferred to another (e.g., IoT) without retraining from scratch.'
       ]),
       createText('By vectorizing the data first, TSDev shifts the heavy lifting from model architecture to preprocessing, optimizing for both **speed** and **adaptability** while keeping the option open for more advanced sequence models if needed.')
     ]),
