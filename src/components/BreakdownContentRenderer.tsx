@@ -22,21 +22,21 @@ const BreakdownContentRenderer = ({ blocks }: BreakdownContentRendererProps) => 
     return indentLevels[Math.min(indent, 4) as keyof typeof indentLevels] || indentLevels[4];
   };
 
-  // Enhanced function to render text with POPPING bold support
+  // Updated function to render text with smaller, refined bold styling
   const renderTextWithBold = (text: string) => {
     // Split by markdown bold syntax **text**
     const parts = text.split(/(\*\*.*?\*\*)/g);
     
     return parts.map((part, index) => {
       if (part.startsWith('**') && part.endsWith('**')) {
-        // Remove the ** markers and render as POPPING bold
+        // Remove the ** markers and render with refined bold styling
         const boldText = part.slice(2, -2);
         return (
           <strong 
             key={index} 
-            className="font-bold text-[#ffffff] text-[1.15em] tracking-wide"
+            className="font-bold text-theme-text-emphasis"
             style={{
-              fontWeight: '800'
+              fontWeight: '700' // Reduced from 800
             }}
           >
             {boldText}
@@ -165,7 +165,7 @@ const BreakdownContentRenderer = ({ blocks }: BreakdownContentRendererProps) => 
         return (
           <div key={index} className={`my-8 ${baseClass}`}>
             {block.title && (
-              <h4 className="text-base font-semibold text-theme-text-primary mb-4 text-center">
+              <h4 className="text-base font-semibold text-theme-text-emphasis mb-4 text-center">
                 {block.title}
               </h4>
             )}
@@ -176,7 +176,7 @@ const BreakdownContentRenderer = ({ blocks }: BreakdownContentRendererProps) => 
                     <div className="text-2xl font-bold text-theme-accent-primary group-hover:text-theme-accent-hover transition-colors duration-300 drop-shadow-[0_0_8px_rgba(107,207,246,0.4)]">
                       {metric.value}
                     </div>
-                    <div className="text-xs font-medium text-theme-text-primary mt-1">
+                    <div className="text-xs font-medium text-theme-text-emphasis mt-1">
                       {metric.label}
                     </div>
                     {metric.description && (
@@ -202,7 +202,7 @@ const BreakdownContentRenderer = ({ blocks }: BreakdownContentRendererProps) => 
         return (
           <div key={index} className={`my-10 ${baseClass}`}>
             {block.title && (
-              <h4 className="text-lg font-semibold text-theme-text-primary mb-6 text-center">
+              <h4 className="text-lg font-semibold text-theme-text-emphasis mb-6 text-center">
                 {block.title}
               </h4>
             )}
