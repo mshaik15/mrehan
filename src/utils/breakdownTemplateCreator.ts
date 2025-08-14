@@ -1,43 +1,74 @@
-import type { TemplateBreakdown, ContentBlock, TemplateSection } from '../types/breakdown';
+import type { TemplateBreakdown, ContentBlock, TemplateSection, TextContent, BoldText } from '../types/breakdown';
 
-// Helper functions to create content blocks easily
-export const createText = (content: string): ContentBlock => ({
-  type: 'text',
+// Helper function to create bold text
+export const Bold = (content: string): BoldText => ({
+  type: 'bold',
   content
 });
 
-export const createMath = (content: string, inline = false): ContentBlock => ({
-  type: 'math',
-  content,
-  inline
+// Helper function to parse text content with bold elements
+const parseTextContent = (content: TextContent): string => {
+  if (typeof content === 'string') {
+    return content;
+  }
+  
+  if ('type' in content && content.type === 'bold') {
+    return `**${content.content}**`; // Use markdown-style bold for now
+  }
+  
+  if (Array.isArray(content)) {
+    return content.map(item => 
+      typeof item === 'string' ? item : `**${item.content}**`
+    ).join('');
+  }
+  
+  return '';
+};
+
+// Helper functions to create content blocks easily
+export const createText = (content: TextContent, indent?: number): ContentBlock => ({
+  type: 'text',
+  content: parseTextContent(content),
+  indent
 });
 
-export const createCode = (content: string, language?: string, filename?: string): ContentBlock => ({
+export const createMath = (content: string, inline = false, indent?: number): ContentBlock => ({
+  type: 'math',
+  content,
+  inline,
+  indent
+});
+
+export const createCode = (content: string, language?: string, filename?: string, indent?: number): ContentBlock => ({
   type: 'code',
   content,
   language,
-  filename
+  filename,
+  indent
 });
 
-export const createImage = (src: string, alt: string, caption?: string, width?: string, height?: string): ContentBlock => ({
+export const createImage = (src: string, alt: string, caption?: string, width?: string, height?: string, indent?: number): ContentBlock => ({
   type: 'image',
   src,
   alt,
   caption,
   width,
-  height
+  height,
+  indent
 });
 
-export const createList = (items: string[], ordered = false): ContentBlock => ({
+export const createList = (items: string[], ordered = false, indent?: number): ContentBlock => ({
   type: 'list',
   items,
-  ordered
+  ordered,
+  indent
 });
 
-export const createQuote = (content: string, author?: string): ContentBlock => ({
+export const createQuote = (content: string, author?: string, indent?: number): ContentBlock => ({
   type: 'quote',
   content,
-  author
+  author,
+  indent
 });
 
 export const createMetrics = (
@@ -46,17 +77,38 @@ export const createMetrics = (
     value: string;
     description?: string;
   }>,
-  title?: string
+  title?: string,
+  indent?: number
 ): ContentBlock => ({
   type: 'metrics',
   metrics,
-  title
+  title,
+  indent
 });
 
-export const createCustom = (component: React.ReactNode): ContentBlock => ({
+export const createCustom = (component: React.ReactNode, indent?: number): ContentBlock => ({
   type: 'custom',
-  component
+  component,
+  indent
 });
+
+export const createWorkflow = (src: string, alt: string, caption?: string, title?: string, indent?: number): ContentBlock => ({
+  type: 'workflow',
+  src,
+  alt,
+  caption,
+  title,
+  indent
+});
+
+// Helper function to indent blocks
+export const indent = (blocks: ContentBlock[] | ContentBlock, level: number = 1): ContentBlock[] => {
+  const blocksArray = Array.isArray(blocks) ? blocks : [blocks];
+  return blocksArray.map(block => ({
+    ...block,
+    indent: (block.indent || 0) + level
+  }));
+};
 
 // Helper to create sections
 export const createSection = (id: string, title: string, blocks: ContentBlock[]): TemplateSection => ({
@@ -134,15 +186,6 @@ export const createSimpleBreakdown = (
   metadata,
   sections
 });
-
-export const createWorkflow = (src: string, alt: string, caption?: string, title?: string): ContentBlock => ({
-  type: 'workflow',
-  src,
-  alt,
-  caption,
-  title
-});
-
 
 // Quick templates for common breakdown patterns
 export const createResearchBreakdown = (
