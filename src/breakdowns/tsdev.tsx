@@ -1,8 +1,7 @@
 import type { TemplateBreakdown } from '../types/breakdown';
 import { 
   createText, 
-  createMath, 
-  createCode, 
+  createMath,  
   createList, 
   createSection,
   createImage
@@ -40,60 +39,50 @@ const TSDevTemplateBreakdown = (): TemplateBreakdown => ({
   },
   
   sections: [
-    createSection('overview', 'Overview', [
-      createText('TSDev is a framework for applying machine learning and computational methods to time series by vectorization, enabling the discovery of discrete connections between series and sequences. Our goal was to prove our friend was good at sports betting by summarizing long, noisy, and nonlinear time series data into vector embeddings suitable for a variety of machine learning algorithms.'),
-      createText('This pipeline supports techniques such as clustering, classification, and similarity analysis, which are challenging to perform directly on raw time series.'),
-      createText('This project is applicable for any vectorization tasks, but we mainly test gambling and irresponsible means of making money!')
-    ]),
-    
-    createSection('intro', 'Introduction', [
-      
-      createText('We built TSDev to analyze my friend\'s gambling habits, where the underlying data consisted of long, irregular, and noisy time series. Limitations in traditional time series analysis don\'t allow for direct comparison of irregular sequences, which is computationally expensive and often unstable. Many machine learning models are not suited for sequential data. By vectorizing time series into embeddings, TSDev addresses these challenges and enables the use of clustering, classification, and anomaly detection.'),
-      createText('Discrete Connections refer to the relationships between time series after being transformed into vector embeddings. Instead of comparing raw sequences, we evaluate a compact representation using distance metrics, similarity graphs, and machine learning algorithms.'),
-      createText('TSDev addresses these challenges through a two-step process. First, we apply our "Flowing Window Algorithm" to “vectorize” the raw data into high-dimensional tensor summaries. This transforms unpredictable, non-linear time series into structured embeddings that are far easier to store, query, and analyze. These embeddings can be saved locally or in vector databases such as Pinecone or Weaviate.'),
+    createSection('origin', 'Origin', [
+      createText('TSDev is a framework used to convert messy, irregular time series into compact vector embeddings, enabling fast clustering, classification, and similarity search.'),
+      createText('The project was originally built to analyze a friend\'s sports betting history, thousands of noisy and nonlinear data points. But this technique can be applied to finance, IoT sensors, healthcare, and any domain where raw sequences are too complex for direct analysis by machine learning algorithms.'),
+      createText('TSdev follows a 2-step approach: first converting time series into vectors, then conducting machine learning analysis to provide insight.')
     ]),
     
     createSection('vectorizer', 'Vectorization Engine', [
-      createText('Our vectorizer engine applies the Flowing Window Algorithm to segment the series, extract features, and assemble a tensor embedding for storage in a vector database.'),
       createImage('/vectorizer.png', 'TSDev System Architecture Diagram'),
+      createText('In step 1, we first use a custom algorithm called Flowing Window to convert the series into vector summaries.'),
+      createText('The Flowing Window Algorithm works by sliding a fixed-size window across the time series and extracting a feature vector for each segment.'),
       createMath('\\text{Given a time series } S = \\{ s_1, s_2, \\dots, s_T \\}, \\text{ select window size } W, \\text{ step size } s'),
       createMath('N = \\left\\lfloor \\frac{T - W}{s} \\right\\rfloor + 1, \\quad w^{(i)} = (s_{i}, s_{i+1}, \\dots, s_{i+W-1}), \\quad i = 1, \\dots, N'),
       createMath('V^{(i)} = [\\mu_i, \\tilde{x}_i, \\hat{x}_i, \\sigma_i, \\dots, \\text{FFT}^{(i)}], \\quad \\text{FFT}^{(i)}_k = \\sum_{t=0}^{W-1} w^{(i)}_t e^{-2\\pi j k t / W}, \\quad k = 0, \\dots, W-1'),
       createMath('V = \\begin{bmatrix} V^{(1)} \\\\ V^{(2)} \\\\ \\vdots \\\\ V^{(N)} \\end{bmatrix}'),
       createMath('\\text{Tensor summarizes time, frequency, and statistical features across the series}'),
-      createText('The Flowing Window Algorithm takes inspiration from the sliding window technique, converting time series into structured tensors by repeatedly sliding a window of length W over a series S of length T. For each window, we compute a feature vector containing statistical measures along with the discrete Fourier transform to capture frequency-domain characteristics of the data. These window vectors are then combined into a high-dimensional embedding that compresses both time and frequency domain information.'),
-      createText('Once vector embeddings are created, they are stored locally or in cloud-based vector databases such as Pinecone or Weaviate. This structure allows for millisecond-level retrieval, enabling rapid querying, similarity search, and cross-series comparisons even at scale.'),
+      createText('For every window, TSDev computes:'),
+      createList([
+        'Statistical features: mean, variance, skewness, etc.',
+        'Frequency-domain features: via Discrete Fourier Transform (DFT)'
+      ]),
+      createText('These per-window vectors are stacked into a **high-dimensional tensor embedding** that preserves both short-term fluctuations and long-term trends.'),
+      createText('This process turns unpredictable, nonlinear data into a structured, fixed-length representation that can be stored and queried efficiently.'),
+      createText('**Vector Database Integration**'),
+      createText('Embeddings are stored in FAISS, Pinecone, or Weaviate for millisecond-level retrieval, enabling large-scale similarity search and cross-series comparison.')
     ]),
 
     createSection('deep_learning', 'Deep Learning', [
-      createText('The TSDev framework consists of several key components working together to transform time series data into meaningful vector representations:'),
+      createText('In Step 2, we explore machine learning for insights into series data. Opportunities for deep learning are vast using this process; a few include:'),
+      createText('**KNN Search (FAISS):** enables instant nearest-neighbour lookups, letting us quickly find similar patterns across massive datasets without reprocessing the raw series.'),
+      createText('**ML Models:** once in vector form, the data can be used with a wide range of machine learning algorithms, even those not designed for sequential data. This opens the door for:'),
       createList([
-        'Feature Window Aggregation (FWA) for temporal pattern extraction',
-        'Tensor Processing Pipeline for efficient computation',
-        'KNN-based similarity matching with FAISS optimization',
-        'Machine Learning model for classification and clustering'
+        '**Faster training:** reduced sequence length and dimensionality, models converge quickly.',
+        '**Model flexibility:** enables the use of algorithms like SVMs, random forests, and gradient boosting, which work best with fixed-size inputs.',
+        '**Accessibility:** makes it easy to train on commodity hardware without needing specialized setups like RNNs or Transformers.',
+        '**Cross-domain learning** — embeddings from one domain (e.g., finance) can be compared or transferred to another (e.g., IoT) without retraining from scratch.'
       ]),
-      createCode(`class TSDevPipeline:
-    def __init__(self, window_size=100, embedding_dim=128):
-        self.window_size = window_size
-        self.embedding_dim = embedding_dim
-        self.encoder = TimeSeriesEncoder(embedding_dim)
-        self.faiss_index = faiss.IndexFlatL2(embedding_dim)
-    
-    def vectorize_series(self, time_series):
-        # Apply Feature Window Aggregation
-        windows = self.create_windows(time_series, self.window_size)
-        
-        # Generate embeddings
-        embeddings = self.encoder.encode(windows)
-        
-        # Add to FAISS index for fast similarity search
-        self.faiss_index.add(embeddings)
-        
-        return embeddings`, 'python', 'core_pipeline.py')
+      createText('By vectorizing the data first, TSDev shifts the heavy lifting from model architecture to preprocessing, optimizing for both **speed** and **adaptability** while keeping the option open for more advanced sequence models if needed.')
     ]),
     
-    createSection('resolution', 'Resolution', [])
+    createSection('results', 'Results', [
+      createText('TSDev successfully vectorized irregular betting data, revealing structure in sequences that traditional time series methods could not handle.'),
+      createText('Similarity searches ran in milliseconds, and clustering highlighted meaningful relationships between series.'),
+      createText('The system is now being explored for **quantitative finance** and **sensor analytics**, where the combination of speed, adaptability, and accuracy is critical.')
+    ])
   ]
 });
 
