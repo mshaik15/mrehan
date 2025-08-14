@@ -22,17 +22,23 @@ const BreakdownContentRenderer = ({ blocks }: BreakdownContentRendererProps) => 
     return indentLevels[Math.min(indent, 4) as keyof typeof indentLevels] || indentLevels[4];
   };
 
-  // Helper function to render text with bold support
+  // Enhanced function to render text with POPPING bold support
   const renderTextWithBold = (text: string) => {
     // Split by markdown bold syntax **text**
     const parts = text.split(/(\*\*.*?\*\*)/g);
     
     return parts.map((part, index) => {
       if (part.startsWith('**') && part.endsWith('**')) {
-        // Remove the ** markers and render as bold
+        // Remove the ** markers and render as POPPING bold
         const boldText = part.slice(2, -2);
         return (
-          <strong key={index} className="font-bold text-theme-accent-primary">
+          <strong 
+            key={index} 
+            className="font-bold text-[#ffffff] text-[1.15em] tracking-wide"
+            style={{
+              fontWeight: '800'
+            }}
+          >
             {boldText}
           </strong>
         );
