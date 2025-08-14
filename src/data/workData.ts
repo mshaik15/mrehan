@@ -13,7 +13,7 @@ const workData: WorkData[] = [
   {
     company: 'Skrimp.ai',
     role: 'Engineering, API & AI Agents',
-    year: 'Present',
+    year: '2025',
     location: 'Waterloo, ON',
     description: 'Productizing real-time multimodal intelligence. Launched ink-whisper platform for seamless voice and text integration.',
     tech: ['Next.js', 'Python', 'LangGraph', 'Firebase', 'LLMs'],
