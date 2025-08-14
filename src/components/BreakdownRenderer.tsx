@@ -306,7 +306,14 @@ const BreakdownRenderer = () => {
           <article className="prose prose-lg prose-invert max-w-none">
             {sections.map((section) => (
               <section key={section.id} id={section.id} className="mt-12 first:mt-0 scroll-mt-32">
-                <h2 className="text-xl sm:text-2xl font-semibold text-theme-text-primary mb-4">
+                <h2 
+                  className="text-xl sm:text-2xl font-semibold mb-4"
+                  style={{
+                    color: '#ffffff',
+                    fontWeight: '800',
+                    fontSize: '1.15em'
+                  }}
+                >
                   {section.title}
                 </h2>
                 {isTemplateBreakdown(breakdown) && 'blocks' in section ? (
