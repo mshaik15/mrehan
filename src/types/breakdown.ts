@@ -142,4 +142,10 @@ export interface BoldText {
   content: string;
 }
 
-export type TextContent = string | BoldText | (string | BoldText)[];
+export interface LinkText {
+  type: 'link';
+  url: string;
+  name: string;
+}
+
+export type TextContent = string | BoldText | LinkText | (string | BoldText | LinkText)[];

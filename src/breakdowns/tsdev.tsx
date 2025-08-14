@@ -5,7 +5,8 @@ import {
   createSection,
   createImage,
   Bold,
-  indent
+  indent,
+  Link
 } from '../utils/breakdownTemplateCreator';
 
 const TSDevTemplateBreakdown = (): TemplateBreakdown => ({
@@ -49,12 +50,9 @@ const TSDevTemplateBreakdown = (): TemplateBreakdown => ({
     createSection('vectorizer', 'Vectorization Engine', [
       createImage('/vectorizer.png', 'TSDev System Architecture Diagram'),
       createText(['In step 1, we first use a custom algorithm called ', Bold('Flowing Window'), ' to convert the series into vector summaries.']),
-      createText([Bold('The Flowing Window Algorithm'), ' works by sliding a fixed-size window across the time series and extracting a feature vector for each segment.']),
-      createMath('\\text{Given a time series } S = \\{ s_1, s_2, \\dots, s_T \\}, \\text{ select window size } W, \\text{ step size } s'),
-      createMath('N = \\left\\lfloor \\frac{T - W}{s} \\right\\rfloor + 1, \\quad w^{(i)} = (s_{i}, s_{i+1}, \\dots, s_{i+W-1}), \\quad i = 1, \\dots, N'),
-      createMath('V^{(i)} = [\\mu_i, \\tilde{x}_i, \\hat{x}_i, \\sigma_i, \\dots, \\text{FFT}^{(i)}], \\quad \\text{FFT}^{(i)}_k = \\sum_{t=0}^{W-1} w^{(i)}_t e^{-2\\pi j k t / W}, \\quad k = 0, \\dots, W-1'),
-      createMath('V = \\begin{bmatrix} V^{(1)} \\\\ V^{(2)} \\\\ \\vdots \\\\ V^{(N)} \\end{bmatrix}'),
-      createMath('\\text{Tensor summarizes time, frequency, and statistical features across the series}'),
+      createText([Bold('The Flowing Window Algorithm'), ' works by sliding a fixed-size window across the time series and extracting a feature vector for each segment. ', Link('https://github.com/mshaik15/TsDev')('Full Breakdown')]),
+      createMath('V^{(i)} = [\\mu_i, \\tilde{x}_i, \\hat{x}_i, \\sigma_i, \\dots, \\text{FFT}^{(i)}] \\quad \\text{FFT}^{(i)}_k = \\sum_{t=0}^{W-1} w^{(i)}_t e^{-2\\pi j k t / W}, \\quad k = 0, \\dots, W-1'),
+      createMath('V = \\begin{bmatrix} V^{(1)} \\\\ V^{(2)} \\\\ \\vdots \\\\ V^{(N)} \\end{bmatrix} \\quad \\text{Tensor summarizes time, frequency, and statistical features across the series}'),
       createText('For every window, TSDev computes:'),
       ...indent([
         createText(['Statistical features: mean, variance, skewness, etc.']),
@@ -88,3 +86,4 @@ const TSDevTemplateBreakdown = (): TemplateBreakdown => ({
 });
 
 export default TSDevTemplateBreakdown;
+

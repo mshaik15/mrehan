@@ -22,27 +22,47 @@ const BreakdownContentRenderer = ({ blocks }: BreakdownContentRendererProps) => 
     return indentLevels[Math.min(indent, 4) as keyof typeof indentLevels] || indentLevels[4];
   };
 
-  // Updated function to render text with smaller, refined bold styling
-  const renderTextWithBold = (text: string) => {
-    // Split by markdown bold syntax **text**
-    const parts = text.split(/(\*\*.*?\*\*)/g);
+  // Updated function to render text with bold styling and links
+  const renderTextWithFormatting = (text: string) => {
+    // Split by both markdown bold syntax **text** and markdown link syntax [text](url)
+    const parts = text.split(/(\*\*.*?\*\*|\[.*?\]\(.*?\))/g);
     
     return parts.map((part, index) => {
+      // Handle bold text
       if (part.startsWith('**') && part.endsWith('**')) {
-        // Remove the ** markers and render with refined bold styling
         const boldText = part.slice(2, -2);
         return (
           <strong 
             key={index} 
             className="font-bold text-theme-text-emphasis"
             style={{
-              fontWeight: '700' // Reduced from 800
+              fontWeight: '700'
             }}
           >
             {boldText}
           </strong>
         );
       }
+      
+      // Handle links
+      if (part.startsWith('[') && part.includes('](') && part.endsWith(')')) {
+        const linkMatch = part.match(/\[(.*?)\]\((.*?)\)/);
+        if (linkMatch) {
+          const [, linkText, linkUrl] = linkMatch;
+          return (
+            <a
+              key={index}
+              href={linkUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-theme-accent-primary hover:text-theme-accent-hover underline decoration-theme-accent-primary/50 hover:decoration-theme-accent-hover transition-colors"
+            >
+              {linkText}
+            </a>
+          );
+        }
+      }
+      
       return part;
     });
   };
@@ -56,7 +76,7 @@ const BreakdownContentRenderer = ({ blocks }: BreakdownContentRendererProps) => 
         return (
           <div key={index} className={baseClass}>
             <p className="text-theme-text-secondary text-sm sm:text-base leading-relaxed">
-              {renderTextWithBold(block.content)}
+              {renderTextWithFormatting(block.content)}
             </p>
           </div>
         );
@@ -138,7 +158,7 @@ const BreakdownContentRenderer = ({ blocks }: BreakdownContentRendererProps) => 
               {block.items.map((item, itemIndex) => (
                 <li key={itemIndex} className={block.ordered ? '' : 'flex items-start gap-2'}>
                   {!block.ordered && <span className="text-theme-accent-primary mt-1.5 text-xs">●</span>}
-                  <span className="flex-1">{renderTextWithBold(item)}</span>
+                  <span className="flex-1">{renderTextWithFormatting(item)}</span>
                 </li>
               ))}
             </ListTag>
@@ -150,7 +170,7 @@ const BreakdownContentRenderer = ({ blocks }: BreakdownContentRendererProps) => 
           <div key={index} className={baseClass}>
             <blockquote className="my-6 border-l-4 border-theme-accent-primary/60 pl-6 py-2 bg-theme-bg-tertiary/20 rounded-r-lg">
               <p className="text-sm sm:text-base leading-relaxed text-theme-text-secondary italic">
-                "{renderTextWithBold(block.content)}"
+                "{renderTextWithFormatting(block.content)}"
               </p>
               {block.author && (
                 <cite className="text-xs text-theme-text-muted mt-3 block not-italic font-medium">

@@ -6,20 +6,39 @@ export const Bold = (content: string): BoldText => ({
   content
 });
 
-// Helper function to parse text content with bold elements
+// Helper function to create links
+export const Link = (url: string) => (name: string) => ({
+  type: 'link' as const,
+  url,
+  name
+});
+
+// Helper function to parse text content with bold elements and links
 const parseTextContent = (content: TextContent): string => {
   if (typeof content === 'string') {
     return content;
   }
   
-  if ('type' in content && content.type === 'bold') {
-    return `**${content.content}**`; // Use markdown-style bold for now
+  if (typeof content === 'object' && content !== null && 'type' in content) {
+    if (content.type === 'bold') {
+      return `**${content.content}**`; // Use markdown-style bold
+    }
+    if (content.type === 'link' && 'name' in content && 'url' in content) {
+      return `[${content.name}](${content.url})`; // Use markdown-style link
+    }
   }
   
   if (Array.isArray(content)) {
-    return content.map(item => 
-      typeof item === 'string' ? item : `**${item.content}**`
-    ).join('');
+    return content.map(item => {
+      if (typeof item === 'string') {
+        return item;
+      } else if (item.type === 'bold') {
+        return `**${item.content}**`;
+      } else if (item.type === 'link' && 'name' in item && 'url' in item) {
+        return `[${item.name}](${item.url})`;
+      }
+      return '';
+    }).join('');
   }
   
   return '';
