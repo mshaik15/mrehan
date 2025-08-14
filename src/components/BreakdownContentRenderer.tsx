@@ -7,29 +7,68 @@ interface BreakdownContentRendererProps {
 }
 
 const BreakdownContentRenderer = ({ blocks }: BreakdownContentRendererProps) => {
+  // Helper function to get indent classes
+  const getIndentClasses = (indent?: number) => {
+    if (!indent || indent <= 0) return '';
+    
+    // Each level adds more left margin/padding
+    const indentLevels = {
+      1: 'ml-4 pl-4 border-l-2 border-theme-border-primary/20',
+      2: 'ml-8 pl-6 border-l-2 border-theme-border-primary/30', 
+      3: 'ml-12 pl-8 border-l-2 border-theme-border-primary/40',
+      4: 'ml-16 pl-10 border-l-2 border-theme-border-primary/50'
+    };
+    
+    return indentLevels[Math.min(indent, 4) as keyof typeof indentLevels] || indentLevels[4];
+  };
+
+  // Helper function to render text with bold support
+  const renderTextWithBold = (text: string) => {
+    // Split by markdown bold syntax **text**
+    const parts = text.split(/(\*\*.*?\*\*)/g);
+    
+    return parts.map((part, index) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        // Remove the ** markers and render as bold
+        const boldText = part.slice(2, -2);
+        return (
+          <strong key={index} className="font-semibold text-theme-text-primary">
+            {boldText}
+          </strong>
+        );
+      }
+      return part;
+    });
+  };
+
   const renderBlock = (block: ContentBlock, index: number) => {
+    const indentClass = getIndentClasses(block.indent);
+    const baseClass = indentClass ? `${indentClass}` : '';
+
     switch (block.type) {
       case 'text':
         return (
-          <p key={index} className="text-theme-text-secondary text-sm sm:text-base leading-relaxed">
-            {block.content}
-          </p>
+          <div key={index} className={baseClass}>
+            <p className="text-theme-text-secondary text-sm sm:text-base leading-relaxed">
+              {renderTextWithBold(block.content)}
+            </p>
+          </div>
         );
 
       case 'math':
         return block.inline ? (
-          <div key={index} className="my-2">
+          <div key={index} className={`my-2 ${baseClass}`}>
             <InlineMath_>{block.content}</InlineMath_>
           </div>
         ) : (
-          <div key={index} className="my-4">
+          <div key={index} className={`my-4 ${baseClass}`}>
             <BlockMath_>{block.content}</BlockMath_>
           </div>
         );
 
       case 'code':
         return (
-          <div key={index} className="my-4 max-w-[90%] mx-auto">
+          <div key={index} className={`my-4 max-w-[90%] mx-auto ${baseClass}`}>
             <div className="bg-theme-bg-tertiary p-3 rounded-lg overflow-x-auto relative shadow-[0_0_8px_rgba(107,207,246,0.1)]">
               {(block.language || block.filename) && (
                 <div className="absolute top-0 right-0 px-2 py-1 text-xs text-theme-text-muted bg-theme-bg-tertiary rounded-bl">
@@ -45,7 +84,7 @@ const BreakdownContentRenderer = ({ blocks }: BreakdownContentRendererProps) => 
 
       case 'image':
         return (
-          <div key={index} className="my-8">
+          <div key={index} className={`my-8 ${baseClass}`}>
             <div className="rounded-xl bg-theme-bg-tertiary/20 p-6 shadow-[0_0_20px_rgba(0,0,0,0.3)]">
               <div className="w-full flex justify-center">
                 <img 
@@ -88,33 +127,37 @@ const BreakdownContentRenderer = ({ blocks }: BreakdownContentRendererProps) => 
       case 'list':
         const ListTag = block.ordered ? 'ol' : 'ul';
         return (
-          <ListTag key={index} className={`space-y-2 text-theme-text-secondary text-sm sm:text-base my-4 ${block.ordered ? 'list-decimal list-inside pl-4' : 'space-y-2'}`}>
-            {block.items.map((item, itemIndex) => (
-              <li key={itemIndex} className={block.ordered ? '' : 'flex items-start gap-2'}>
-                {!block.ordered && <span className="text-theme-accent-primary mt-1.5 text-xs">●</span>}
-                <span className="flex-1">{item}</span>
-              </li>
-            ))}
-          </ListTag>
+          <div key={index} className={baseClass}>
+            <ListTag className={`space-y-2 text-theme-text-secondary text-sm sm:text-base my-4 ${block.ordered ? 'list-decimal list-inside pl-4' : 'space-y-2'}`}>
+              {block.items.map((item, itemIndex) => (
+                <li key={itemIndex} className={block.ordered ? '' : 'flex items-start gap-2'}>
+                  {!block.ordered && <span className="text-theme-accent-primary mt-1.5 text-xs">●</span>}
+                  <span className="flex-1">{renderTextWithBold(item)}</span>
+                </li>
+              ))}
+            </ListTag>
+          </div>
         );
 
       case 'quote':
         return (
-          <blockquote key={index} className="my-6 border-l-4 border-theme-accent-primary/60 pl-6 py-2 bg-theme-bg-tertiary/20 rounded-r-lg">
-            <p className="text-sm sm:text-base leading-relaxed text-theme-text-secondary italic">
-              "{block.content}"
-            </p>
-            {block.author && (
-              <cite className="text-xs text-theme-text-muted mt-3 block not-italic font-medium">
-                — {block.author}
-              </cite>
-            )}
-          </blockquote>
+          <div key={index} className={baseClass}>
+            <blockquote className="my-6 border-l-4 border-theme-accent-primary/60 pl-6 py-2 bg-theme-bg-tertiary/20 rounded-r-lg">
+              <p className="text-sm sm:text-base leading-relaxed text-theme-text-secondary italic">
+                "{renderTextWithBold(block.content)}"
+              </p>
+              {block.author && (
+                <cite className="text-xs text-theme-text-muted mt-3 block not-italic font-medium">
+                  — {block.author}
+                </cite>
+              )}
+            </blockquote>
+          </div>
         );
 
       case 'metrics':
         return (
-          <div key={index} className="my-8">
+          <div key={index} className={`my-8 ${baseClass}`}>
             {block.title && (
               <h4 className="text-base font-semibold text-theme-text-primary mb-4 text-center">
                 {block.title}
@@ -144,14 +187,14 @@ const BreakdownContentRenderer = ({ blocks }: BreakdownContentRendererProps) => 
 
       case 'custom':
         return (
-          <div key={index} className="my-6">
+          <div key={index} className={`my-6 ${baseClass}`}>
             {block.component}
           </div>
         );
 
       case 'workflow':
         return (
-          <div key={index} className="my-10">
+          <div key={index} className={`my-10 ${baseClass}`}>
             {block.title && (
               <h4 className="text-lg font-semibold text-theme-text-primary mb-6 text-center">
                 {block.title}
