@@ -4,12 +4,14 @@ import type { ReactNode } from 'react';
 export interface TextBlock {
   type: 'text';
   content: string;
+  indent?: number; // Add indentation level (0 = no indent, 1 = first level, etc.)
 }
 
 export interface MathBlock {
   type: 'math';
   content: string;
   inline?: boolean; // false = block math, true = inline math
+  indent?: number;
 }
 
 export interface CodeBlock {
@@ -17,6 +19,7 @@ export interface CodeBlock {
   content: string;
   language?: string;
   filename?: string;
+  indent?: number;
 }
 
 export interface ImageBlock {
@@ -26,18 +29,21 @@ export interface ImageBlock {
   caption?: string;
   width?: string;
   height?: string;
+  indent?: number;
 }
 
 export interface ListBlock {
   type: 'list';
   items: string[];
   ordered?: boolean; // false = bullet list, true = numbered list
+  indent?: number;
 }
 
 export interface QuoteBlock {
   type: 'quote';
   content: string;
   author?: string;
+  indent?: number;
 }
 
 export interface MetricsBlock {
@@ -48,11 +54,22 @@ export interface MetricsBlock {
     value: string;
     description?: string;
   }>;
+  indent?: number;
 }
 
 export interface CustomBlock {
   type: 'custom';
   component: ReactNode;
+  indent?: number;
+}
+
+export interface WorkflowBlock {
+  type: 'workflow';
+  src: string;
+  alt: string;
+  caption?: string;
+  title?: string;
+  indent?: number;
 }
 
 // Union type for all content blocks
@@ -119,10 +136,10 @@ export interface BreakdownComponent {
   default: () => ProjectBreakdown | TemplateBreakdown;
 }
 
-export interface WorkflowBlock {
-  type: 'workflow';
-  src: string;
-  alt: string;
-  caption?: string;
-  title?: string;
+// Helper types for text formatting
+export interface BoldText {
+  type: 'bold';
+  content: string;
 }
+
+export type TextContent = string | BoldText | (string | BoldText)[];
