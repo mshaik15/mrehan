@@ -11,12 +11,12 @@ const BreakdownContentRenderer = ({ blocks }: BreakdownContentRendererProps) => 
   const getIndentClasses = (indent?: number) => {
     if (!indent || indent <= 0) return '';
     
-    // Each level adds more left margin/padding
+    // Each level adds more left margin without borders
     const indentLevels = {
-      1: 'ml-4 pl-4 border-l-2 border-theme-border-primary/20',
-      2: 'ml-8 pl-6 border-l-2 border-theme-border-primary/30', 
-      3: 'ml-12 pl-8 border-l-2 border-theme-border-primary/40',
-      4: 'ml-16 pl-10 border-l-2 border-theme-border-primary/50'
+      1: 'ml-6',
+      2: 'ml-12', 
+      3: 'ml-18',
+      4: 'ml-24'
     };
     
     return indentLevels[Math.min(indent, 4) as keyof typeof indentLevels] || indentLevels[4];
@@ -32,7 +32,7 @@ const BreakdownContentRenderer = ({ blocks }: BreakdownContentRendererProps) => 
         // Remove the ** markers and render as bold
         const boldText = part.slice(2, -2);
         return (
-          <strong key={index} className="font-semibold text-theme-text-primary">
+          <strong key={index} className="font-bold text-theme-accent-primary">
             {boldText}
           </strong>
         );
