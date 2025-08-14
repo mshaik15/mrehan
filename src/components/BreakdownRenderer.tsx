@@ -167,9 +167,9 @@ const BreakdownRenderer = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           {/* Left side - Project Info */}
           <div className="space-y-6">
-            {/* Title and Subtitle */}
+            {/* Title and Subtitle - Updated with emphasis color */}
             <div className="space-y-3">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-theme-text-primary leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-theme-text-emphasis leading-tight">
                 {metadata.title}
               </h1>
               <p className="text-base md:text-lg lg:text-xl text-theme-text-muted leading-relaxed">
@@ -182,26 +182,26 @@ const BreakdownRenderer = () => {
               </div>
             </div>
 
-            {/* Quick Info Grid */}
+            {/* Quick Info Grid - Updated with emphasis color for labels */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Status */}
               {metadata.status && (
                 <div className="flex flex-col gap-1">
-                  <div className="text-xs uppercase tracking-wide text-theme-text-primary font-bold">STATUS</div>
+                  <div className="text-xs uppercase tracking-wide text-theme-text-emphasis font-bold">STATUS</div>
                   <div className="text-sm text-theme-text-secondary font-medium">{metadata.status}</div>
                 </div>
               )}
 
               {/* Timeline */}
               <div className="flex flex-col gap-1">
-                <div className="text-xs uppercase tracking-wide text-theme-text-primary font-bold">TIMELINE</div>
+                <div className="text-xs uppercase tracking-wide text-theme-text-emphasis font-bold">TIMELINE</div>
                 <div className="text-sm text-theme-text-secondary font-medium">{metadata.timeline}</div>
               </div>
 
               {/* Team */}
               {metadata.team && (Array.isArray(metadata.team) ? metadata.team.length > 0 : true) && (
                 <div className="flex flex-col gap-1">
-                  <div className="text-xs uppercase tracking-wide text-theme-text-primary font-bold">TEAM</div>
+                  <div className="text-xs uppercase tracking-wide text-theme-text-emphasis font-bold">TEAM</div>
                   {renderTeam(metadata.team)}
                 </div>
               )}
@@ -209,14 +209,14 @@ const BreakdownRenderer = () => {
               {/* Role */}
               {metadata.role && (
                 <div className="flex flex-col gap-1">
-                  <div className="text-xs uppercase tracking-wide text-theme-text-primary font-bold">MY ROLE</div>
+                  <div className="text-xs uppercase tracking-wide text-theme-text-emphasis font-bold">MY ROLE</div>
                   <div className="text-sm text-theme-text-secondary font-medium">{metadata.role}</div>
                 </div>
               )}
 
               {/* Repository */}
               <div className="flex flex-col gap-1">
-                <div className="text-xs uppercase tracking-wide text-theme-text-primary font-bold">REPOSITORY</div>
+                <div className="text-xs uppercase tracking-wide text-theme-text-emphasis font-bold">REPOSITORY</div>
                 {metadata.githubUrl ? (
                   <a 
                     href={metadata.githubUrl}
@@ -307,11 +307,9 @@ const BreakdownRenderer = () => {
             {sections.map((section) => (
               <section key={section.id} id={section.id} className="mt-12 first:mt-0 scroll-mt-32">
                 <h2 
-                  className="text-xl sm:text-2xl font-semibold mb-4"
+                  className="text-xl sm:text-2xl font-semibold mb-4 text-theme-text-emphasis"
                   style={{
-                    color: '#ffffff',
-                    fontWeight: '800',
-                    fontSize: '1.15em'
+                    fontWeight: '700' // Reduced from 800, using new emphasis color
                   }}
                 >
                   {section.title}
