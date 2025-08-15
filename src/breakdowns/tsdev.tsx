@@ -15,7 +15,7 @@ const TSDevTemplateBreakdown = (): TemplateBreakdown => ({
     subtitle: 'Optimized Vectorization of Time Series Data for Machine Learning',
     projectType: 'Research',
     year: '2025',
-    timeline: '2 months · June - Aug 2025',
+    timeline: '2 months · July - Aug 2025',
     tools: ['PyTorch', 'FAISS', 'NumPy', 'Matplotlib', 'Mathematical Modeling'],
     team: [
       { 
