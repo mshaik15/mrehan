@@ -49,8 +49,8 @@ const projectData: ProjectData[] = [
     tech: ['Tensorflow', 'YOLOv8', 'C++', 'Solidworks', 'OnShape'],
     icon: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=40&h=40&fit=crop',
     
-    hasBreakdown: true,
-    slug: 'gary',
+    // hasBreakdown: true,
+    // slug: 'gary',
   },
 
   {
